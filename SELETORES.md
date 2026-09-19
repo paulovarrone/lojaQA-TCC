@@ -100,14 +100,14 @@ Página principal da loja, exibida logo após o login bem-sucedido.
 |---|---|---|---|---|---|
 | Card do produto | `div` | — | `[data-test="item-inventario"]` | `.inventory_item` | — |
 | Link da imagem | `a` | — | — | `.inventory_item_img`, `.link-item` | `href="inventory-item.html?id=N"` |
-| Imagem do produto | `img` | — | — | — | `src="img/<produto>.svg"`, `alt` = nome do produto |
+| Imagem do produto | `img` | — | — | — | `src="../img/<produto>.svg"`, `alt` = nome do produto |
 | Nome do produto (link) | `a` | — | `[data-test="nome-item"]` | `.inventory_item_name`, `.link-item` | `href="inventory-item.html?id=N"` |
 | Descrição | `div` | — | `[data-test="descricao-item"]` | `.inventory_item_desc` | — |
 | Barra de preço | `div` | — | — | `.pricebar` | — |
 | Preço | `div` | — | `[data-test="preco-item"]` | `.inventory_item_price` | formato `R$ X,XX` |
 | Botão Adicionar/Remover | `button` | um por produto, estável (ver [Botões de carrinho por produto](#botões-de-carrinho-por-produto)) | alterna entre `adicionar-carrinho-…` e `remover-…` do produto | `.btn`, `.btn_small` + `.btn_inventory` (fora) ⇄ `.btn_secondary` (no carrinho) | texto: "Adicionar ao carrinho" ⇄ "Remover" |
 
-> **Usuário `usuario_problema`:** todas as imagens carregam `img/broken.svg` em vez da imagem real.
+> **Usuário `usuario_problema`:** todas as imagens carregam `../img/broken.svg` em vez da imagem real.
 
 ---
 
@@ -203,7 +203,7 @@ Os itens da lista usam os mesmos seletores do carrinho (`[data-test="item-carrin
 | Elemento | Tag | `id` | `data-test` | `class` | Atributos / Texto |
 |---|---|---|---|---|---|
 | Container da página | `main` | `#container-pedido-concluido` | `[data-test="container-pedido-concluido"]` | `.checkout_complete_container` | — |
-| Imagem de confirmação (✓) | `img` | `#imagem-confirmacao` | `[data-test="imagem-confirmacao"]` | `.pony_express` | `src="img/pony-express.svg"`, `alt="Pedido confirmado"` |
+| Imagem de confirmação (✓) | `img` | `#imagem-confirmacao` | `[data-test="imagem-confirmacao"]` | `.pony_express` | `src="../img/pony-express.svg"`, `alt="Pedido confirmado"` |
 | Título | `h2` | `#titulo-conclusao` | `[data-test="titulo-conclusao"]` | `.complete-header` | "Obrigado pelo seu pedido!" |
 | Texto de confirmação | `div` | `#texto-conclusao` | `[data-test="texto-conclusao"]` | `.complete-text` | "Pedido #XXXXXXXX confirmado! Ele foi despachado..." |
 | Número do pedido | `strong` | `#numero-pedido` | `[data-test="numero-pedido"]` | — | "#XXXXXXXX" (8 dígitos, preenchido via JS) |
@@ -347,7 +347,7 @@ Todos usam a senha `senha_teste_123`.
 | `usuario_padrao` | fluxo normal, sem defeitos | — |
 | `usuario_bloqueado` | login recusado | `#texto-erro`: "Ops! Desculpe, este usuário foi bloqueado." |
 | `usuario_lento` | login com atraso de ~5s | `#botao-entrar` fica `[disabled]` com `value="Carregando..."` |
-| `usuario_problema` | todas as imagens de produto quebradas | `img` com `src="img/broken.svg"` na vitrine e no detalhe |
+| `usuario_problema` | todas as imagens de produto quebradas | `img` com `src="../img/broken.svg"` na vitrine e no detalhe |
 | `usuario_erro` | ações falham de propósito | 1) trocar `#seletor-ordenacao` dispara `alert` e volta para `az`; 2) clicar em Adicionar de produtos com **id ímpar** não tem efeito (badge não muda, `console.error` emitido); 3) `#botao-finalizar` dispara `alert` e o pedido não é concluído |
 | `usuario_visual` | defeitos visuais propositais | `body` recebe `.bugs-visuais`: logo deslocado, `#badge-carrinho` no canto errado, imagens de cards `:nth-child(3n)` tortas, botões de cards `:nth-child(4n)` desalinhados, preços em vermelho itálico, e **preços errados na vitrine** (+R$ 10,00 nos produtos de id múltiplo de 5: ids 0, 5, 10, 15 e 20 — carrinho e checkout mostram o preço correto) |
 

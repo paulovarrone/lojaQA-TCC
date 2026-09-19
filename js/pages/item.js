@@ -18,7 +18,7 @@ if (!product) {
   const isProblemUser = Session.user === "usuario_problema";
 
   const img = document.getElementById("imagem-item");
-  img.src = isProblemUser ? "img/broken.svg" : product.img;
+  img.src = isProblemUser ? "../img/broken.svg" : product.img;
   img.alt = product.name;
 
   document.querySelector('[data-test="nome-item"]').textContent = product.name;

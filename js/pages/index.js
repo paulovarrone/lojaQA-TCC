@@ -27,7 +27,7 @@ function renderList() {
     node.querySelectorAll(".link-item").forEach((a) => { a.href = detailUrl; });
 
     const img = node.querySelector("img");
-    img.src = isProblemUser ? "img/broken.svg" : p.img;
+    img.src = isProblemUser ? "../img/broken.svg" : p.img;
     img.alt = p.name;
 
     // usuario_visual: preço exibido errado (+R$ 10) para ids múltiplos de 5,

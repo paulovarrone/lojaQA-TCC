@@ -19,7 +19,7 @@ ou
 npx serve . -l 5500       
 ```
 
-Depois acesse `http://localhost:5500`. A raiz do site é o `index.html` (a vitrine), que é protegida — sem sessão você é redirecionado para `login.html`. Use um dos usuários abaixo para entrar.
+Depois acesse `http://localhost:5500/html/`. A raiz da aplicação é o `html/index.html` (a vitrine), que é protegida — sem sessão você é redirecionado para `login.html`. Use um dos usuários abaixo para entrar.
 
 ## Usuários de teste
 
@@ -46,6 +46,7 @@ Separação estrita entre marcação e lógica:
 - **JavaScript não contém HTML** — nenhuma string de markup; o conteúdo dinâmico é gerado clonando elementos `<template>` declarados no próprio HTML e preenchidos via `textContent` / atributos.
 
 ```
+html/*.html                # Páginas da aplicação
 js/
   data.js                  # Dados: produtos, usuários, taxa de imposto
   store.js                 # Estado: sessão, carrinho, utilidades

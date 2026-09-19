@@ -36,7 +36,7 @@ Fatos fundamentais para escrever testes na LojaQA:
 
 ### Arquivos de página (URLs) da LojaQA
 
-- `index.html` — **página inicial (home)** da LojaQA e raiz do site (o que é servido em `/`). É a página de Produtos (catálogo / vitrine / lista de produtos / inventário), exibida logo após o login bem-sucedido. É uma página protegida: sem sessão ativa, redireciona para `login.html?error=auth`.
+- `index.html` — **página inicial (home)** da LojaQA e raiz do site (o que é servido em `/html/`). É a página de Produtos (catálogo / vitrine / lista de produtos / inventário), exibida logo após o login bem-sucedido. É uma página protegida: sem sessão ativa, redireciona para `login.html?error=auth`.
 - `login.html` — página de Login (tela de entrada da aplicação, exibida quando não há sessão ativa).
 - `inventory-item.html?id=N` — página de Detalhe de um produto (N é o id do produto).
 - `cart.html` — página do Carrinho de compras.
@@ -134,7 +134,7 @@ Cada produto é exibido em um card (repetido para os 21 produtos). Dentro de cad
 - **Imagem do produto:** dentro de um `<a>` com classes `.inventory_item_img` e `.link-item`; o atributo `alt` da imagem é o nome do produto.
 - **Botão Adicionar ao carrinho / Remover** (o mesmo botão alterna conforme o estado): cada produto tem o seu, no padrão `#botao-carrinho-<nome-kebab>` e `[data-test="adicionar-carrinho-<nome-kebab>"]` ⇄ `[data-test="remover-<nome-kebab>"]` — a lista completa está na seção "Seletores dos botões de carrinho, por produto, na LojaQA". O `id` é estável e não muda; o `data-test` alterna entre adicionar e remover. Fora do carrinho: texto "Adicionar ao carrinho", classes `.btn .btn_small .btn_inventory`. No carrinho: texto "Remover", classes `.btn .btn_small .btn_secondary`. Exemplo: para a Mochila do Testador, o botão é `#botao-carrinho-mochila-do-testador` e o data-test é `[data-test="adicionar-carrinho-mochila-do-testador"]`.
 
-Observação de comportamento: com o usuário `usuario_problema`, todas as imagens dos cards carregam `img/broken.svg` (imagem quebrada) em vez da imagem real.
+Observação de comportamento: com o usuário `usuario_problema`, todas as imagens dos cards carregam `../img/broken.svg` (imagem quebrada) em vez da imagem real.
 
 ---
 
@@ -290,7 +290,7 @@ A LojaQA tem 6 usuários de login, todos com a senha `senha_teste_123`. Cada usu
 
 - **usuario_lento:** o login funciona, mas com atraso artificial de cerca de 5 segundos. Durante a espera, o botão `#botao-entrar` fica com o atributo `disabled` e o texto muda para "Carregando...". Usar para testar espera, loading e performance.
 
-- **usuario_problema:** o login funciona, mas todas as imagens de produto ficam quebradas — a tag `img` aponta para `src="img/broken.svg"` tanto na vitrine quanto no detalhe. Usar para testar imagens quebradas / atributos de imagem.
+- **usuario_problema:** o login funciona, mas todas as imagens de produto ficam quebradas — a tag `img` aponta para `src="../img/broken.svg"` tanto na vitrine quanto no detalhe. Usar para testar imagens quebradas / atributos de imagem.
 
 - **usuario_erro:** o login funciona, mas várias ações falham de propósito. Três defeitos: (1) trocar o valor de `#seletor-ordenacao` dispara um `alert` de erro e a ordenação volta para "az"; (2) clicar em "Adicionar ao carrinho" de produtos com id ÍMPAR não tem efeito (o badge do carrinho não muda e é emitido um `console.error`) — produtos de id par funcionam normalmente; (3) clicar no botão `#botao-finalizar` (Finalizar Pedido) dispara um `alert` e o pedido NÃO é concluído. Usar para testar tratamento de falhas e diálogos `alert`. Textos exatos dos `alert`: na ordenação, "Ops! A ordenação está quebrada para este usuário. Defeito proposital para testes."; ao finalizar, "Ops! Não foi possível finalizar o pedido. Defeito proposital para testes.".
 
@@ -429,7 +429,7 @@ Perguntas comuns e respostas diretas para localizar seletores e comportamentos n
 - **Como ordenar os produtos?** Usar o `<select>` `#seletor-ordenacao`: `az` e `za` ordenam por nome (ordem alfabética crescente e decrescente); `lohi` e `hilo` ordenam por preço (crescente e decrescente).
 - **Onde aparece a mensagem de erro do login?** No elemento `#texto-erro`, dentro de `#container-erro` (que fica visível com a classe `.visible`).
 - **Qual usuário faz o login falhar/ser bloqueado?** `usuario_bloqueado` — mostra "Ops! Desculpe, este usuário foi bloqueado.".
-- **Qual usuário deixa as imagens quebradas?** `usuario_problema` (imagens viram `img/broken.svg`).
+- **Qual usuário deixa as imagens quebradas?** `usuario_problema` (imagens viram `../img/broken.svg`).
 - **Qual usuário deixa o login lento?** `usuario_lento` (~5s de atraso; `#botao-entrar` fica `disabled` com texto "Carregando...").
 - **Qual usuário provoca erros nas ações?** `usuario_erro` (ordenação, adicionar itens de id ímpar e finalizar pedido falham, alguns com `alert`).
 - **Qual usuário provoca defeitos visuais?** `usuario_visual` (o `body` recebe `.bugs-visuais`; há preços errados na vitrine para ids 0, 5, 10, 15 e 20).
