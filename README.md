@@ -22,7 +22,10 @@ npx serve . -l 5500
 Depois acesse `http://localhost:5500/html/`. A raiz da aplicação é o `html/index.html` (a vitrine), que é protegida — sem sessão você é redirecionado para `login.html`. Use um dos usuários abaixo para entrar.
 
 ## Execução docker do n8n, Cypress e criação dos diretórios
-```bash
+
+Ambiente opcional de automação, separado deste repositório. O comando abaixo (PowerShell, Windows) cria a pasta `n8n` na Área de Trabalho com a estrutura do Cypress (`cypress/e2e`, `cypress/support`, `cypress/fixtures`), instala o Cypress e sobe o n8n em um container Docker na porta `5678`, com essa pasta montada em `/files`.
+
+```powershell
 $base = "$env:USERPROFILE\Desktop\n8n"; New-Item -ItemType Directory -Force -Path "$base\cypress\e2e","$base\cypress\support","$base\cypress\fixtures" | Out-Null; Push-Location $base; npm init -y; npm install cypress --save-dev; npm pkg set "scripts.cypress:open=cypress open" "scripts.cypress:run=cypress run"; Pop-Location; docker rm -f n8n 2>$null; docker run -d --name n8n -p 5678:5678 -v n8n_data:/home/node/.n8n -v "${base}:/files" -e N8N_RESTRICT_FILE_ACCESS_TO=/files -e NODE_FUNCTION_ALLOW_BUILTIN=fs --restart unless-stopped n8nio/n8n:latest
 ```
 
@@ -35,7 +38,7 @@ $base = "$env:USERPROFILE\Desktop\n8n"; New-Item -ItemType Directory -Force -Pat
 | `usuario_problema` | Todas as imagens de produto aparecem quebradas |
 | `usuario_lento` | Login com atraso artificial de ~5s |
 | `usuario_erro` | Ações falham: ordenação dispara `alert` de erro, produtos de id ímpar não podem ser adicionados ao carrinho e "Finalizar Pedido" falha |
-| `usuario_visual` | Defeitos visuais propositais: imagens tortas, badge do carrinho deslocado, botões desalinhados, preços em vermelho e alguns preços errados na vitrine |
+| `usuario_visual` | Defeitos visuais propositais: logo deslocado, badge do carrinho deslocado, título com letras espaçadas, imagens tortas, botões desalinhados, preços em vermelho e itálico, quantidade do carrinho girada e alguns preços errados na vitrine (+R$ 10 nos produtos de id múltiplo de 5) |
 
 **Senha para todos:** `senha_teste_123`
 
@@ -68,7 +71,10 @@ js/
     nota-fiscal.js         # nota-fiscal.html
     sobre.js               # sobre.html
 css/style.css              # Estilos globais
-img/*.svg                  # Imagens dos produtos
+img/*.svg                  # Imagens dos produtos, imagem quebrada (broken.svg) e ilustração de pedido concluído (pony-express.svg)
+SELETORES.md               # Mapa de seletores para consulta
+SeletoresEstruturados.md   # Base de conhecimento (RAG) com seletores por id, data-test e classe
+SeletoresNaoEstruturados.md # Base de conhecimento (RAG) com seletores sem id nem data-test
 ```
 
 Ordem de importação em cada página: `data.js` → `store.js` → `ui.js` → `pages/<página>.js`. As duas páginas sem cabeçalho não carregam o `ui.js`: o login vai direto para o script da página, e a nota fiscal carrega o `pdf.js` no lugar.
@@ -101,7 +107,9 @@ Ordem de importação em cada página: `data.js` → `store.js` → `ui.js` → 
 - Página "Sobre" explicando o propósito do projeto (ambiente de testes para TCC)
 - Menu lateral: Todos os Produtos, Sobre, Sair, Resetar Aplicação
 - Logo "🧪 LojaQA" do cabeçalho é link para a home
-- Atributos `data-test` e `id` em todos os elementos relevantes, para seletores estáveis
+- Atributos `data-test` e `id` nos elementos relevantes, para seletores estáveis. Exceções:
+  - links de redes sociais do rodapé e elementos gerados por template (cards de produto, itens do carrinho e do resumo, linhas da nota) têm só `data-test` — os botões de carrinho recebem também um `id` em runtime;
+  - o link da imagem no card de produto não tem `id` nem `data-test` (use `.inventory_item_img`).
 
 ## Seletores
 
@@ -114,3 +122,8 @@ Presentes no HTML:
 - ✅ 88 classes como `.classe`
 
 Os botões de carrinho são gerados em runtime e somam mais 21 ids e 42 data-test (um por produto, alternando entre adicionar e remover).
+
+Para uso como base de conhecimento (RAG) na geração de testes Cypress, há duas versões com cabeçalho de metadados e seções autocontidas:
+
+- [SeletoresEstruturados.md](SeletoresEstruturados.md) — seletores por `id`, `data-test` e classe CSS.
+- [SeletoresNaoEstruturados.md](SeletoresNaoEstruturados.md) — os mesmos elementos localizados **sem `id` e sem `data-test`**, por classe, atributos semânticos (placeholder, alt, href, aria-label), hierarquia e texto visível, como em aplicações reais sem atributos de teste.
