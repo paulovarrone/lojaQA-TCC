@@ -21,6 +21,11 @@ npx serve . -l 5500
 
 Depois acesse `http://localhost:5500/html/`. A raiz da aplicação é o `html/index.html` (a vitrine), que é protegida — sem sessão você é redirecionado para `login.html`. Use um dos usuários abaixo para entrar.
 
+## Execução docker do n8n, Cypress e criação dos diretórios
+```bash
+$base = "$env:USERPROFILE\Desktop\n8n"; New-Item -ItemType Directory -Force -Path "$base\cypress\e2e","$base\cypress\support","$base\cypress\fixtures" | Out-Null; Push-Location $base; npm init -y; npm install cypress --save-dev; npm pkg set "scripts.cypress:open=cypress open" "scripts.cypress:run=cypress run"; Pop-Location; docker rm -f n8n 2>$null; docker run -d --name n8n -p 5678:5678 -v n8n_data:/home/node/.n8n -v "${base}:/files" -e N8N_RESTRICT_FILE_ACCESS_TO=/files -e NODE_FUNCTION_ALLOW_BUILTIN=fs --restart unless-stopped n8nio/n8n:latest
+```
+
 ## Usuários de teste
 
 | Usuário | Comportamento |
