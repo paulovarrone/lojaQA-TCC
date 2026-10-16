@@ -34,7 +34,7 @@ Referência **completa** dos seletores da aplicação para automação de testes
 | Botão fechar (×) | `button` | `#botao-fechar-menu` | `[data-test="botao-fechar-menu"]` | `.bm-cross-button` | `aria-label="Fechar Menu"` |
 | Todos os Produtos | `a` | `#link-todos-itens` | `[data-test="link-todos-itens"]` | — | `href="index.html"` — volta para a página inicial (home) |
 | Sobre | `a` | `#link-sobre` | `[data-test="link-sobre"]` | — | `href="sobre.html"` — página sobre o projeto/TCC |
-| Sair (= deslogar) | `a` | `#link-sair` | `[data-test="link-sair"]` | — | `href="#"` — encerra sessão → `login.html` |
+| Sair (= deslogar) | `a` | `#link-sair` | `[data-test="link-sair"]` | — | `href="#"` — encerra a sessão, esvazia o carrinho → `login.html` |
 | Resetar Aplicação | `a` | `#link-resetar` | `[data-test="link-resetar"]` | — | `href="#"` — limpa o carrinho |
 | Overlay (fundo escuro) | `div` | `#sobreposicao-menu` | — | `.bm-overlay` (+ `.open` quando visível) | clique fecha o menu |
 
@@ -257,7 +257,7 @@ Como não há menu aqui, a única saída é o botão "Voltar" (`#botao-voltar`),
 | Total | `div` | `#nota-total` | `[data-test="nota-total"]` | `.nf_total` | "Total: R$ X,XX" |
 | Aviso legal | `p` | — | `[data-test="aviso-nota"]` | `.nf_aviso` | "Documento sem valor fiscal..." |
 | Ações | `div` | — | — | `.nf_acoes` | — |
-| Voltar | `a` | `#botao-voltar` | `[data-test="botao-voltar"]` | `.btn`, `.btn_secondary` | volta uma página para trás → `href="checkout-complete.html"` |
+| Voltar | `a` | `#botao-voltar` | `[data-test="botao-voltar"]` | `.btn`, `.btn_secondary` | `href="checkout-complete.html"` — leva ao Pedido Concluído |
 | Baixar PDF | `button` | `#botao-baixar-pdf` | `[data-test="baixar-pdf"]` | `.btn`, `.btn_action` | baixa `nota-fiscal-<numero>.pdf` direto (sem diálogo) |
 
 ### Linha de item da nota (dinâmica — uma por item)
@@ -349,7 +349,7 @@ Todos usam a senha `senha_teste_123`.
 | `usuario_lento` | login com atraso de ~5s | `#botao-entrar` fica `[disabled]` com `value="Carregando..."` |
 | `usuario_problema` | todas as imagens de produto quebradas | `img` com `src="../img/broken.svg"` na vitrine e no detalhe |
 | `usuario_erro` | ações falham de propósito | 1) trocar `#seletor-ordenacao` dispara `alert` e volta para `az`; 2) clicar em Adicionar de produtos com **id ímpar** não tem efeito (badge não muda, `console.error` emitido); 3) `#botao-finalizar` dispara `alert` e o pedido não é concluído |
-| `usuario_visual` | defeitos visuais propositais | `body` recebe `.bugs-visuais`: logo deslocado, `#badge-carrinho` no canto errado, imagens de cards `:nth-child(3n)` tortas, botões de cards `:nth-child(4n)` desalinhados, preços em vermelho itálico, e **preços errados na vitrine** (+R$ 10,00 nos produtos de id múltiplo de 5: ids 0, 5, 10, 15 e 20 — carrinho e checkout mostram o preço correto) |
+| `usuario_visual` | defeitos visuais propositais | `body` recebe `.bugs-visuais`: logo deslocado, `#badge-carrinho` no canto errado, título da página com letras espaçadas, imagens de cards `:nth-child(3n)` tortas, botões de cards `:nth-child(4n)` desalinhados, preços em vermelho itálico, quantidade do item no carrinho girada, e **preços errados na vitrine** (+R$ 10,00 nos produtos de id múltiplo de 5: ids 0, 5, 10, 15 e 20 — carrinho e checkout mostram o preço correto) |
 
 **Textos dos `alert` do `usuario_erro`** (para testes de diálogo):
 - Ordenação: `Ops! A ordenação está quebrada para este usuário. Defeito proposital para testes.`
@@ -404,6 +404,7 @@ Seletores prontos dos 21 produtos. O `id` do botão é estável; o `data-test` a
 |---|---|---|---|---|
 | Fora do carrinho | `#botao-carrinho-mochila-do-testador` | `[data-test="adicionar-carrinho-mochila-do-testador"]` | "Adicionar ao carrinho" | `.btn_inventory` |
 | No carrinho | `#botao-carrinho-mochila-do-testador` (não muda) | `[data-test="remover-mochila-do-testador"]` | "Remover" | `.btn_secondary` |
+
 ---
 
 ## Armazenamento (setup/teardown de testes)

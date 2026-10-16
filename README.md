@@ -74,8 +74,8 @@ js/
 css/style.css              # Estilos globais
 img/*.svg                  # Imagens dos produtos, imagem quebrada (broken.svg) e ilustração de pedido concluído (pony-express.svg)
 SELETORES.md               # Mapa de seletores para consulta
-NVseletoresEstruturados.md   # Base de conhecimento (RAG) forte: só id e data-test
-NVseletoresNaoEstruturados.md # Base de conhecimento (RAG) frágil: só classe, hierarquia e posição
+SeletoresEstruturados.md   # Base de conhecimento (RAG) forte: só id e data-test
+SeletoresNaoEstruturados.md # Base de conhecimento (RAG) frágil: só classe, hierarquia e posição
 ```
 
 Ordem de importação em cada página: `data.js` → `store.js` → `ui.js` → `pages/<página>.js`. As duas páginas sem cabeçalho não carregam o `ui.js`: o login vai direto para o script da página, e a nota fiscal carrega o `pdf.js` no lugar.
@@ -109,7 +109,8 @@ Ordem de importação em cada página: `data.js` → `store.js` → `ui.js` → 
 - Menu lateral: Todos os Produtos, Sobre, Sair, Resetar Aplicação
 - Logo "🧪 LojaQA" do cabeçalho é link para a home
 - Atributos `data-test` e `id` nos elementos relevantes, para seletores estáveis. Exceções:
-  - links de redes sociais do rodapé, logo e tagline do login, os dois blocos da página de detalhe, a marca d'água da nota e os elementos gerados por template (cards de produto, itens do carrinho e do resumo, linhas da nota) têm só `data-test` — os botões de carrinho recebem também um `id` em runtime;
+  - têm só `data-test`: os links e o texto do rodapé, o logo e a tagline do login, os dois blocos e o nome, a descrição e o preço da página de detalhe, os rótulos do carrinho e do resumo, os blocos da nota fiscal (marca d'água, emitente, destinatário, totais e aviso), os cards da página Sobre e os elementos gerados por template (cards de produto, itens do carrinho e do resumo, linhas da nota) — os botões de carrinho dos cards e do carrinho recebem também um `id` em runtime;
+  - têm só `id`: o overlay do menu (`#sobreposicao-menu`), os templates (`#modelo-…`) e o botão de carrinho da página de detalhe (`#botao-carrinho`), que recebe o `data-test` do produto em runtime;
   - o link que envolve a imagem no card de produto não tem `id` nem `data-test`; a imagem dentro dele tem `[data-test="imagem-item"]`.
 
 ## Seletores
@@ -126,8 +127,8 @@ Os botões de carrinho são gerados em runtime e somam mais 21 ids e 42 data-tes
 
 Para uso como base de conhecimento (RAG) na geração de testes Cypress, há duas bases com cabeçalho de metadados e seções autocontidas. Elas têm as mesmas seções, os mesmos itens e a mesma prosa, linha por linha; muda apenas o tipo de seletor:
 
-- [NVseletoresEstruturados.md](NVseletoresEstruturados.md) — base **forte**: somente `id` e `data-test`.
-- [NVseletoresNaoEstruturados.md](NVseletoresNaoEstruturados.md) — base **frágil**: somente classe CSS, hierarquia e posição. Um produto específico é localizado pela posição do card (`.inventory_item:nth-child(N)`, na ordenação padrão), seletor que quebra quando a ordenação muda.
+- [SeletoresEstruturados.md](SeletoresEstruturados.md) — base **forte**: somente `id` e `data-test`.
+- [SeletoresNaoEstruturados.md](SeletoresNaoEstruturados.md) — base **frágil**: somente classe CSS, hierarquia e posição. Um produto específico é localizado pela posição do card (`.inventory_item:nth-child(N)`, na ordenação padrão), seletor que quebra quando a ordenação muda.
 
 Estrutura e tamanho das duas bases:
 
