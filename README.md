@@ -73,8 +73,10 @@ js/
 css/style.css              # Estilos globais
 img/*.svg                  # Imagens dos produtos, imagem quebrada (broken.svg) e ilustração de pedido concluído (pony-express.svg)
 SELETORES.md               # Mapa de seletores para consulta
-SeletoresEstruturados.md   # Base de conhecimento (RAG) com seletores por id, data-test e classe
-SeletoresNaoEstruturados.md # Base de conhecimento (RAG) com seletores sem id nem data-test
+NVseletoresEstruturados.md   # Base de conhecimento (RAG) forte: só id e data-test
+NVseletoresNaoEstruturados.md # Base de conhecimento (RAG) frágil: só classe, hierarquia e posição
+SeletoresEstruturados.md   # Versão anterior da base estruturada
+SeletoresNaoEstruturados.md # Versão anterior da base não estruturada
 ```
 
 Ordem de importação em cada página: `data.js` → `store.js` → `ui.js` → `pages/<página>.js`. As duas páginas sem cabeçalho não carregam o `ui.js`: o login vai direto para o script da página, e a nota fiscal carrega o `pdf.js` no lugar.
@@ -108,8 +110,8 @@ Ordem de importação em cada página: `data.js` → `store.js` → `ui.js` → 
 - Menu lateral: Todos os Produtos, Sobre, Sair, Resetar Aplicação
 - Logo "🧪 LojaQA" do cabeçalho é link para a home
 - Atributos `data-test` e `id` nos elementos relevantes, para seletores estáveis. Exceções:
-  - links de redes sociais do rodapé e elementos gerados por template (cards de produto, itens do carrinho e do resumo, linhas da nota) têm só `data-test` — os botões de carrinho recebem também um `id` em runtime;
-  - o link da imagem no card de produto não tem `id` nem `data-test` (use `.inventory_item_img`).
+  - links de redes sociais do rodapé, logo e tagline do login, os dois blocos da página de detalhe, a marca d'água da nota e os elementos gerados por template (cards de produto, itens do carrinho e do resumo, linhas da nota) têm só `data-test` — os botões de carrinho recebem também um `id` em runtime;
+  - o link que envolve a imagem no card de produto não tem `id` nem `data-test`; a imagem dentro dele tem `[data-test="imagem-item"]`.
 
 ## Seletores
 
@@ -118,12 +120,18 @@ Ordem de importação em cada página: `data.js` → `store.js` → `ui.js` → 
 Presentes no HTML:
 
 - ✅ 76 ids como `#id`
-- ✅ 97 data-test como `[data-test="..."]`
+- ✅ 102 data-test como `[data-test="..."]`
 - ✅ 88 classes como `.classe`
 
 Os botões de carrinho são gerados em runtime e somam mais 21 ids e 42 data-test (um por produto, alternando entre adicionar e remover).
 
-Para uso como base de conhecimento (RAG) na geração de testes Cypress, há duas versões com cabeçalho de metadados e seções autocontidas:
+Para uso como base de conhecimento (RAG) na geração de testes Cypress, há duas bases com cabeçalho de metadados e seções autocontidas. Elas têm as mesmas seções, os mesmos itens e a mesma prosa, linha por linha; muda apenas o tipo de seletor:
 
-- [SeletoresEstruturados.md](SeletoresEstruturados.md) — seletores por `id`, `data-test` e classe CSS.
-- [SeletoresNaoEstruturados.md](SeletoresNaoEstruturados.md) — os mesmos elementos localizados **sem `id` e sem `data-test`**, por classe, atributos semânticos (placeholder, alt, href, aria-label), hierarquia e texto visível, como em aplicações reais sem atributos de teste.
+- [NVseletoresEstruturados.md](NVseletoresEstruturados.md) — base **forte**: somente `id` e `data-test`.
+- [NVseletoresNaoEstruturados.md](NVseletoresNaoEstruturados.md) — base **frágil**: somente classe CSS, hierarquia e posição. Um produto específico é localizado pela posição do card (`.inventory_item:nth-child(N)`, na ordenação padrão), seletor que quebra quando a ordenação muda.
+
+Nas duas, o texto visível aparece apenas como valor esperado de asserção, e a prosa compartilhada não traz valores de atributo nem posições no DOM, para que o modelo não monte seletores do outro tipo a partir da descrição.
+
+**Limitação:** a base frágil é um pior caso. Aplicações reais sem `data-test` costumam ter atributos ARIA (`aria-label`, `role`) e `placeholder`, que permitem seletores mais estáveis que classe e posição; por isso, a diferença medida entre as duas bases pode ser maior do que a encontrada nessas aplicações.
+
+As versões anteriores das bases, [SeletoresEstruturados.md](SeletoresEstruturados.md) e [SeletoresNaoEstruturados.md](SeletoresNaoEstruturados.md), continuam no repositório para referência.

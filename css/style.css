@@ -1,5 +1,7 @@
 /* ===== Reset básico ===== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
+/* O atributo hidden sempre oculta, mesmo em elementos cuja classe define display */
+[hidden] { display: none !important; }
 
 :root {
   --azul-escuro: #0c4a6e;

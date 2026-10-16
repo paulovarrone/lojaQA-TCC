@@ -57,8 +57,8 @@ Tela de entrada da aplicação (exibida enquanto não há sessão ativa). Após 
 | Elemento | Tag | `id` | `data-test` | `class` | Atributos / Texto |
 |---|---|---|---|---|---|
 | Container da página | `div` | — | — | `.login_container` | — |
-| Logo | `div` | — | — | `.login_logo` | texto: "🧪 LojaQA" |
-| Tagline | `p` | — | — | `.login_tagline` | "Sua loja para praticar automação de testes" |
+| Logo | `div` | — | `[data-test="logo-login"]` | `.login_logo` | texto: "🧪 LojaQA" |
+| Tagline | `p` | — | `[data-test="tagline-login"]` | `.login_tagline` | "Sua loja para praticar automação de testes" |
 | Wrapper do formulário | `div` | — | — | `.login_wrapper` | — |
 | Formulário | `form` | `#form-login` | `[data-test="form-login"]` | `.login-box` | `novalidate` |
 | Campo de usuário | `input` | `#campo-usuario` | `[data-test="campo-usuario"]` | `.form_input` (+ `.input_error` em erro) | `type="text"`, `placeholder="Usuário"`, `autocomplete="username"`, `autofocus` |
@@ -100,7 +100,7 @@ Página principal da loja, exibida logo após o login bem-sucedido.
 |---|---|---|---|---|---|
 | Card do produto | `div` | — | `[data-test="item-inventario"]` | `.inventory_item` | — |
 | Link da imagem | `a` | — | — | `.inventory_item_img`, `.link-item` | `href="inventory-item.html?id=N"` |
-| Imagem do produto | `img` | — | — | — | `src="../img/<produto>.svg"`, `alt` = nome do produto |
+| Imagem do produto | `img` | — | `[data-test="imagem-item"]` | — | `src="../img/<produto>.svg"`, `alt` = nome do produto |
 | Nome do produto (link) | `a` | — | `[data-test="nome-item"]` | `.inventory_item_name`, `.link-item` | `href="inventory-item.html?id=N"` |
 | Descrição | `div` | — | `[data-test="descricao-item"]` | `.inventory_item_desc` | — |
 | Barra de preço | `div` | — | — | `.pricebar` | — |
@@ -117,9 +117,9 @@ Página principal da loja, exibida logo após o login bem-sucedido.
 |---|---|---|---|---|---|
 | Container da página | `main` | `#detalhes-produto` | `[data-test="detalhes-produto"]` | `.inventory_details` | — |
 | Voltar aos produtos | `a` | `#link-voltar-produtos` | `[data-test="voltar-produtos"]` | `.btn`, `.btn_small`, `.btn_back` | `href="index.html"`, texto: "← Voltar aos produtos" |
-| Wrapper da imagem | `div` | — | — | `.inventory_details_img` | `hidden` quando item não existe |
+| Wrapper da imagem | `div` | — | `[data-test="bloco-imagem"]` | `.inventory_details_img` | `hidden` quando item não existe |
 | Imagem do produto | `img` | `#imagem-item` | `[data-test="imagem-item"]` | — | `alt` = nome do produto |
-| Wrapper da descrição | `div` | — | — | `.inventory_details_desc_container` | `hidden` quando item não existe |
+| Wrapper da descrição | `div` | — | `[data-test="bloco-informacoes"]` | `.inventory_details_desc_container` | `hidden` quando item não existe |
 | Nome do produto | `div` | — | `[data-test="nome-item"]` | `.inventory_details_name` | — |
 | Descrição | `div` | — | `[data-test="descricao-item"]` | `.inventory_item_desc` | — |
 | Preço | `div` | — | `[data-test="preco-item"]` | `.inventory_details_price` | formato `R$ X,XX` |
@@ -237,7 +237,7 @@ Como não há menu aqui, a única saída é o botão "Voltar" (`#botao-voltar`),
 | Container da página | `main` | `#container-nota-fiscal` | `[data-test="container-nota-fiscal"]` | `.nf_container` | — |
 | Pedido não encontrado | `p` | `#pedido-nao-encontrado` | `[data-test="pedido-nao-encontrado"]` | — | `hidden` quando há pedido; texto: "Nenhum pedido encontrado..." |
 | Documento da nota | `article` | `#nota-fiscal` | `[data-test="nota-fiscal"]` | `.nf_documento` | `hidden` quando não há pedido |
-| Marca d'água | `div` | — | — | `.nf_marca_dagua` | "SEM VALOR FISCAL" |
+| Marca d'água | `div` | — | `[data-test="marca-dagua"]` | `.nf_marca_dagua` | "SEM VALOR FISCAL" |
 | Cabeçalho da nota | `header` | — | — | `.nf_cabecalho` | — |
 | Logo na nota | `div` | — | — | `.nf_logo` | texto: "🧪 LojaQA" |
 | Dados do emitente | `div` | — | `[data-test="dados-emitente"]` | `.nf_empresa` | empresa fictícia + CNPJ 00.000.000/0001-00 |
