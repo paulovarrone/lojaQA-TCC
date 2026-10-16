@@ -8,15 +8,16 @@ Loja virtual educacional construída com HTML, CSS e JavaScript puro (sem depend
 
 Basta baixar a extensão `Live Server` no VS Code ou servir a pasta com um servidor local.
 
-Também possível a utilização a partir de:
+Também é possível servir a pasta com um destes comandos:
 
 ```bash
-python -m http.server 5500     
+python -m http.server 5500
 ```
+
 ou
 
 ```bash
-npx serve . -l 5500       
+npx serve . -l 5500
 ```
 
 Depois acesse `http://localhost:5500/html/`. A raiz da aplicação é o `html/index.html` (a vitrine), que é protegida — sem sessão você é redirecionado para `login.html`. Use um dos usuários abaixo para entrar.
@@ -75,8 +76,6 @@ img/*.svg                  # Imagens dos produtos, imagem quebrada (broken.svg) 
 SELETORES.md               # Mapa de seletores para consulta
 NVseletoresEstruturados.md   # Base de conhecimento (RAG) forte: só id e data-test
 NVseletoresNaoEstruturados.md # Base de conhecimento (RAG) frágil: só classe, hierarquia e posição
-SeletoresEstruturados.md   # Versão anterior da base estruturada
-SeletoresNaoEstruturados.md # Versão anterior da base não estruturada
 ```
 
 Ordem de importação em cada página: `data.js` → `store.js` → `ui.js` → `pages/<página>.js`. As duas páginas sem cabeçalho não carregam o `ui.js`: o login vai direto para o script da página, e a nota fiscal carrega o `pdf.js` no lugar.
@@ -130,8 +129,16 @@ Para uso como base de conhecimento (RAG) na geração de testes Cypress, há dua
 - [NVseletoresEstruturados.md](NVseletoresEstruturados.md) — base **forte**: somente `id` e `data-test`.
 - [NVseletoresNaoEstruturados.md](NVseletoresNaoEstruturados.md) — base **frágil**: somente classe CSS, hierarquia e posição. Um produto específico é localizado pela posição do card (`.inventory_item:nth-child(N)`, na ordenação padrão), seletor que quebra quando a ordenação muda.
 
+Estrutura e tamanho das duas bases:
+
+| Métrica            | Forte (Estruturado) | Frágil (Não Estruturado) |
+|--------------------|---------------------|--------------------------|
+| Linhas             | 456                 | 456                      |
+| Seções / subseções | 20 / 6              | 20 / 6                   |
+| Itens de lista     | 240                 | 240                      |
+| Perguntas no FAQ   | 32                  | 32                       |
+| Tamanho            | 64,6 KB             | 64,9 KB                  |
+
 Nas duas, o texto visível aparece apenas como valor esperado de asserção, e a prosa compartilhada não traz valores de atributo nem posições no DOM, para que o modelo não monte seletores do outro tipo a partir da descrição.
 
 **Limitação:** a base frágil é um pior caso. Aplicações reais sem `data-test` costumam ter atributos ARIA (`aria-label`, `role`) e `placeholder`, que permitem seletores mais estáveis que classe e posição; por isso, a diferença medida entre as duas bases pode ser maior do que a encontrada nessas aplicações.
-
-As versões anteriores das bases, [SeletoresEstruturados.md](SeletoresEstruturados.md) e [SeletoresNaoEstruturados.md](SeletoresNaoEstruturados.md), continuam no repositório para referência.
