@@ -16,37 +16,37 @@ Referência **completa** dos seletores da aplicação para automação de testes
 
 | Elemento | Tag | `id` | `data-test` | `class` | Atributos / Texto |
 |---|---|---|---|---|---|
-| Barra superior | `div` | — | — | `.primary_header` | — |
-| Agrupador menu + logo | `div` | — | — | `.header_label` | — |
-| Botão abrir menu (☰) | `button` | `#botao-menu` | `[data-test="botao-menu"]` | `.bm-burger-button` | `aria-label="Abrir Menu"` |
-| Logo (link para a home) | `a` | `#link-logo` | `[data-test="link-logo"]` | `.app_logo` | `href="index.html"`, texto: "🧪 LojaQA" |
-| Container do carrinho | `div` | — | — | `.shopping_cart_container` | — |
-| Link do carrinho (🛒) | `a` | `#link-carrinho` | `[data-test="link-carrinho"]` | `.shopping_cart_link` | `href="cart.html"` |
-| Badge de contagem | `span` | `#badge-carrinho` | `[data-test="badge-carrinho"]` | `.shopping_cart_badge` | oculto via `style` quando carrinho vazio; texto = nº de itens |
-| Barra secundária | `div` | — | — | `.header_secondary_container` | — |
-| Título da página | `span` | `#titulo-pagina` | `[data-test="titulo-pagina"]` | `.title` | textos por página (ver seção Textos) |
+| Barra superior | `div` | — | — | `.cabecalho_topo` | — |
+| Agrupador menu + logo | `div` | — | — | `.cabecalho_marca` | — |
+| Botão abrir menu (☰) | `button` | `#botao-menu` | `[data-test="botao-menu"]` | `.menu_gatilho` | `aria-label="Abrir Menu"` |
+| Logo (link para a home) | `a` | `#link-logo` | `[data-test="link-logo"]` | `.logotipo` | `href="index.html"`, texto: "🧪 LojaQA" |
+| Container do carrinho | `div` | — | — | `.sacola_area` | — |
+| Link do carrinho (🛒) | `a` | `#link-carrinho` | `[data-test="link-carrinho"]` | `.sacola_link` | `href="cart.html"` |
+| Badge de contagem | `span` | `#badge-carrinho` | `[data-test="badge-carrinho"]` | `.sacola_contador` | oculto via `style` quando carrinho vazio; texto = nº de itens |
+| Barra secundária | `div` | — | — | `.subcabecalho` | — |
+| Título da página | `span` | `#titulo-pagina` | `[data-test="titulo-pagina"]` | `.subcabecalho_titulo` | textos por página (ver seção Textos) |
 
 ### Menu lateral
 
 | Elemento | Tag | `id` | `data-test` | `class` | Atributos / Ação |
 |---|---|---|---|---|---|
-| Container do menu | `nav` | `#menu-lateral` | `[data-test="menu-lateral"]` | `.bm-menu` (+ `.open` quando aberto) | — |
-| Botão fechar (×) | `button` | `#botao-fechar-menu` | `[data-test="botao-fechar-menu"]` | `.bm-cross-button` | `aria-label="Fechar Menu"` |
+| Container do menu | `nav` | `#menu-lateral` | `[data-test="menu-lateral"]` | `.gaveta_menu` (+ `.aberto` quando aberto) | — |
+| Botão fechar (×) | `button` | `#botao-fechar-menu` | `[data-test="botao-fechar-menu"]` | `.gaveta_fechar` | `aria-label="Fechar Menu"` |
 | Todos os Produtos | `a` | `#link-todos-itens` | `[data-test="link-todos-itens"]` | — | `href="index.html"` — volta para a página inicial (home) |
 | Sobre | `a` | `#link-sobre` | `[data-test="link-sobre"]` | — | `href="sobre.html"` — página sobre o projeto/TCC |
 | Sair (= deslogar) | `a` | `#link-sair` | `[data-test="link-sair"]` | — | `href="#"` — encerra a sessão, esvazia o carrinho → `login.html` |
 | Resetar Aplicação | `a` | `#link-resetar` | `[data-test="link-resetar"]` | — | `href="#"` — limpa o carrinho |
-| Overlay (fundo escuro) | `div` | `#sobreposicao-menu` | — | `.bm-overlay` (+ `.open` quando visível) | clique fecha o menu |
+| Overlay (fundo escuro) | `div` | `#sobreposicao-menu` | — | `.gaveta_fundo` (+ `.aberto` quando visível) | clique fecha o menu |
 
 ### Rodapé
 
 | Elemento | Tag | `id` | `data-test` | `class` | Atributos / Texto |
 |---|---|---|---|---|---|
-| Rodapé | `footer` | `#rodape` | `[data-test="rodape"]` | `.footer` | — |
-| Lista de redes sociais | `ul` | — | — | `.social` | — |
+| Rodapé | `footer` | `#rodape` | `[data-test="rodape"]` | `.rodape_site` | — |
+| Lista de redes sociais | `ul` | — | — | `.redes` | — |
 | Link GitHub | `a` | — | `[data-test="rede-github"]` | — | `href="https://github.com/paulovarrone"`, `target="_blank"`, texto: "GitHub" |
 | Link LinkedIn | `a` | — | `[data-test="rede-linkedin"]` | — | `href="https://www.linkedin.com/in/paulovarrone"`, `target="_blank"`, texto: "LinkedIn" |
-| Texto de copyright | `div` | — | `[data-test="texto-rodape"]` | `.footer_copy` | "© 2026 LojaQA — Projeto educacional..." |
+| Texto de copyright | `div` | — | `[data-test="texto-rodape"]` | `.rodape_direitos` | "© 2026 LojaQA — Projeto educacional..." |
 
 ---
 
@@ -56,20 +56,20 @@ Tela de entrada da aplicação (exibida enquanto não há sessão ativa). Após 
 
 | Elemento | Tag | `id` | `data-test` | `class` | Atributos / Texto |
 |---|---|---|---|---|---|
-| Container da página | `div` | — | — | `.login_container` | — |
-| Logo | `div` | — | `[data-test="logo-login"]` | `.login_logo` | texto: "🧪 LojaQA" |
-| Tagline | `p` | — | `[data-test="tagline-login"]` | `.login_tagline` | "Sua loja para praticar automação de testes" |
-| Wrapper do formulário | `div` | — | — | `.login_wrapper` | — |
-| Formulário | `form` | `#form-login` | `[data-test="form-login"]` | `.login-box` | `novalidate` |
-| Campo de usuário | `input` | `#campo-usuario` | `[data-test="campo-usuario"]` | `.form_input` (+ `.input_error` em erro) | `type="text"`, `placeholder="Usuário"`, `autocomplete="username"`, `autofocus` |
-| Campo de senha | `input` | `#campo-senha` | `[data-test="campo-senha"]` | `.form_input` (+ `.input_error` em erro) | `type="password"`, `placeholder="Senha"`, `autocomplete="current-password"` |
-| Botão de login | `input` | `#botao-entrar` | `[data-test="botao-entrar"]` | `.btn`, `.btn_action` | `type="submit"`, `value="Entrar"` (vira "Carregando..." no usuario_lento) |
-| Container de erro | `div` | `#container-erro` | `[data-test="container-erro"]` | `.error-message-container` (+ `.visible` quando exibido) | — |
+| Container da página | `div` | — | — | `.acesso_conteudo` | — |
+| Logo | `div` | — | `[data-test="logo-login"]` | `.acesso_marca` | texto: "🧪 LojaQA" |
+| Tagline | `p` | — | `[data-test="tagline-login"]` | `.acesso_slogan` | "Sua loja para praticar automação de testes" |
+| Wrapper do formulário | `div` | — | — | `.acesso_pagina` | — |
+| Formulário | `form` | `#form-login` | `[data-test="form-login"]` | `.acesso_form` | `novalidate` |
+| Campo de usuário | `input` | `#campo-usuario` | `[data-test="campo-usuario"]` | `.campo_form` (+ `.campo_invalido` em erro) | `type="text"`, `placeholder="Usuário"`, `autocomplete="username"`, `autofocus` |
+| Campo de senha | `input` | `#campo-senha` | `[data-test="campo-senha"]` | `.campo_form` (+ `.campo_invalido` em erro) | `type="password"`, `placeholder="Senha"`, `autocomplete="current-password"` |
+| Botão de login | `input` | `#botao-entrar` | `[data-test="botao-entrar"]` | `.botao`, `.botao_primario` | `type="submit"`, `value="Entrar"` (vira "Carregando..." no usuario_lento) |
+| Container de erro | `div` | `#container-erro` | `[data-test="container-erro"]` | `.aviso_erro` (+ `.exibido` quando exibido) | — |
 | Texto do erro | `span` | `#texto-erro` | `[data-test="texto-erro"]` | — | ver seção Mensagens de erro |
-| Botão fechar erro (×) | `button` | `#botao-fechar-erro` | `[data-test="botao-fechar-erro"]` | `.error-button` | `type="button"`, `aria-label="Fechar"` |
-| Bloco de credenciais | `div` | — | — | `.login_credentials_wrap` | — |
-| Lista de usuários aceitos | `div` | `#credenciais-login` | `[data-test="credenciais-login"]` | `.login_credentials` | contém os 6 usernames (`usuario_padrao`, `usuario_bloqueado`, `usuario_problema`, `usuario_lento`, `usuario_erro`, `usuario_visual`) |
-| Senha dos usuários | `div` | `#senha-login` | `[data-test="senha-login"]` | `.login_password` | contém "senha_teste_123" |
+| Botão fechar erro (×) | `button` | `#botao-fechar-erro` | `[data-test="botao-fechar-erro"]` | `.aviso_fechar` | `type="button"`, `aria-label="Fechar"` |
+| Bloco de credenciais | `div` | — | — | `.acesso_dicas` | — |
+| Lista de usuários aceitos | `div` | `#credenciais-login` | `[data-test="credenciais-login"]` | `.dicas_usuarios` | contém os 6 usernames (`usuario_padrao`, `usuario_bloqueado`, `usuario_problema`, `usuario_lento`, `usuario_erro`, `usuario_visual`) |
+| Senha dos usuários | `div` | `#senha-login` | `[data-test="senha-login"]` | `.dicas_senha` | contém "senha_teste_123" |
 
 ---
 
@@ -79,11 +79,11 @@ Página principal da loja, exibida logo após o login bem-sucedido.
 
 | Elemento | Tag | `id` | `data-test` | `class` | Atributos |
 |---|---|---|---|---|---|
-| Banner de boas-vindas | `section` | `#banner-boas-vindas` | `[data-test="banner-boas-vindas"]` | `.hero_banner` | contém h1 "Bem-vindo à LojaQA!" |
+| Banner de boas-vindas | `section` | `#banner-boas-vindas` | `[data-test="banner-boas-vindas"]` | `.faixa_destaque` | contém h1 "Bem-vindo à LojaQA!" |
 | Contador de produtos | `strong` | `#contador-produtos` | `[data-test="contador-produtos"]` | — | texto: "21" (preenchido via JS) |
-| Container da página | `main` | `#container-inventario` | `[data-test="container-inventario"]` | `.inventory_container` | — |
-| Lista de produtos | `div` | `#lista-produtos` | `[data-test="lista-produtos"]` | `.inventory_list` | preenchida via JS |
-| Seletor de ordenação | `select` | `#seletor-ordenacao` | `[data-test="seletor-ordenacao"]` | `.product_sort_container` | 4 `option` (ver abaixo) |
+| Container da página | `main` | `#container-inventario` | `[data-test="container-inventario"]` | `.vitrine_area` | — |
+| Lista de produtos | `div` | `#lista-produtos` | `[data-test="lista-produtos"]` | `.vitrine_grade` | preenchida via JS |
+| Seletor de ordenação | `select` | `#seletor-ordenacao` | `[data-test="seletor-ordenacao"]` | `.filtro_ordem` | 4 `option` (ver abaixo) |
 
 **Opções do seletor de ordenação:**
 
@@ -98,14 +98,14 @@ Página principal da loja, exibida logo após o login bem-sucedido.
 
 | Elemento | Tag | `id` | `data-test` | `class` | Atributos |
 |---|---|---|---|---|---|
-| Card do produto | `div` | — | `[data-test="item-inventario"]` | `.inventory_item` | — |
-| Link da imagem | `a` | — | — | `.inventory_item_img`, `.link-item` | `href="inventory-item.html?id=N"` |
+| Card do produto | `div` | — | `[data-test="item-inventario"]` | `.produto_card` | — |
+| Link da imagem | `a` | — | — | `.produto_foto`, `.produto_ancora` | `href="inventory-item.html?id=N"` |
 | Imagem do produto | `img` | — | `[data-test="imagem-item"]` | — | `src="../img/<produto>.svg"`, `alt` = nome do produto |
-| Nome do produto (link) | `a` | — | `[data-test="nome-item"]` | `.inventory_item_name`, `.link-item` | `href="inventory-item.html?id=N"` |
-| Descrição | `div` | — | `[data-test="descricao-item"]` | `.inventory_item_desc` | — |
-| Barra de preço | `div` | — | — | `.pricebar` | — |
-| Preço | `div` | — | `[data-test="preco-item"]` | `.inventory_item_price` | formato `R$ X,XX` |
-| Botão Adicionar/Remover | `button` | um por produto, estável (ver [Botões de carrinho por produto](#botões-de-carrinho-por-produto)) | alterna entre `adicionar-carrinho-…` e `remover-…` do produto | `.btn`, `.btn_small` + `.btn_inventory` (fora) ⇄ `.btn_secondary` (no carrinho) | texto: "Adicionar ao carrinho" ⇄ "Remover" |
+| Nome do produto (link) | `a` | — | `[data-test="nome-item"]` | `.produto_nome`, `.produto_ancora` | `href="inventory-item.html?id=N"` |
+| Descrição | `div` | — | `[data-test="descricao-item"]` | `.produto_texto` | — |
+| Barra de preço | `div` | — | — | `.produto_rodape` | — |
+| Preço | `div` | — | `[data-test="preco-item"]` | `.produto_valor` | formato `R$ X,XX` |
+| Botão Adicionar/Remover | `button` | um por produto, estável (ver [Botões de carrinho por produto](#botões-de-carrinho-por-produto)) | alterna entre `adicionar-carrinho-…` e `remover-…` do produto | `.botao`, `.botao_pequeno` + `.botao_comprar` (fora) ⇄ `.botao_contorno` (no carrinho) | texto: "Adicionar ao carrinho" ⇄ "Remover" |
 
 > **Usuário `usuario_problema`:** todas as imagens carregam `../img/broken.svg` em vez da imagem real.
 
@@ -115,15 +115,15 @@ Página principal da loja, exibida logo após o login bem-sucedido.
 
 | Elemento | Tag | `id` | `data-test` | `class` | Atributos / Texto |
 |---|---|---|---|---|---|
-| Container da página | `main` | `#detalhes-produto` | `[data-test="detalhes-produto"]` | `.inventory_details` | — |
-| Voltar aos produtos | `a` | `#link-voltar-produtos` | `[data-test="voltar-produtos"]` | `.btn`, `.btn_small`, `.btn_back` | `href="index.html"`, texto: "← Voltar aos produtos" |
-| Wrapper da imagem | `div` | — | `[data-test="bloco-imagem"]` | `.inventory_details_img` | `hidden` quando item não existe |
+| Container da página | `main` | `#detalhes-produto` | `[data-test="detalhes-produto"]` | `.detalhe_area` | — |
+| Voltar aos produtos | `a` | `#link-voltar-produtos` | `[data-test="voltar-produtos"]` | `.botao`, `.botao_pequeno`, `.botao_retorno` | `href="index.html"`, texto: "← Voltar aos produtos" |
+| Wrapper da imagem | `div` | — | `[data-test="bloco-imagem"]` | `.detalhe_foto` | `hidden` quando item não existe |
 | Imagem do produto | `img` | `#imagem-item` | `[data-test="imagem-item"]` | — | `alt` = nome do produto |
-| Wrapper da descrição | `div` | — | `[data-test="bloco-informacoes"]` | `.inventory_details_desc_container` | `hidden` quando item não existe |
-| Nome do produto | `div` | — | `[data-test="nome-item"]` | `.inventory_details_name` | — |
-| Descrição | `div` | — | `[data-test="descricao-item"]` | `.inventory_item_desc` | — |
-| Preço | `div` | — | `[data-test="preco-item"]` | `.inventory_details_price` | formato `R$ X,XX` |
-| Botão Adicionar/Remover | `button` | `#botao-carrinho` (fixo — só há um produto na tela) | do produto aberto: alterna entre `adicionar-carrinho-…` e `remover-…` (ver [Botões de carrinho por produto](#botões-de-carrinho-por-produto)) | `.btn`, `.btn_small` + `.btn_inventory` ⇄ `.btn_secondary` | texto: "Adicionar ao carrinho" ⇄ "Remover" |
+| Wrapper da descrição | `div` | — | `[data-test="bloco-informacoes"]` | `.detalhe_info` | `hidden` quando item não existe |
+| Nome do produto | `div` | — | `[data-test="nome-item"]` | `.detalhe_nome` | — |
+| Descrição | `div` | — | `[data-test="descricao-item"]` | `.produto_texto` | — |
+| Preço | `div` | — | `[data-test="preco-item"]` | `.detalhe_valor` | formato `R$ X,XX` |
+| Botão Adicionar/Remover | `button` | `#botao-carrinho` (fixo — só há um produto na tela) | do produto aberto: alterna entre `adicionar-carrinho-…` e `remover-…` (ver [Botões de carrinho por produto](#botões-de-carrinho-por-produto)) | `.botao`, `.botao_pequeno` + `.botao_comprar` ⇄ `.botao_contorno` | texto: "Adicionar ao carrinho" ⇄ "Remover" |
 | Item não encontrado | `p` | `#item-nao-encontrado` | `[data-test="item-nao-encontrado"]` | — | `hidden` quando há produto; texto: "ITEM NÃO ENCONTRADO — Este produto não existe." |
 
 ---
@@ -132,27 +132,27 @@ Página principal da loja, exibida logo após o login bem-sucedido.
 
 | Elemento | Tag | `id` | `data-test` | `class` | Atributos / Texto |
 |---|---|---|---|---|---|
-| Container da página | `main` | `#container-carrinho` | `[data-test="container-carrinho"]` | `.cart_contents_container` | — |
-| Rótulo "QTD" | `span` | — | `[data-test="rotulo-quantidade"]` | `.cart_quantity_label` | — |
-| Rótulo "Descrição" | `span` | — | `[data-test="rotulo-descricao"]` | `.cart_desc_label` | — |
-| Carrinho vazio | `p` | `#carrinho-vazio` | `[data-test="carrinho-vazio"]` | `.cart_empty` | `hidden` quando há itens; texto: "Seu carrinho está vazio." |
-| Lista de itens | `div` | `#lista-carrinho` | `[data-test="lista-carrinho"]` | `.cart_list` | preenchida via JS |
-| Rodapé de ações | `div` | — | — | `.cart_footer` | — |
-| Continuar Comprando | `a` | `#botao-continuar-comprando` | `[data-test="continuar-comprando"]` | `.btn`, `.btn_secondary` | `href="index.html"` |
-| Finalizar Compra | `a` | `#botao-finalizar-compra` | `[data-test="finalizar-compra"]` | `.btn`, `.btn_action` | `href="checkout-step-one.html"` |
+| Container da página | `main` | `#container-carrinho` | `[data-test="container-carrinho"]` | `.sacola_conteudo` | — |
+| Rótulo "QTD" | `span` | — | `[data-test="rotulo-quantidade"]` | `.coluna_qtd` | — |
+| Rótulo "Descrição" | `span` | — | `[data-test="rotulo-descricao"]` | `.coluna_desc` | — |
+| Carrinho vazio | `p` | `#carrinho-vazio` | `[data-test="carrinho-vazio"]` | `.sacola_vazia` | `hidden` quando há itens; texto: "Seu carrinho está vazio." |
+| Lista de itens | `div` | `#lista-carrinho` | `[data-test="lista-carrinho"]` | `.sacola_itens` | preenchida via JS |
+| Rodapé de ações | `div` | — | — | `.rodape_acoes` | — |
+| Continuar Comprando | `a` | `#botao-continuar-comprando` | `[data-test="continuar-comprando"]` | `.botao`, `.botao_contorno` | `href="index.html"` |
+| Finalizar Compra | `a` | `#botao-finalizar-compra` | `[data-test="finalizar-compra"]` | `.botao`, `.botao_primario` | `href="checkout-step-one.html"` |
 
 ### Item do carrinho (dinâmico — um por item)
 
 | Elemento | Tag | `id` | `data-test` | `class` | Atributos / Texto |
 |---|---|---|---|---|---|
-| Linha do item | `div` | — | `[data-test="item-carrinho"]` | `.cart_item` | — |
-| Quantidade | `div` | — | `[data-test="quantidade-item"]` | `.cart_quantity` | texto: "1" |
-| Wrapper do conteúdo | `div` | — | — | `.cart_item_label` | — |
-| Nome (link) | `a` | — | `[data-test="nome-item"]` | `.inventory_item_name` | `href="inventory-item.html?id=N"` |
-| Descrição | `div` | — | `[data-test="descricao-item"]` | `.inventory_item_desc` | — |
-| Barra de preço | `div` | — | — | `.item_pricebar` | — |
-| Preço | `div` | — | `[data-test="preco-item"]` | `.inventory_item_price` | formato `R$ X,XX` |
-| Botão Remover | `button` | um por produto (ver [Botões de carrinho por produto](#botões-de-carrinho-por-produto)) | `remover-…` do produto, ex.: `[data-test="remover-caneca-do-depurador"]` | `.btn`, `.btn_small`, `.btn_secondary` | texto: "Remover" |
+| Linha do item | `div` | — | `[data-test="item-carrinho"]` | `.sacola_linha` | — |
+| Quantidade | `div` | — | `[data-test="quantidade-item"]` | `.linha_qtd` | texto: "1" |
+| Wrapper do conteúdo | `div` | — | — | `.linha_info` | — |
+| Nome (link) | `a` | — | `[data-test="nome-item"]` | `.produto_nome` | `href="inventory-item.html?id=N"` |
+| Descrição | `div` | — | `[data-test="descricao-item"]` | `.produto_texto` | — |
+| Barra de preço | `div` | — | — | `.linha_rodape` | — |
+| Preço | `div` | — | `[data-test="preco-item"]` | `.produto_valor` | formato `R$ X,XX` |
+| Botão Remover | `button` | um por produto (ver [Botões de carrinho por produto](#botões-de-carrinho-por-produto)) | `remover-…` do produto, ex.: `[data-test="remover-caneca-do-depurador"]` | `.botao`, `.botao_pequeno`, `.botao_contorno` | texto: "Remover" |
 
 ---
 
@@ -160,16 +160,16 @@ Página principal da loja, exibida logo após o login bem-sucedido.
 
 | Elemento | Tag | `id` | `data-test` | `class` | Atributos |
 |---|---|---|---|---|---|
-| Container da página | `main` | `#container-checkout-dados` | `[data-test="container-checkout-dados"]` | `.checkout_container` | — |
-| Formulário | `form` | `#form-checkout` | `[data-test="form-checkout"]` | `.checkout_info` | `novalidate` |
-| Nome | `input` | `#campo-nome` | `[data-test="campo-nome"]` | `.form_input` (+ `.input_error` em erro) | `type="text"`, `placeholder="Nome"`, `autofocus` |
-| Sobrenome | `input` | `#campo-sobrenome` | `[data-test="campo-sobrenome"]` | `.form_input` (+ `.input_error` em erro) | `type="text"`, `placeholder="Sobrenome"` |
-| CEP | `input` | `#campo-cep` | `[data-test="campo-cep"]` | `.form_input` (+ `.input_error` em erro) | `type="text"`, `placeholder="CEP"` |
-| Container de erro | `div` | `#container-erro` | `[data-test="container-erro"]` | `.error-message-container` (+ `.visible`) | — |
+| Container da página | `main` | `#container-checkout-dados` | `[data-test="container-checkout-dados"]` | `.pagamento_area` | — |
+| Formulário | `form` | `#form-checkout` | `[data-test="form-checkout"]` | `.pagamento_form` | `novalidate` |
+| Nome | `input` | `#campo-nome` | `[data-test="campo-nome"]` | `.campo_form` (+ `.campo_invalido` em erro) | `type="text"`, `placeholder="Nome"`, `autofocus` |
+| Sobrenome | `input` | `#campo-sobrenome` | `[data-test="campo-sobrenome"]` | `.campo_form` (+ `.campo_invalido` em erro) | `type="text"`, `placeholder="Sobrenome"` |
+| CEP | `input` | `#campo-cep` | `[data-test="campo-cep"]` | `.campo_form` (+ `.campo_invalido` em erro) | `type="text"`, `placeholder="CEP"` |
+| Container de erro | `div` | `#container-erro` | `[data-test="container-erro"]` | `.aviso_erro` (+ `.exibido`) | — |
 | Texto do erro | `span` | `#texto-erro` | `[data-test="texto-erro"]` | — | ver seção Mensagens de erro |
-| Botão fechar erro (×) | `button` | `#botao-fechar-erro` | `[data-test="botao-fechar-erro"]` | `.error-button` | `type="button"`, `aria-label="Fechar"` |
-| Cancelar | `a` | `#botao-cancelar` | `[data-test="botao-cancelar"]` | `.btn`, `.btn_secondary` | `href="cart.html"` |
-| Continuar | `input` | `#botao-continuar` | `[data-test="botao-continuar"]` | `.btn`, `.btn_action` | `type="submit"`, `value="Continuar"` |
+| Botão fechar erro (×) | `button` | `#botao-fechar-erro` | `[data-test="botao-fechar-erro"]` | `.aviso_fechar` | `type="button"`, `aria-label="Fechar"` |
+| Cancelar | `a` | `#botao-cancelar` | `[data-test="botao-cancelar"]` | `.botao`, `.botao_contorno` | `href="cart.html"` |
+| Continuar | `input` | `#botao-continuar` | `[data-test="botao-continuar"]` | `.botao`, `.botao_primario` | `type="submit"`, `value="Continuar"` |
 
 ---
 
@@ -177,22 +177,22 @@ Página principal da loja, exibida logo após o login bem-sucedido.
 
 | Elemento | Tag | `id` | `data-test` | `class` | Texto |
 |---|---|---|---|---|---|
-| Container da página | `main` | `#container-checkout-resumo` | `[data-test="container-checkout-resumo"]` | `.checkout_container` | — |
-| Rótulo "QTD" | `span` | — | `[data-test="rotulo-quantidade"]` | `.cart_quantity_label` | — |
-| Rótulo "Descrição" | `span` | — | `[data-test="rotulo-descricao"]` | `.cart_desc_label` | — |
-| Lista de itens | `div` | `#lista-resumo` | `[data-test="lista-resumo"]` | `.cart_list` | preenchida via JS |
-| Bloco de resumo | `div` | `#info-resumo` | `[data-test="info-resumo"]` | `.summary_info` | — |
-| Rótulo pagamento | `div` | — | `[data-test="rotulo-pagamento"]` | `.summary_info_label` | "Forma de Pagamento:" |
-| Valor pagamento | `div` | — | `[data-test="valor-pagamento"]` | `.summary_value_label` | "CartãoQA #31337" |
-| Rótulo entrega | `div` | — | `[data-test="rotulo-entrega"]` | `.summary_info_label` | "Entrega:" |
-| Valor entrega | `div` | — | `[data-test="valor-entrega"]` | `.summary_value_label` | "Entrega Expressa Grátis!" |
-| Rótulo total | `div` | — | `[data-test="rotulo-total"]` | `.summary_info_label` | "Resumo de Valores" |
-| Subtotal | `div` | `#valor-subtotal` | `[data-test="valor-subtotal"]` | `.summary_subtotal_label` | "Subtotal: R$ X,XX" |
-| Impostos (8%) | `div` | `#valor-imposto` | `[data-test="valor-imposto"]` | `.summary_tax_label` | "Impostos (8%): R$ X,XX" |
-| Total | `div` | `#valor-total` | `[data-test="valor-total"]` | `.summary_total_label` | "Total: R$ X,XX" |
-| Rodapé de ações | `div` | — | — | `.cart_footer` | — |
-| Cancelar | `a` | `#botao-cancelar` | `[data-test="botao-cancelar"]` | `.btn`, `.btn_secondary` | `href="index.html"` |
-| Finalizar Pedido | `button` | `#botao-finalizar` | `[data-test="botao-finalizar"]` | `.btn`, `.btn_action` | registra o pedido, limpa o carrinho → `checkout-complete.html` |
+| Container da página | `main` | `#container-checkout-resumo` | `[data-test="container-checkout-resumo"]` | `.pagamento_area` | — |
+| Rótulo "QTD" | `span` | — | `[data-test="rotulo-quantidade"]` | `.coluna_qtd` | — |
+| Rótulo "Descrição" | `span` | — | `[data-test="rotulo-descricao"]` | `.coluna_desc` | — |
+| Lista de itens | `div` | `#lista-resumo` | `[data-test="lista-resumo"]` | `.sacola_itens` | preenchida via JS |
+| Bloco de resumo | `div` | `#info-resumo` | `[data-test="info-resumo"]` | `.resumo_bloco` | — |
+| Rótulo pagamento | `div` | — | `[data-test="rotulo-pagamento"]` | `.resumo_rotulo` | "Forma de Pagamento:" |
+| Valor pagamento | `div` | — | `[data-test="valor-pagamento"]` | `.resumo_valor` | "CartãoQA #31337" |
+| Rótulo entrega | `div` | — | `[data-test="rotulo-entrega"]` | `.resumo_rotulo` | "Entrega:" |
+| Valor entrega | `div` | — | `[data-test="valor-entrega"]` | `.resumo_valor` | "Entrega Expressa Grátis!" |
+| Rótulo total | `div` | — | `[data-test="rotulo-total"]` | `.resumo_rotulo` | "Resumo de Valores" |
+| Subtotal | `div` | `#valor-subtotal` | `[data-test="valor-subtotal"]` | `.resumo_subtotal` | "Subtotal: R$ X,XX" |
+| Impostos (8%) | `div` | `#valor-imposto` | `[data-test="valor-imposto"]` | `.resumo_imposto` | "Impostos (8%): R$ X,XX" |
+| Total | `div` | `#valor-total` | `[data-test="valor-total"]` | `.resumo_total` | "Total: R$ X,XX" |
+| Rodapé de ações | `div` | — | — | `.rodape_acoes` | — |
+| Cancelar | `a` | `#botao-cancelar` | `[data-test="botao-cancelar"]` | `.botao`, `.botao_contorno` | `href="index.html"` |
+| Finalizar Pedido | `button` | `#botao-finalizar` | `[data-test="botao-finalizar"]` | `.botao`, `.botao_primario` | registra o pedido, limpa o carrinho → `checkout-complete.html` |
 
 Os itens da lista usam os mesmos seletores do carrinho (`[data-test="item-carrinho"]`, `[data-test="quantidade-item"]`, `[data-test="nome-item"]`, `[data-test="descricao-item"]`, `[data-test="preco-item"]`), porém **sem** botão Remover.
 
@@ -202,13 +202,13 @@ Os itens da lista usam os mesmos seletores do carrinho (`[data-test="item-carrin
 
 | Elemento | Tag | `id` | `data-test` | `class` | Atributos / Texto |
 |---|---|---|---|---|---|
-| Container da página | `main` | `#container-pedido-concluido` | `[data-test="container-pedido-concluido"]` | `.checkout_complete_container` | — |
-| Imagem de confirmação (✓) | `img` | `#imagem-confirmacao` | `[data-test="imagem-confirmacao"]` | `.pony_express` | `src="../img/pony-express.svg"`, `alt="Pedido confirmado"` |
-| Título | `h2` | `#titulo-conclusao` | `[data-test="titulo-conclusao"]` | `.complete-header` | "Obrigado pelo seu pedido!" |
-| Texto de confirmação | `div` | `#texto-conclusao` | `[data-test="texto-conclusao"]` | `.complete-text` | "Pedido #XXXXXXXX confirmado! Ele foi despachado..." |
+| Container da página | `main` | `#container-pedido-concluido` | `[data-test="container-pedido-concluido"]` | `.conclusao_area` | — |
+| Imagem de confirmação (✓) | `img` | `#imagem-confirmacao` | `[data-test="imagem-confirmacao"]` | `.conclusao_imagem` | `src="../img/pony-express.svg"`, `alt="Pedido confirmado"` |
+| Título | `h2` | `#titulo-conclusao` | `[data-test="titulo-conclusao"]` | `.conclusao_titulo` | "Obrigado pelo seu pedido!" |
+| Texto de confirmação | `div` | `#texto-conclusao` | `[data-test="texto-conclusao"]` | `.conclusao_texto` | "Pedido #XXXXXXXX confirmado! Ele foi despachado..." |
 | Número do pedido | `strong` | `#numero-pedido` | `[data-test="numero-pedido"]` | — | "#XXXXXXXX" (8 dígitos, preenchido via JS) |
-| Gerar Nota Fiscal (PDF) | `a` | `#botao-nota-fiscal` | `[data-test="nota-fiscal"]` | `.btn`, `.btn_action`, `.btn_complete` | `href="nota-fiscal.html"` |
-| Voltar à Loja | `a` | `#botao-voltar-inicio` | `[data-test="voltar-inicio"]` | `.btn`, `.btn_secondary`, `.btn_complete` | `href="index.html"` |
+| Gerar Nota Fiscal (PDF) | `a` | `#botao-nota-fiscal` | `[data-test="nota-fiscal"]` | `.botao`, `.botao_primario`, `.botao_largo` | `href="nota-fiscal.html"` |
+| Voltar à Loja | `a` | `#botao-voltar-inicio` | `[data-test="voltar-inicio"]` | `.botao`, `.botao_contorno`, `.botao_largo` | `href="index.html"` |
 
 ---
 
@@ -257,8 +257,8 @@ Como não há menu aqui, a única saída é o botão "Voltar" (`#botao-voltar`),
 | Total | `div` | `#nota-total` | `[data-test="nota-total"]` | `.nf_total` | "Total: R$ X,XX" |
 | Aviso legal | `p` | — | `[data-test="aviso-nota"]` | `.nf_aviso` | "Documento sem valor fiscal..." |
 | Ações | `div` | — | — | `.nf_acoes` | — |
-| Voltar | `a` | `#botao-voltar` | `[data-test="botao-voltar"]` | `.btn`, `.btn_secondary` | `href="checkout-complete.html"` — leva ao Pedido Concluído |
-| Baixar PDF | `button` | `#botao-baixar-pdf` | `[data-test="baixar-pdf"]` | `.btn`, `.btn_action` | baixa `nota-fiscal-<numero>.pdf` direto (sem diálogo) |
+| Voltar | `a` | `#botao-voltar` | `[data-test="botao-voltar"]` | `.botao`, `.botao_contorno` | `href="checkout-complete.html"` — leva ao Pedido Concluído |
+| Baixar PDF | `button` | `#botao-baixar-pdf` | `[data-test="baixar-pdf"]` | `.botao`, `.botao_primario` | baixa `nota-fiscal-<numero>.pdf` direto (sem diálogo) |
 
 ### Linha de item da nota (dinâmica — uma por item)
 
@@ -278,12 +278,12 @@ Valores de `class` e atributos que **mudam durante a execução** — úteis par
 
 | `class` / Atributo | Aplicada em | Significado |
 |---|---|---|
-| `.open` | `#menu-lateral`, `#sobreposicao-menu` | menu lateral aberto |
-| `.visible` | `#container-erro` | mensagem de erro exibida |
-| `.input_error` | campos `.form_input` | campo com erro de validação (borda vermelha) |
+| `.aberto` | `#menu-lateral`, `#sobreposicao-menu` | menu lateral aberto |
+| `.exibido` | `#container-erro` | mensagem de erro exibida |
+| `.campo_invalido` | campos `.campo_form` | campo com erro de validação (borda vermelha) |
 | `[hidden]` | `#carrinho-vazio`, `#item-nao-encontrado`, `#nota-fiscal`, `#pedido-nao-encontrado`, wrappers do detalhe | elemento oculto condicionalmente |
 | `style="display:none"` ⇄ `inline-flex` | `#badge-carrinho` | badge oculto quando o carrinho está vazio |
-| `.btn_inventory` ⇄ `.btn_secondary` | botões Adicionar/Remover | fora do carrinho ⇄ dentro do carrinho |
+| `.botao_comprar` ⇄ `.botao_contorno` | botões Adicionar/Remover | fora do carrinho ⇄ dentro do carrinho |
 | `[disabled]` | `#botao-entrar` | durante o delay do `usuario_lento` |
 | `.bugs-visuais` | `body` | adicionada quando o usuário logado é `usuario_visual` — ativa os defeitos visuais propositais |
 
@@ -291,13 +291,13 @@ Valores de `class` e atributos que **mudam durante a execução** — úteis par
 
 | `class` | Estilo |
 |---|---|
-| `.btn` | base de todos os botões (formato pílula) |
-| `.btn_action` | azul preenchido, destaque (Entrar, Finalizar Compra, Continuar, Finalizar Pedido, Gerar Nota Fiscal, Baixar PDF) |
-| `.btn_secondary` | borda vermelha (Cancelar, Continuar Comprando, Remover, Voltar à Loja, Voltar) |
-| `.btn_inventory` | largura total (Adicionar ao carrinho) |
-| `.btn_small` | padding reduzido |
-| `.btn_back` | botão de voltar (detalhe do produto) |
-| `.btn_complete` | largura limitada (botões da página de conclusão) |
+| `.botao` | base de todos os botões (formato pílula) |
+| `.botao_primario` | azul preenchido, destaque (Entrar, Finalizar Compra, Continuar, Finalizar Pedido, Gerar Nota Fiscal, Baixar PDF) |
+| `.botao_contorno` | borda vermelha (Cancelar, Continuar Comprando, Remover, Voltar à Loja, Voltar) |
+| `.botao_comprar` | largura total (Adicionar ao carrinho) |
+| `.botao_pequeno` | padding reduzido |
+| `.botao_retorno` | botão de voltar (detalhe do produto) |
+| `.botao_largo` | largura limitada (botões da página de conclusão) |
 
 ---
 
@@ -402,8 +402,8 @@ Seletores prontos dos 21 produtos. O `id` do botão é estável; o `data-test` a
 
 | Estado | `id` | `data-test` | Texto | `class` extra |
 |---|---|---|---|---|
-| Fora do carrinho | `#botao-carrinho-mochila-do-testador` | `[data-test="adicionar-carrinho-mochila-do-testador"]` | "Adicionar ao carrinho" | `.btn_inventory` |
-| No carrinho | `#botao-carrinho-mochila-do-testador` (não muda) | `[data-test="remover-mochila-do-testador"]` | "Remover" | `.btn_secondary` |
+| Fora do carrinho | `#botao-carrinho-mochila-do-testador` | `[data-test="adicionar-carrinho-mochila-do-testador"]` | "Adicionar ao carrinho" | `.botao_comprar` |
+| No carrinho | `#botao-carrinho-mochila-do-testador` (não muda) | `[data-test="remover-mochila-do-testador"]` | "Remover" | `.botao_contorno` |
 
 ---
 

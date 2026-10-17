@@ -128,7 +128,7 @@ Os botões de carrinho são gerados em runtime e somam mais 21 ids e 42 data-tes
 Para uso como base de conhecimento (RAG) na geração de testes Cypress, há duas bases com cabeçalho de metadados e seções autocontidas. Elas têm as mesmas seções, os mesmos itens e a mesma prosa, linha por linha; muda apenas o tipo de seletor:
 
 - [SeletoresEstruturados.md](SeletoresEstruturados.md) — base **forte**: somente `id` e `data-test`.
-- [SeletoresNaoEstruturados.md](SeletoresNaoEstruturados.md) — base **frágil**: somente classe CSS, hierarquia e posição. Um produto específico é localizado pela posição do card (`.inventory_item:nth-child(N)`, na ordenação padrão), seletor que quebra quando a ordenação muda.
+- [SeletoresNaoEstruturados.md](SeletoresNaoEstruturados.md) — base **frágil**: somente classe CSS, hierarquia e posição. Um produto específico é localizado pela posição do card (`.produto_card:nth-child(N)`, na ordenação padrão), seletor que quebra quando a ordenação muda.
 
 Estrutura e tamanho das duas bases:
 

@@ -10,15 +10,15 @@ const loginBtn = document.getElementById("botao-entrar");
 
 function showError(msg) {
   errorText.textContent = "Ops! " + msg;
-  errorBox.classList.add("visible");
-  userInput.classList.add("input_error");
-  passInput.classList.add("input_error");
+  errorBox.classList.add("exibido");
+  userInput.classList.add("campo_invalido");
+  passInput.classList.add("campo_invalido");
 }
 
 function clearError() {
-  errorBox.classList.remove("visible");
-  userInput.classList.remove("input_error");
-  passInput.classList.remove("input_error");
+  errorBox.classList.remove("exibido");
+  userInput.classList.remove("campo_invalido");
+  passInput.classList.remove("campo_invalido");
 }
 
 errorClose.addEventListener("click", clearError);

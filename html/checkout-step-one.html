@@ -8,50 +8,50 @@
 </head>
 <body>
   <header>
-    <div class="primary_header">
-      <div class="header_label">
-        <button class="bm-burger-button" id="botao-menu" data-test="botao-menu" aria-label="Abrir Menu">&#9776;</button>
-        <a class="app_logo" id="link-logo" data-test="link-logo" href="index.html">🧪 LojaQA</a>
+    <div class="cabecalho_topo">
+      <div class="cabecalho_marca">
+        <button class="menu_gatilho" id="botao-menu" data-test="botao-menu" aria-label="Abrir Menu">&#9776;</button>
+        <a class="logotipo" id="link-logo" data-test="link-logo" href="index.html">🧪 LojaQA</a>
       </div>
-      <div class="shopping_cart_container">
-        <a class="shopping_cart_link" id="link-carrinho" data-test="link-carrinho" href="cart.html">🛒<span class="shopping_cart_badge" id="badge-carrinho" data-test="badge-carrinho" style="display:none"></span></a>
+      <div class="sacola_area">
+        <a class="sacola_link" id="link-carrinho" data-test="link-carrinho" href="cart.html">🛒<span class="sacola_contador" id="badge-carrinho" data-test="badge-carrinho" style="display:none"></span></a>
       </div>
     </div>
-    <div class="header_secondary_container">
-      <span class="title" id="titulo-pagina" data-test="titulo-pagina">Pagamento: Seus Dados</span>
+    <div class="subcabecalho">
+      <span class="subcabecalho_titulo" id="titulo-pagina" data-test="titulo-pagina">Pagamento: Seus Dados</span>
     </div>
-    <nav class="bm-menu" id="menu-lateral" data-test="menu-lateral">
-      <button class="bm-cross-button" id="botao-fechar-menu" data-test="botao-fechar-menu" aria-label="Fechar Menu">&times;</button>
+    <nav class="gaveta_menu" id="menu-lateral" data-test="menu-lateral">
+      <button class="gaveta_fechar" id="botao-fechar-menu" data-test="botao-fechar-menu" aria-label="Fechar Menu">&times;</button>
       <a id="link-todos-itens" data-test="link-todos-itens" href="index.html">Todos os Produtos</a>
       <a id="link-sobre" data-test="link-sobre" href="sobre.html">Sobre</a>
       <a id="link-sair" data-test="link-sair" href="#">Sair</a>
       <a id="link-resetar" data-test="link-resetar" href="#">Resetar Aplicação</a>
     </nav>
-    <div class="bm-overlay" id="sobreposicao-menu"></div>
+    <div class="gaveta_fundo" id="sobreposicao-menu"></div>
   </header>
 
-  <main class="checkout_container" id="container-checkout-dados" data-test="container-checkout-dados">
-    <form class="checkout_info" id="form-checkout" data-test="form-checkout" novalidate>
-      <input type="text" class="form_input" id="campo-nome" data-test="campo-nome" placeholder="Nome" autofocus>
-      <input type="text" class="form_input" id="campo-sobrenome" data-test="campo-sobrenome" placeholder="Sobrenome">
-      <input type="text" class="form_input" id="campo-cep" data-test="campo-cep" placeholder="CEP">
+  <main class="pagamento_area" id="container-checkout-dados" data-test="container-checkout-dados">
+    <form class="pagamento_form" id="form-checkout" data-test="form-checkout" novalidate>
+      <input type="text" class="campo_form" id="campo-nome" data-test="campo-nome" placeholder="Nome" autofocus>
+      <input type="text" class="campo_form" id="campo-sobrenome" data-test="campo-sobrenome" placeholder="Sobrenome">
+      <input type="text" class="campo_form" id="campo-cep" data-test="campo-cep" placeholder="CEP">
 
-      <div class="error-message-container" id="container-erro" data-test="container-erro">
+      <div class="aviso_erro" id="container-erro" data-test="container-erro">
         <span id="texto-erro" data-test="texto-erro"></span>
-        <button type="button" class="error-button" id="botao-fechar-erro" data-test="botao-fechar-erro" aria-label="Fechar">&times;</button>
+        <button type="button" class="aviso_fechar" id="botao-fechar-erro" data-test="botao-fechar-erro" aria-label="Fechar">&times;</button>
       </div>
 
-      <a class="btn btn_secondary" id="botao-cancelar" data-test="botao-cancelar" href="cart.html">Cancelar</a>
-      <input type="submit" class="btn btn_action" id="botao-continuar" data-test="botao-continuar" value="Continuar">
+      <a class="botao botao_contorno" id="botao-cancelar" data-test="botao-cancelar" href="cart.html">Cancelar</a>
+      <input type="submit" class="botao botao_primario" id="botao-continuar" data-test="botao-continuar" value="Continuar">
     </form>
   </main>
 
-  <footer class="footer" id="rodape" data-test="rodape">
-    <ul class="social">
+  <footer class="rodape_site" id="rodape" data-test="rodape">
+    <ul class="redes">
       <li><a href="https://github.com/paulovarrone" target="_blank" rel="noopener" data-test="rede-github">GitHub</a></li>
       <li><a href="https://www.linkedin.com/in/paulovarrone" target="_blank" rel="noopener" data-test="rede-linkedin">LinkedIn</a></li>
     </ul>
-    <div class="footer_copy" data-test="texto-rodape">© 2026 LojaQA — Projeto educacional para prática de testes de automação.</div>
+    <div class="rodape_direitos" data-test="texto-rodape">© 2026 LojaQA — Projeto educacional para prática de testes de automação.</div>
   </footer>
 
   <script src="../js/data.js" defer></script>

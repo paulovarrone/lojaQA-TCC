@@ -8,71 +8,71 @@
 </head>
 <body>
   <header>
-    <div class="primary_header">
-      <div class="header_label">
-        <button class="bm-burger-button" id="botao-menu" data-test="botao-menu" aria-label="Abrir Menu">&#9776;</button>
-        <a class="app_logo" id="link-logo" data-test="link-logo" href="index.html">🧪 LojaQA</a>
+    <div class="cabecalho_topo">
+      <div class="cabecalho_marca">
+        <button class="menu_gatilho" id="botao-menu" data-test="botao-menu" aria-label="Abrir Menu">&#9776;</button>
+        <a class="logotipo" id="link-logo" data-test="link-logo" href="index.html">🧪 LojaQA</a>
       </div>
-      <div class="shopping_cart_container">
-        <a class="shopping_cart_link" id="link-carrinho" data-test="link-carrinho" href="cart.html">🛒<span class="shopping_cart_badge" id="badge-carrinho" data-test="badge-carrinho" style="display:none"></span></a>
+      <div class="sacola_area">
+        <a class="sacola_link" id="link-carrinho" data-test="link-carrinho" href="cart.html">🛒<span class="sacola_contador" id="badge-carrinho" data-test="badge-carrinho" style="display:none"></span></a>
       </div>
     </div>
-    <div class="header_secondary_container">
-      <span class="title" id="titulo-pagina" data-test="titulo-pagina">Pagamento: Resumo</span>
+    <div class="subcabecalho">
+      <span class="subcabecalho_titulo" id="titulo-pagina" data-test="titulo-pagina">Pagamento: Resumo</span>
     </div>
-    <nav class="bm-menu" id="menu-lateral" data-test="menu-lateral">
-      <button class="bm-cross-button" id="botao-fechar-menu" data-test="botao-fechar-menu" aria-label="Fechar Menu">&times;</button>
+    <nav class="gaveta_menu" id="menu-lateral" data-test="menu-lateral">
+      <button class="gaveta_fechar" id="botao-fechar-menu" data-test="botao-fechar-menu" aria-label="Fechar Menu">&times;</button>
       <a id="link-todos-itens" data-test="link-todos-itens" href="index.html">Todos os Produtos</a>
       <a id="link-sobre" data-test="link-sobre" href="sobre.html">Sobre</a>
       <a id="link-sair" data-test="link-sair" href="#">Sair</a>
       <a id="link-resetar" data-test="link-resetar" href="#">Resetar Aplicação</a>
     </nav>
-    <div class="bm-overlay" id="sobreposicao-menu"></div>
+    <div class="gaveta_fundo" id="sobreposicao-menu"></div>
   </header>
 
-  <main class="checkout_container" id="container-checkout-resumo" data-test="container-checkout-resumo">
+  <main class="pagamento_area" id="container-checkout-resumo" data-test="container-checkout-resumo">
     <div>
-      <span class="cart_quantity_label" data-test="rotulo-quantidade">QTD</span>
-      <span class="cart_desc_label" data-test="rotulo-descricao">Descrição</span>
+      <span class="coluna_qtd" data-test="rotulo-quantidade">QTD</span>
+      <span class="coluna_desc" data-test="rotulo-descricao">Descrição</span>
     </div>
-    <div class="cart_list" id="lista-resumo" data-test="lista-resumo"></div>
+    <div class="sacola_itens" id="lista-resumo" data-test="lista-resumo"></div>
 
-    <div class="summary_info" id="info-resumo" data-test="info-resumo">
-      <div class="summary_info_label" data-test="rotulo-pagamento">Forma de Pagamento:</div>
-      <div class="summary_value_label" data-test="valor-pagamento">CartãoQA #31337</div>
-      <div class="summary_info_label" data-test="rotulo-entrega">Entrega:</div>
-      <div class="summary_value_label" data-test="valor-entrega">Entrega Expressa Grátis!</div>
-      <div class="summary_info_label" data-test="rotulo-total">Resumo de Valores</div>
-      <div class="summary_subtotal_label" id="valor-subtotal" data-test="valor-subtotal"></div>
-      <div class="summary_tax_label" id="valor-imposto" data-test="valor-imposto"></div>
-      <div class="summary_total_label" id="valor-total" data-test="valor-total"></div>
+    <div class="resumo_bloco" id="info-resumo" data-test="info-resumo">
+      <div class="resumo_rotulo" data-test="rotulo-pagamento">Forma de Pagamento:</div>
+      <div class="resumo_valor" data-test="valor-pagamento">CartãoQA #31337</div>
+      <div class="resumo_rotulo" data-test="rotulo-entrega">Entrega:</div>
+      <div class="resumo_valor" data-test="valor-entrega">Entrega Expressa Grátis!</div>
+      <div class="resumo_rotulo" data-test="rotulo-total">Resumo de Valores</div>
+      <div class="resumo_subtotal" id="valor-subtotal" data-test="valor-subtotal"></div>
+      <div class="resumo_imposto" id="valor-imposto" data-test="valor-imposto"></div>
+      <div class="resumo_total" id="valor-total" data-test="valor-total"></div>
     </div>
 
-    <div class="cart_footer">
-      <a class="btn btn_secondary" id="botao-cancelar" data-test="botao-cancelar" href="index.html">Cancelar</a>
-      <button class="btn btn_action" id="botao-finalizar" data-test="botao-finalizar">Finalizar Pedido</button>
+    <div class="rodape_acoes">
+      <a class="botao botao_contorno" id="botao-cancelar" data-test="botao-cancelar" href="index.html">Cancelar</a>
+      <button class="botao botao_primario" id="botao-finalizar" data-test="botao-finalizar">Finalizar Pedido</button>
     </div>
   </main>
 
   <template id="modelo-item-resumo">
-    <div class="cart_item" data-test="item-carrinho">
-      <div class="cart_quantity" data-test="quantidade-item">1</div>
-      <div class="cart_item_label">
-        <a class="inventory_item_name" data-test="nome-item"></a>
-        <div class="inventory_item_desc" data-test="descricao-item"></div>
-        <div class="item_pricebar">
-          <div class="inventory_item_price" data-test="preco-item"></div>
+    <div class="sacola_linha" data-test="item-carrinho">
+      <div class="linha_qtd" data-test="quantidade-item">1</div>
+      <div class="linha_info">
+        <a class="produto_nome" data-test="nome-item"></a>
+        <div class="produto_texto" data-test="descricao-item"></div>
+        <div class="linha_rodape">
+          <div class="produto_valor" data-test="preco-item"></div>
         </div>
       </div>
     </div>
   </template>
 
-  <footer class="footer" id="rodape" data-test="rodape">
-    <ul class="social">
+  <footer class="rodape_site" id="rodape" data-test="rodape">
+    <ul class="redes">
       <li><a href="https://github.com/paulovarrone" target="_blank" rel="noopener" data-test="rede-github">GitHub</a></li>
       <li><a href="https://www.linkedin.com/in/paulovarrone" target="_blank" rel="noopener" data-test="rede-linkedin">LinkedIn</a></li>
     </ul>
-    <div class="footer_copy" data-test="texto-rodape">© 2026 LojaQA — Projeto educacional para prática de testes de automação.</div>
+    <div class="rodape_direitos" data-test="texto-rodape">© 2026 LojaQA — Projeto educacional para prática de testes de automação.</div>
   </footer>
 
   <script src="../js/data.js" defer></script>

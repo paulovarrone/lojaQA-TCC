@@ -13,10 +13,10 @@ versao_produtos: 21 produtos
 Este documento é a base de conhecimento dos **seletores não estruturados** da aplicação web **LojaQA**, uma loja virtual fictícia usada para praticar automação de testes. Aqui, cada elemento é localizado apenas pela **classe CSS**, pela **hierarquia** e pela **posição** no documento. Cada seção é autocontida e descreve os elementos de uma página, com seus seletores prontos para uso, textos visíveis e comportamentos.
 
 Como interpretar os seletores em qualquer seção deste documento:
-- Um seletor iniciado por `.` é um seletor de **classe CSS** (ex.: `.bm-burger-button`). Classes se combinam sem espaço (`.btn.btn_action`); com espaço viram descendência (`.cart_item .inventory_item_price`).
-- Um seletor com `>`, `+`, `:has()`, `:nth-child()`, `:nth-of-type()`, `:first-child` ou `:last-child` é de **hierarquia e posição** (ex.: `.checkout_info > input:nth-of-type(2)`). `:nth-child` conta todos os irmãos e `:nth-of-type` conta só os da mesma tag; elementos invisíveis como `<template>` e `<script>` também contam como irmãos.
-- **Texto visível** não é usado para localizar elementos: aparece apenas como valor esperado de asserção, por exemplo `cy.get(".title").should("have.text", "Produtos")`.
-- **Produto específico:** nenhum produto tem seletor próprio; cada um é localizado pela posição do seu card na vitrine, `.inventory_item:nth-child(N)`, com N contado na ordenação padrão `az`. Exemplo: Mochila do Testador → `.inventory_item:nth-child(12)`. A lista completa está na seção "Seletores de cada produto da LojaQA".
+- Um seletor iniciado por `.` é um seletor de **classe CSS** (ex.: `.menu_gatilho`). Classes se combinam sem espaço (`.botao.botao_primario`); com espaço viram descendência (`.sacola_linha .produto_valor`).
+- Um seletor com `>`, `+`, `:has()`, `:nth-child()`, `:nth-of-type()`, `:first-child` ou `:last-child` é de **hierarquia e posição** (ex.: `.pagamento_form > input:nth-of-type(2)`). `:nth-child` conta todos os irmãos e `:nth-of-type` conta só os da mesma tag; elementos invisíveis como `<template>` e `<script>` também contam como irmãos.
+- **Texto visível** não é usado para localizar elementos: aparece apenas como valor esperado de asserção, por exemplo `cy.get(".subcabecalho_titulo").should("have.text", "Produtos")`.
+- **Produto específico:** nenhum produto tem seletor próprio; cada um é localizado pela posição do seu card na vitrine, `.produto_card:nth-child(N)`, com N contado na ordenação padrão `az`. Exemplo: Mochila do Testador → `.produto_card:nth-child(12)`. A lista completa está na seção "Seletores de cada produto da LojaQA".
 
 ---
 
@@ -54,30 +54,30 @@ Estes elementos aparecem em todas as páginas da LojaQA que têm cabeçalho (tod
 
 ### Cabeçalho da LojaQA
 
-- **Botão de abrir o menu lateral (ícone hambúrguer ☰):** fica no canto esquerdo do cabeçalho; clicar abre o menu lateral. Seletores: `.bm-burger-button`, `.header_label > button`, `.header_label > :first-child`.
-- **Logotipo da LojaQA no topo (link para a home):** exibe "🧪 LojaQA", ao lado do botão do menu; clicar volta para a página inicial (home) da loja, `index.html`. Seletores: `.app_logo`, `.header_label > a`, `.bm-burger-button + a`.
-- **Link/ícone do carrinho de compras (🛒):** fica no canto direito do cabeçalho; clicar vai para o carrinho, `cart.html`. Seletores: `.shopping_cart_link`, `.shopping_cart_container > a`.
-- **Badge de contagem do carrinho:** número sobre o ícone do carrinho, com a quantidade de itens. Com o carrinho vazio ele fica oculto (o texto interno continua "0"), então o carrinho vazio é verificado por visibilidade, e não por texto. Seletores: `.shopping_cart_badge`, `.shopping_cart_link > span`. Em Cypress: `cy.get(".shopping_cart_badge").should("have.text", "2")`; carrinho vazio: `cy.get(".shopping_cart_badge").should("not.be.visible")`.
-- **Título da página atual (barra abaixo do cabeçalho):** presente em todas as páginas com cabeçalho, exceto `inventory-item.html`. Textos exatos: "Produtos", "Seu Carrinho", "Pagamento: Seus Dados", "Pagamento: Resumo", "Pedido Concluído!" ou "Sobre a LojaQA". Seletores: `.title`, `.header_secondary_container > span`, `header > div:nth-child(2) > span:first-child`.
+- **Botão de abrir o menu lateral (ícone hambúrguer ☰):** fica no canto esquerdo do cabeçalho; clicar abre o menu lateral. Seletores: `.menu_gatilho`, `.cabecalho_marca > button`, `.cabecalho_marca > :first-child`.
+- **Logotipo da LojaQA no topo (link para a home):** exibe "🧪 LojaQA", ao lado do botão do menu; clicar volta para a página inicial (home) da loja, `index.html`. Seletores: `.logotipo`, `.cabecalho_marca > a`, `.menu_gatilho + a`.
+- **Link/ícone do carrinho de compras (🛒):** fica no canto direito do cabeçalho; clicar vai para o carrinho, `cart.html`. Seletores: `.sacola_link`, `.sacola_area > a`.
+- **Badge de contagem do carrinho:** número sobre o ícone do carrinho, com a quantidade de itens. Com o carrinho vazio ele fica oculto (o texto interno continua "0"), então o carrinho vazio é verificado por visibilidade, e não por texto. Seletores: `.sacola_contador`, `.sacola_link > span`. Em Cypress: `cy.get(".sacola_contador").should("have.text", "2")`; carrinho vazio: `cy.get(".sacola_contador").should("not.be.exibido")`.
+- **Título da página atual (barra abaixo do cabeçalho):** presente em todas as páginas com cabeçalho, exceto `inventory-item.html`. Textos exatos: "Produtos", "Seu Carrinho", "Pagamento: Seus Dados", "Pagamento: Resumo", "Pedido Concluído!" ou "Sobre a LojaQA". Seletores: `.subcabecalho_titulo`, `.subcabecalho > span`, `header > div:nth-child(2) > span:first-child`.
 
 ### Menu lateral da LojaQA (barra de navegação lateral / hamburger menu)
 
 O menu lateral abre ao clicar no botão do menu. Ele já está carregado na página desde o início, apenas posicionado fora da tela; ao abrir, o painel desliza para dentro da tela e um fundo escurecido cobre o restante da página. Contém:
 
-- **Container do menu lateral:** o painel que contém o botão de fechar e os quatro itens do menu. Seletores: `.bm-menu`, `header > nav`.
-- **Botão de fechar o menu (×):** fecha o menu lateral. Seletores: `.bm-cross-button`, `.bm-menu > button`, `.bm-menu > :first-child`.
-- **Item de menu "Todos os Produtos":** leva de volta para a página inicial (home) da loja, `index.html`. Seletores: `.bm-menu > a:nth-of-type(1)`, `.bm-menu > button + a`.
-- **Item de menu "Sobre":** leva para `sobre.html`. Seletor: `.bm-menu > a:nth-of-type(2)`.
-- **Item de menu "Sair" (deslogar):** sair é a mesma coisa que deslogar: encerra a sessão, **esvazia o carrinho** e volta para `login.html`. Seletor: `.bm-menu > a:nth-of-type(3)`.
-- **Item de menu "Resetar Aplicação":** limpa o carrinho sem deslogar e atualiza a página atual (badge e botões de carrinho voltam ao estado inicial); o menu continua aberto depois do clique. Seletores: `.bm-menu > a:nth-of-type(4)`, `.bm-menu > a:last-child`.
-- **Overlay (fundo escurecido atrás do menu):** fica oculto com o menu fechado e aparece quando o menu abre; clicar nele fecha o menu. Por isso, a visibilidade do overlay indica se o menu está aberto. Seletores: `.bm-overlay`, `header > div:nth-child(4)`, `header > div:nth-of-type(3)` (os índices diferem porque `:nth-child` conta o `nav` e `:nth-of-type` não). Em Cypress: menu aberto, `cy.get(".bm-overlay").should("be.visible")`; menu fechado, `should("not.be.visible")`.
+- **Container do menu lateral:** o painel que contém o botão de fechar e os quatro itens do menu. Seletores: `.gaveta_menu`, `header > nav`.
+- **Botão de fechar o menu (×):** fecha o menu lateral. Seletores: `.gaveta_fechar`, `.gaveta_menu > button`, `.gaveta_menu > :first-child`.
+- **Item de menu "Todos os Produtos":** leva de volta para a página inicial (home) da loja, `index.html`. Seletores: `.gaveta_menu > a:nth-of-type(1)`, `.gaveta_menu > button + a`.
+- **Item de menu "Sobre":** leva para `sobre.html`. Seletor: `.gaveta_menu > a:nth-of-type(2)`.
+- **Item de menu "Sair" (deslogar):** sair é a mesma coisa que deslogar: encerra a sessão, **esvazia o carrinho** e volta para `login.html`. Seletor: `.gaveta_menu > a:nth-of-type(3)`.
+- **Item de menu "Resetar Aplicação":** limpa o carrinho sem deslogar e atualiza a página atual (badge e botões de carrinho voltam ao estado inicial); o menu continua aberto depois do clique. Seletores: `.gaveta_menu > a:nth-of-type(4)`, `.gaveta_menu > a:last-child`.
+- **Overlay (fundo escurecido atrás do menu):** fica oculto com o menu fechado e aparece quando o menu abre; clicar nele fecha o menu. Por isso, a visibilidade do overlay indica se o menu está aberto. Seletores: `.gaveta_fundo`, `header > div:nth-child(4)`, `header > div:nth-of-type(3)` (os índices diferem porque `:nth-child` conta o `nav` e `:nth-of-type` não). Em Cypress: menu aberto, `cy.get(".gaveta_fundo").should("be.exibido")`; menu fechado, `should("not.be.exibido")`.
 
 ### Rodapé da LojaQA
 
-- **Rodapé:** área no fim de cada página com cabeçalho, com os links de redes sociais e o texto de copyright. Seletores: `.footer`, `body > footer`.
-- **Link do GitHub no rodapé:** texto "GitHub"; abre o perfil do autor no GitHub em nova aba. Seletores: `.social > li:nth-child(1) > a`, `.social li:first-child a`.
-- **Link do LinkedIn no rodapé:** texto "LinkedIn"; abre o perfil do autor no LinkedIn em nova aba. Seletores: `.social > li:nth-child(2) > a`, `.social li:last-child a`.
-- **Texto de copyright no rodapé:** texto "© 2026 LojaQA — Projeto educacional para prática de testes de automação.". Seletores: `.footer_copy`, `.social + div`.
+- **Rodapé:** área no fim de cada página com cabeçalho, com os links de redes sociais e o texto de copyright. Seletores: `.rodape_site`, `body > footer`.
+- **Link do GitHub no rodapé:** texto "GitHub"; abre o perfil do autor no GitHub em nova aba. Seletores: `.redes > li:nth-child(1) > a`, `.redes li:first-child a`.
+- **Link do LinkedIn no rodapé:** texto "LinkedIn"; abre o perfil do autor no LinkedIn em nova aba. Seletores: `.redes > li:nth-child(2) > a`, `.redes li:last-child a`.
+- **Texto de copyright no rodapé:** texto "© 2026 LojaQA — Projeto educacional para prática de testes de automação.". Seletores: `.rodape_direitos`, `.redes + div`.
 
 ---
 
@@ -87,19 +87,19 @@ A página de Login (`login.html`) é a tela de entrada da LojaQA: é por onde o 
 
 Elementos da página de Login da LojaQA:
 
-- **Campo de usuário (username):** campo onde se digita o nome de usuário; recebe o foco ao abrir a página e fica com borda vermelha quando há erro de validação. Seletores: `.login-box > input:nth-of-type(1)`, `.login-box > .form_input:first-child`.
-- **Campo de senha (password):** campo onde se digita a senha, com os caracteres mascarados; fica com borda vermelha quando há erro de validação. Seletores: `.login-box > input:nth-of-type(2)`, `.login-box > input:first-child + input`.
-- **Botão Entrar (login/submit):** envia o formulário; o rótulo é "Entrar". Para o usuário `usuario_lento`, durante ~5 s o rótulo vira "Carregando..." e o botão fica desabilitado. Seletores: `.login-box > input:nth-of-type(3)`, `.login-box > input:nth-child(4)`, `.login-box .btn_action`. O rótulo é o valor do campo, então a asserção é com `have.value`: `cy.get(".login-box .btn_action").should("have.value", "Entrar")`.
-- **Formulário de login:** agrupa os dois campos, a mensagem de erro e o botão Entrar; a validação é feita pela aplicação, não pelo navegador. Seletores: `.login-box`, `.login_wrapper > form`.
-- **Container da mensagem de erro:** caixa vermelha que só aparece quando há erro; contém o texto do erro e o botão de fechar. Seletores: `.error-message-container`, `.login-box > div`, `.login-box > :nth-child(3)`. Erro exibido: `cy.get(".error-message-container").should("be.visible")`.
-- **Texto da mensagem de erro:** texto do erro, preenchido pela aplicação. Textos exatos possíveis: "Ops! O campo usuário é obrigatório"; "Ops! O campo senha é obrigatório"; "Ops! Usuário e senha não conferem com nenhum usuário cadastrado"; "Ops! Desculpe, este usuário foi bloqueado." (usuario_bloqueado); "Ops! Você precisa estar logado para acessar esta página." (acesso a página protegida sem sessão). Seletores: `.error-message-container > span`, `.error-message-container > :first-child`.
-- **Botão de fechar a mensagem de erro (×):** fecha a mensagem de erro e tira a borda vermelha dos campos. Seletores: `.error-button`, `.error-message-container > button`.
-- **Bloco informativo com a lista de usuários aceitos:** título "Usuários aceitos:" seguido dos 6 usernames. Seletores: `.login_credentials`, `.login_credentials_wrap > div:first-child`.
-- **Bloco informativo com a senha:** título "Senha para todos os usuários:" seguido de `senha_teste_123`. Seletores: `.login_password`, `.login_credentials_wrap > div:last-child`, `.login_credentials + div`.
-- **Logotipo da tela de login:** exibe "🧪 LojaQA" no topo da página; diferente do logotipo do cabeçalho, aqui ele **não é um link**. Seletores: `.login_logo`, `.login_container > div:first-child`.
-- **Tagline (subtítulo):** texto "Sua loja para praticar automação de testes", logo abaixo do logotipo. Seletores: `.login_tagline`, `.login_container > p`, `.login_logo + p`.
+- **Campo de usuário (username):** campo onde se digita o nome de usuário; recebe o foco ao abrir a página e fica com borda vermelha quando há erro de validação. Seletores: `.acesso_form > input:nth-of-type(1)`, `.acesso_form > .campo_form:first-child`.
+- **Campo de senha (password):** campo onde se digita a senha, com os caracteres mascarados; fica com borda vermelha quando há erro de validação. Seletores: `.acesso_form > input:nth-of-type(2)`, `.acesso_form > input:first-child + input`.
+- **Botão Entrar (login/submit):** envia o formulário; o rótulo é "Entrar". Para o usuário `usuario_lento`, durante ~5 s o rótulo vira "Carregando..." e o botão fica desabilitado. Seletores: `.acesso_form > input:nth-of-type(3)`, `.acesso_form > input:nth-child(4)`, `.acesso_form .botao_primario`. O rótulo é o valor do campo, então a asserção é com `have.value`: `cy.get(".acesso_form .botao_primario").should("have.value", "Entrar")`.
+- **Formulário de login:** agrupa os dois campos, a mensagem de erro e o botão Entrar; a validação é feita pela aplicação, não pelo navegador. Seletores: `.acesso_form`, `.acesso_pagina > form`.
+- **Container da mensagem de erro:** caixa vermelha que só aparece quando há erro; contém o texto do erro e o botão de fechar. Seletores: `.aviso_erro`, `.acesso_form > div`, `.acesso_form > :nth-child(3)`. Erro exibido: `cy.get(".aviso_erro").should("be.exibido")`.
+- **Texto da mensagem de erro:** texto do erro, preenchido pela aplicação. Textos exatos possíveis: "Ops! O campo usuário é obrigatório"; "Ops! O campo senha é obrigatório"; "Ops! Usuário e senha não conferem com nenhum usuário cadastrado"; "Ops! Desculpe, este usuário foi bloqueado." (usuario_bloqueado); "Ops! Você precisa estar logado para acessar esta página." (acesso a página protegida sem sessão). Seletores: `.aviso_erro > span`, `.aviso_erro > :first-child`.
+- **Botão de fechar a mensagem de erro (×):** fecha a mensagem de erro e tira a borda vermelha dos campos. Seletores: `.aviso_fechar`, `.aviso_erro > button`.
+- **Bloco informativo com a lista de usuários aceitos:** título "Usuários aceitos:" seguido dos 6 usernames. Seletores: `.dicas_usuarios`, `.acesso_dicas > div:first-child`.
+- **Bloco informativo com a senha:** título "Senha para todos os usuários:" seguido de `senha_teste_123`. Seletores: `.dicas_senha`, `.acesso_dicas > div:last-child`, `.dicas_usuarios + div`.
+- **Logotipo da tela de login:** exibe "🧪 LojaQA" no topo da página; diferente do logotipo do cabeçalho, aqui ele **não é um link**. Seletores: `.acesso_marca`, `.acesso_conteudo > div:first-child`.
+- **Tagline (subtítulo):** texto "Sua loja para praticar automação de testes", logo abaixo do logotipo. Seletores: `.acesso_slogan`, `.acesso_conteudo > p`, `.acesso_marca + p`.
 
-Exemplo de login bem-sucedido: `cy.get(".login-box > input:nth-of-type(1)").type("usuario_padrao")`, `cy.get(".login-box > input:nth-of-type(2)").type("senha_teste_123")` e `cy.get(".login-box .btn_action").click()`. Após o sucesso, o usuário vai para a página inicial (home) da loja, `index.html`: `cy.get(".title").should("have.text", "Produtos")`.
+Exemplo de login bem-sucedido: `cy.get(".acesso_form > input:nth-of-type(1)").type("usuario_padrao")`, `cy.get(".acesso_form > input:nth-of-type(2)").type("senha_teste_123")` e `cy.get(".acesso_form .botao_primario").click()`. Após o sucesso, o usuário vai para a página inicial (home) da loja, `index.html`: `cy.get(".subcabecalho_titulo").should("have.text", "Produtos")`.
 
 ---
 
@@ -109,13 +109,13 @@ A página `index.html` é a **página inicial (home) da LojaQA**, ou seja, a pá
 
 Elementos gerais da página de Produtos da LojaQA:
 
-- **Banner de boas-vindas:** área no topo da página com o título "Bem-vindo à LojaQA!". Seletores: `.hero_banner`, `body > section`, `header + section`.
-- **Contador de produtos dentro do banner:** número total de produtos (21), preenchido pela aplicação. Seletores: `.hero_banner strong`, `.hero_banner > p > strong`.
-- **Container da página:** área principal da página, que contém a lista de produtos. Seletores: `.inventory_container`, `body > main`.
-- **Lista/grade de produtos:** grade com os 21 cards. Seletores: `.inventory_list`, `.inventory_container > div`. Para contar os produtos: `cy.get(".inventory_list > .inventory_item").should("have.length", 21)`.
-- **Seletor de ordenação (dropdown de ordenar produtos):** lista suspensa com 4 opções, ao lado do título. Seletores: `.product_sort_container`, `.header_secondary_container > select`, `.title + select`.
+- **Banner de boas-vindas:** área no topo da página com o título "Bem-vindo à LojaQA!". Seletores: `.faixa_destaque`, `body > section`, `header + section`.
+- **Contador de produtos dentro do banner:** número total de produtos (21), preenchido pela aplicação. Seletores: `.faixa_destaque strong`, `.faixa_destaque > p > strong`.
+- **Container da página:** área principal da página, que contém a lista de produtos. Seletores: `.vitrine_area`, `body > main`.
+- **Lista/grade de produtos:** grade com os 21 cards. Seletores: `.vitrine_grade`, `.vitrine_area > div`. Para contar os produtos: `cy.get(".vitrine_grade > .produto_card").should("have.length", 21)`.
+- **Seletor de ordenação (dropdown de ordenar produtos):** lista suspensa com 4 opções, ao lado do título. Seletores: `.filtro_ordem`, `.subcabecalho > select`, `.subcabecalho_titulo + select`.
 
-Opções do seletor de ordenação da LojaQA (valor → texto exibido). Para escolher uma opção: `cy.get(".product_sort_container").select("lohi")`; para conferir a opção ativa: `cy.get(".product_sort_container").should("have.value", "lohi")`:
+Opções do seletor de ordenação da LojaQA (valor → texto exibido). Para escolher uma opção: `cy.get(".filtro_ordem").select("lohi")`; para conferir a opção ativa: `cy.get(".filtro_ordem").should("have.value", "lohi")`:
 - valor `az` → "Nome (A a Z)": **ordem alfabética crescente**, pelo nome do produto. É a ordenação ativa quando a página abre. Primeiro item: "Body do Testadorzinho"; último: "Webcam Full HD VisãoQA".
 - valor `za` → "Nome (Z a A)": **ordem alfabética decrescente**, pelo nome do produto. É o inverso de `az`.
 - valor `lohi` → "Preço (menor ao maior)": **ordem por preço crescente**, do mais barato ao mais caro. Primeiro item: "Pacote de Adesivos de Bugs" (R$ 19,90); último: "Teclado Mecânico TesteMaster" (R$ 349,90).
@@ -125,16 +125,16 @@ Ou seja, `az`/`za` ordenam por **nome** (ordem alfabética) e `lohi`/`hilo` orde
 
 ### Card de produto na página de Produtos da LojaQA
 
-Cada produto é exibido em um card (repetido para os 21 produtos), com imagem, nome, descrição, preço e botão de carrinho. Os cards não têm classe própria por produto: um card específico é localizado pela posição na grade, `.inventory_item:nth-child(N)`, com N contado na ordenação padrão `az`. Dentro de cada card:
+Cada produto é exibido em um card (repetido para os 21 produtos), com imagem, nome, descrição, preço e botão de carrinho. Os cards não têm classe própria por produto: um card específico é localizado pela posição na grade, `.produto_card:nth-child(N)`, com N contado na ordenação padrão `az`. Dentro de cada card:
 
-- **Card do produto (container):** bloco de cada produto na grade. Seletores: `.inventory_item`, `.inventory_list > div`; o card de um produto específico, pela posição: `.inventory_item:nth-child(12)` (Mochila do Testador, na ordenação padrão).
-- **Nome do produto (link):** nome do produto; clicar abre a página de detalhe. Seletores: `.inventory_item_name`, `.inventory_item > a:nth-of-type(2)`, `.inventory_item_img + a`.
-- **Descrição do produto:** texto descritivo do produto. Seletores: `.inventory_item_desc`, `.inventory_item_name + div`.
-- **Preço do produto:** no formato `R$ X,XX`. Seletores: `.inventory_item_price`, `.pricebar > div`; o preço de um produto específico: `.inventory_item:nth-child(12) .inventory_item_price`.
-- **Imagem do produto:** foto do produto; clicar nela também abre a página de detalhe. Seletores: `.inventory_item_img > img`, `.inventory_item > a:first-child > img`; a imagem de um produto específico: `.inventory_item:nth-child(12) img`.
-- **Botão Adicionar ao carrinho / Remover:** o mesmo botão alterna conforme o estado: fora do carrinho, rótulo "Adicionar ao carrinho"; no carrinho, rótulo "Remover". Seletores: `.pricebar > button`, `.inventory_item button`; o botão de um produto específico: `.inventory_item:nth-child(12) button` (Mochila do Testador, na ordenação padrão). A classe indica o estado: `.btn_inventory` fora do carrinho e `.btn_secondary` dentro, por exemplo `.inventory_item:nth-child(12) button.btn_secondary`.
+- **Card do produto (container):** bloco de cada produto na grade. Seletores: `.produto_card`, `.vitrine_grade > div`; o card de um produto específico, pela posição: `.produto_card:nth-child(12)` (Mochila do Testador, na ordenação padrão).
+- **Nome do produto (link):** nome do produto; clicar abre a página de detalhe. Seletores: `.produto_nome`, `.produto_card > a:nth-of-type(2)`, `.produto_foto + a`.
+- **Descrição do produto:** texto descritivo do produto. Seletores: `.produto_texto`, `.produto_nome + div`.
+- **Preço do produto:** no formato `R$ X,XX`. Seletores: `.produto_valor`, `.produto_rodape > div`; o preço de um produto específico: `.produto_card:nth-child(12) .produto_valor`.
+- **Imagem do produto:** foto do produto; clicar nela também abre a página de detalhe. Seletores: `.produto_foto > img`, `.produto_card > a:first-child > img`; a imagem de um produto específico: `.produto_card:nth-child(12) img`.
+- **Botão Adicionar ao carrinho / Remover:** o mesmo botão alterna conforme o estado: fora do carrinho, rótulo "Adicionar ao carrinho"; no carrinho, rótulo "Remover". Seletores: `.produto_rodape > button`, `.produto_card button`; o botão de um produto específico: `.produto_card:nth-child(12) button` (Mochila do Testador, na ordenação padrão). A classe indica o estado: `.botao_comprar` fora do carrinho e `.botao_contorno` dentro, por exemplo `.produto_card:nth-child(12) button.botao_contorno`.
 
-Observação de comportamento: com o usuário `usuario_problema`, todas as imagens dos cards são trocadas por uma imagem quebrada. Com `usuario_visual`, os preços dos ids 0, 5, 10, 15 e 20 aparecem R$ 10,00 maiores só na vitrine. Asserção da imagem quebrada: `cy.get(".inventory_item img").should("have.attr", "src", "../img/broken.svg")`.
+Observação de comportamento: com o usuário `usuario_problema`, todas as imagens dos cards são trocadas por uma imagem quebrada. Com `usuario_visual`, os preços dos ids 0, 5, 10, 15 e 20 aparecem R$ 10,00 maiores só na vitrine. Asserção da imagem quebrada: `cy.get(".produto_card img").should("have.attr", "src", "../img/broken.svg")`.
 
 ---
 
@@ -144,44 +144,44 @@ A página de Detalhe (`inventory-item.html?id=N`) mostra um único produto em ta
 
 Elementos da página de Detalhe do Produto da LojaQA:
 
-- **Container da página de detalhe:** área principal da página. Seletores: `.inventory_details`, `body > main`.
-- **Botão/link "Voltar aos produtos":** link com o texto "← Voltar aos produtos", na barra abaixo do cabeçalho; leva para `index.html`. Seletores: `.btn_back`, `.header_secondary_container > a`.
-- **Bloco da imagem (wrapper):** envolve a imagem do produto; fica oculto quando o produto não existe. Seletores: `.inventory_details_img`, `.inventory_details > div:first-of-type`.
-- **Imagem do produto:** foto grande do produto. Seletores: `.inventory_details_img > img`, `.inventory_details img`.
-- **Bloco das informações (wrapper):** envolve o nome, a descrição, o preço e o botão de carrinho; fica oculto quando o produto não existe. Seletores: `.inventory_details_desc_container`, `.inventory_details > div:last-child`, `.inventory_details_img + div`.
-- **Nome do produto:** nome do produto em texto — aqui não é link, ao contrário do card da vitrine. Seletores: `.inventory_details_name`, `.inventory_details_desc_container > div:nth-child(1)`.
-- **Descrição do produto:** texto descritivo do produto. Seletores: `.inventory_details_desc_container > div:nth-child(2)`, `.inventory_details_name + div`.
-- **Preço do produto:** no formato `R$ X,XX`. Seletores: `.inventory_details_price`, `.inventory_details_desc_container > div:nth-child(3)`.
-- **Botão Adicionar ao carrinho / Remover:** fora do carrinho, rótulo "Adicionar ao carrinho"; no carrinho, rótulo "Remover". Seletores: `.inventory_details_desc_container > button`, `.inventory_details_desc_container > :last-child`, `.inventory_details button`, iguais para todos os produtos. A classe indica o estado: `.inventory_details button.btn_inventory` fora do carrinho e `.inventory_details button.btn_secondary` dentro.
-- **Mensagem "item não encontrado":** fica oculta quando o produto existe; aparece com o texto "ITEM NÃO ENCONTRADO — Este produto não existe." quando o id da URL é inválido ou ausente (ex.: `inventory-item.html?id=99` ou `inventory-item.html` sem `?id=`). Nesse caso, os blocos da imagem e das informações ficam ocultos. Seletores: `.inventory_details > p`, `.inventory_details > :first-child`. Em Cypress: `cy.get(".inventory_details > p").should("be.visible")`.
+- **Container da página de detalhe:** área principal da página. Seletores: `.detalhe_area`, `body > main`.
+- **Botão/link "Voltar aos produtos":** link com o texto "← Voltar aos produtos", na barra abaixo do cabeçalho; leva para `index.html`. Seletores: `.botao_retorno`, `.subcabecalho > a`.
+- **Bloco da imagem (wrapper):** envolve a imagem do produto; fica oculto quando o produto não existe. Seletores: `.detalhe_foto`, `.detalhe_area > div:first-of-type`.
+- **Imagem do produto:** foto grande do produto. Seletores: `.detalhe_foto > img`, `.detalhe_area img`.
+- **Bloco das informações (wrapper):** envolve o nome, a descrição, o preço e o botão de carrinho; fica oculto quando o produto não existe. Seletores: `.detalhe_info`, `.detalhe_area > div:last-child`, `.detalhe_foto + div`.
+- **Nome do produto:** nome do produto em texto — aqui não é link, ao contrário do card da vitrine. Seletores: `.detalhe_nome`, `.detalhe_info > div:nth-child(1)`.
+- **Descrição do produto:** texto descritivo do produto. Seletores: `.detalhe_info > div:nth-child(2)`, `.detalhe_nome + div`.
+- **Preço do produto:** no formato `R$ X,XX`. Seletores: `.detalhe_valor`, `.detalhe_info > div:nth-child(3)`.
+- **Botão Adicionar ao carrinho / Remover:** fora do carrinho, rótulo "Adicionar ao carrinho"; no carrinho, rótulo "Remover". Seletores: `.detalhe_info > button`, `.detalhe_info > :last-child`, `.detalhe_area button`, iguais para todos os produtos. A classe indica o estado: `.detalhe_area button.botao_comprar` fora do carrinho e `.detalhe_area button.botao_contorno` dentro.
+- **Mensagem "item não encontrado":** fica oculta quando o produto existe; aparece com o texto "ITEM NÃO ENCONTRADO — Este produto não existe." quando o id da URL é inválido ou ausente (ex.: `inventory-item.html?id=99` ou `inventory-item.html` sem `?id=`). Nesse caso, os blocos da imagem e das informações ficam ocultos. Seletores: `.detalhe_area > p`, `.detalhe_area > :first-child`. Em Cypress: `cy.get(".detalhe_area > p").should("be.exibido")`.
 
-Observação de comportamento: com o usuário `usuario_problema`, a imagem do detalhe também é trocada pela imagem quebrada. Com o `usuario_visual`, o preço do detalhe é o correto: o acréscimo de R$ 10,00 nos ids 0, 5, 10, 15 e 20 aparece só na vitrine, então comparar o preço do card com o preço do detalhe revela a inconsistência. Asserção da imagem quebrada: `cy.get(".inventory_details_img > img").should("have.attr", "src", "../img/broken.svg")`.
+Observação de comportamento: com o usuário `usuario_problema`, a imagem do detalhe também é trocada pela imagem quebrada. Com o `usuario_visual`, o preço do detalhe é o correto: o acréscimo de R$ 10,00 nos ids 0, 5, 10, 15 e 20 aparece só na vitrine, então comparar o preço do card com o preço do detalhe revela a inconsistência. Asserção da imagem quebrada: `cy.get(".detalhe_foto > img").should("have.attr", "src", "../img/broken.svg")`.
 
 ---
 
 ## Página do Carrinho da LojaQA (cart.html)
 
-A página do Carrinho (`cart.html`) lista os produtos adicionados ao carrinho e permite continuar comprando ou seguir para o checkout. O título da página é "Seu Carrinho". As linhas de produto são geradas pela aplicação. As linhas não têm classe própria por produto e seguem a ordem em que os produtos foram adicionados; uma linha específica é localizada pela posição, `.cart_item:nth-child(N)`.
+A página do Carrinho (`cart.html`) lista os produtos adicionados ao carrinho e permite continuar comprando ou seguir para o checkout. O título da página é "Seu Carrinho". As linhas de produto são geradas pela aplicação. As linhas não têm classe própria por produto e seguem a ordem em que os produtos foram adicionados; uma linha específica é localizada pela posição, `.sacola_linha:nth-child(N)`.
 
 Elementos da página do Carrinho da LojaQA:
 
-- **Container da página do carrinho:** área principal da página. Seletores: `.cart_contents_container`, `body > main`.
-- **Rótulo de coluna "QTD" (quantidade):** cabeçalho da coluna de quantidade, com o texto "QTD". Seletores: `.cart_quantity_label`, `.cart_contents_container > div:first-child > span:first-child`.
-- **Rótulo de coluna "Descrição":** cabeçalho da coluna de descrição, com o texto "Descrição". Seletores: `.cart_desc_label`, `.cart_quantity_label + span`.
-- **Mensagem de carrinho vazio:** fica oculta quando há itens; aparece com o texto "Seu carrinho está vazio." quando o carrinho está vazio. Seletores: `.cart_empty`, `.cart_contents_container > p`. Em Cypress: `cy.get(".cart_empty").should("be.visible")`.
-- **Lista de itens do carrinho:** uma linha por produto no carrinho. Seletores: `.cart_list`, `.cart_empty + div`. Para contar os itens: `cy.get(".cart_list > .cart_item").should("have.length", 2)`.
-- **Botão "Continuar Comprando":** rótulo "Continuar Comprando"; leva para `index.html`. Seletores: `.cart_footer > a:first-child`, `.cart_footer .btn_secondary`.
-- **Botão "Finalizar Compra" (ir para o checkout):** rótulo "Finalizar Compra"; leva para `checkout-step-one.html`. Seletores: `.cart_footer > a:last-child`, `.cart_footer .btn_action`.
+- **Container da página do carrinho:** área principal da página. Seletores: `.sacola_conteudo`, `body > main`.
+- **Rótulo de coluna "QTD" (quantidade):** cabeçalho da coluna de quantidade, com o texto "QTD". Seletores: `.coluna_qtd`, `.sacola_conteudo > div:first-child > span:first-child`.
+- **Rótulo de coluna "Descrição":** cabeçalho da coluna de descrição, com o texto "Descrição". Seletores: `.coluna_desc`, `.coluna_qtd + span`.
+- **Mensagem de carrinho vazio:** fica oculta quando há itens; aparece com o texto "Seu carrinho está vazio." quando o carrinho está vazio. Seletores: `.sacola_vazia`, `.sacola_conteudo > p`. Em Cypress: `cy.get(".sacola_vazia").should("be.exibido")`.
+- **Lista de itens do carrinho:** uma linha por produto no carrinho. Seletores: `.sacola_itens`, `.sacola_vazia + div`. Para contar os itens: `cy.get(".sacola_itens > .sacola_linha").should("have.length", 2)`.
+- **Botão "Continuar Comprando":** rótulo "Continuar Comprando"; leva para `index.html`. Seletores: `.rodape_acoes > a:first-child`, `.rodape_acoes .botao_contorno`.
+- **Botão "Finalizar Compra" (ir para o checkout):** rótulo "Finalizar Compra"; leva para `checkout-step-one.html`. Seletores: `.rodape_acoes > a:last-child`, `.rodape_acoes .botao_primario`.
 
 ### Item dentro do Carrinho da LojaQA
 
 Cada produto no carrinho aparece como uma linha com quantidade, nome, descrição, preço e botão Remover. Elementos da linha:
-- **Linha do item do carrinho:** bloco de cada produto na lista. Seletores: `.cart_item`, `.cart_list > div`; a linha de um produto específico, pela posição: `.cart_item:nth-child(2)` (o segundo produto adicionado).
-- **Quantidade do item:** sempre "1" (a LojaQA não tem controle de quantidade). Seletores: `.cart_quantity`, `.cart_item > div:first-child`.
-- **Nome do item (link):** nome do produto; clicar abre a página de detalhe. Seletores: `.cart_item .inventory_item_name`, `.cart_item_label > a`.
-- **Descrição do item:** texto descritivo do produto. Seletores: `.cart_item .inventory_item_desc`, `.cart_item_label > a + div`.
-- **Preço do item:** no formato `R$ X,XX`. Seletores: `.cart_item .inventory_item_price`, `.item_pricebar > div`; o preço de um item específico: `.cart_item:nth-child(2) .inventory_item_price`.
-- **Botão Remover:** sempre com o rótulo "Remover" (todo item listado já está no carrinho); clicar remove o item e redesenha a lista. Seletores: `.item_pricebar > button`, `.cart_item button`; o botão de um item específico: `.cart_item:nth-child(2) button` (o segundo produto adicionado).
+- **Linha do item do carrinho:** bloco de cada produto na lista. Seletores: `.sacola_linha`, `.sacola_itens > div`; a linha de um produto específico, pela posição: `.sacola_linha:nth-child(2)` (o segundo produto adicionado).
+- **Quantidade do item:** sempre "1" (a LojaQA não tem controle de quantidade). Seletores: `.linha_qtd`, `.sacola_linha > div:first-child`.
+- **Nome do item (link):** nome do produto; clicar abre a página de detalhe. Seletores: `.sacola_linha .produto_nome`, `.linha_info > a`.
+- **Descrição do item:** texto descritivo do produto. Seletores: `.sacola_linha .produto_texto`, `.linha_info > a + div`.
+- **Preço do item:** no formato `R$ X,XX`. Seletores: `.sacola_linha .produto_valor`, `.linha_rodape > div`; o preço de um item específico: `.sacola_linha:nth-child(2) .produto_valor`.
+- **Botão Remover:** sempre com o rótulo "Remover" (todo item listado já está no carrinho); clicar remove o item e redesenha a lista. Seletores: `.linha_rodape > button`, `.sacola_linha button`; o botão de um item específico: `.sacola_linha:nth-child(2) button` (o segundo produto adicionado).
 
 ---
 
@@ -191,39 +191,39 @@ A etapa 1 do checkout (`checkout-step-one.html`), com título "Pagamento: Seus D
 
 Elementos da página de Checkout Etapa 1 da LojaQA:
 
-- **Container da página:** área principal da página. Seletores: `.checkout_container`, `body > main`.
-- **Formulário de checkout:** agrupa os três campos, a mensagem de erro e os botões; a validação é feita pela aplicação, não pelo navegador. Seletores: `.checkout_info`, `.checkout_container > form`.
-- **Campo Nome (primeiro nome):** campo do primeiro nome; recebe o foco ao abrir a página e fica com borda vermelha quando há erro de validação. Seletores: `.checkout_info > input:nth-of-type(1)`, `.checkout_info > input:first-child`.
-- **Campo Sobrenome:** campo do sobrenome. Seletores: `.checkout_info > input:nth-of-type(2)`, `.checkout_info > input:first-child + input`.
-- **Campo CEP (código postal):** campo do CEP; aceita qualquer texto, porque a validação só verifica se o campo foi preenchido, não o formato. Seletor: `.checkout_info > input:nth-of-type(3)`.
-- **Container da mensagem de erro:** caixa vermelha que só aparece quando há erro; contém o texto do erro e o botão de fechar. Seletores: `.error-message-container`, `.checkout_info > div`, `.checkout_info > :nth-child(4)`. Erro exibido: `cy.get(".error-message-container").should("be.visible")`.
-- **Texto da mensagem de erro:** os textos começam com "Erro: ", ao contrário dos do login, que começam com "Ops! ": "Erro: O nome é obrigatório", "Erro: O sobrenome é obrigatório" e "Erro: O CEP é obrigatório". Seletor: `.error-message-container > span`.
-- **Botão de fechar erro (×):** fecha a mensagem de erro e tira a borda vermelha dos campos. Seletores: `.error-button`, `.error-message-container > button`.
-- **Botão Cancelar:** rótulo "Cancelar"; volta para `cart.html`. Seletores: `.checkout_info > a`, `.checkout_info .btn_secondary`.
-- **Botão Continuar (avançar):** rótulo "Continuar"; avança para `checkout-step-two.html` quando os três campos estão preenchidos. Seletores: `.checkout_info > input:nth-of-type(4)`, `.checkout_info > input:nth-child(6)`, `.checkout_info .btn_action`. O rótulo é o valor do campo, então a asserção é com `have.value`: `cy.get(".checkout_info .btn_action").should("have.value", "Continuar")`.
+- **Container da página:** área principal da página. Seletores: `.pagamento_area`, `body > main`.
+- **Formulário de checkout:** agrupa os três campos, a mensagem de erro e os botões; a validação é feita pela aplicação, não pelo navegador. Seletores: `.pagamento_form`, `.pagamento_area > form`.
+- **Campo Nome (primeiro nome):** campo do primeiro nome; recebe o foco ao abrir a página e fica com borda vermelha quando há erro de validação. Seletores: `.pagamento_form > input:nth-of-type(1)`, `.pagamento_form > input:first-child`.
+- **Campo Sobrenome:** campo do sobrenome. Seletores: `.pagamento_form > input:nth-of-type(2)`, `.pagamento_form > input:first-child + input`.
+- **Campo CEP (código postal):** campo do CEP; aceita qualquer texto, porque a validação só verifica se o campo foi preenchido, não o formato. Seletor: `.pagamento_form > input:nth-of-type(3)`.
+- **Container da mensagem de erro:** caixa vermelha que só aparece quando há erro; contém o texto do erro e o botão de fechar. Seletores: `.aviso_erro`, `.pagamento_form > div`, `.pagamento_form > :nth-child(4)`. Erro exibido: `cy.get(".aviso_erro").should("be.exibido")`.
+- **Texto da mensagem de erro:** os textos começam com "Erro: ", ao contrário dos do login, que começam com "Ops! ": "Erro: O nome é obrigatório", "Erro: O sobrenome é obrigatório" e "Erro: O CEP é obrigatório". Seletor: `.aviso_erro > span`.
+- **Botão de fechar erro (×):** fecha a mensagem de erro e tira a borda vermelha dos campos. Seletores: `.aviso_fechar`, `.aviso_erro > button`.
+- **Botão Cancelar:** rótulo "Cancelar"; volta para `cart.html`. Seletores: `.pagamento_form > a`, `.pagamento_form .botao_contorno`.
+- **Botão Continuar (avançar):** rótulo "Continuar"; avança para `checkout-step-two.html` quando os três campos estão preenchidos. Seletores: `.pagamento_form > input:nth-of-type(4)`, `.pagamento_form > input:nth-child(6)`, `.pagamento_form .botao_primario`. O rótulo é o valor do campo, então a asserção é com `have.value`: `cy.get(".pagamento_form .botao_primario").should("have.value", "Continuar")`.
 
 ---
 
 ## Página de Checkout Etapa 2 da LojaQA (checkout-step-two.html) — resumo do pedido
 
-A etapa 2 do checkout (`checkout-step-two.html`), com título "Pagamento: Resumo", mostra o resumo do pedido: itens, forma de pagamento, entrega, subtotal, impostos (8%) e total. Para concluir a compra: clicar em Finalizar Pedido. Os itens do resumo têm a mesma aparência das linhas do carrinho, porém **sem o botão Remover**, e usam as mesmas classes (`.cart_item`, `.inventory_item_name`, `.inventory_item_price` etc.), na ordem em que os produtos foram adicionados.
+A etapa 2 do checkout (`checkout-step-two.html`), com título "Pagamento: Resumo", mostra o resumo do pedido: itens, forma de pagamento, entrega, subtotal, impostos (8%) e total. Para concluir a compra: clicar em Finalizar Pedido. Os itens do resumo têm a mesma aparência das linhas do carrinho, porém **sem o botão Remover**, e usam as mesmas classes (`.sacola_linha`, `.produto_nome`, `.produto_valor` etc.), na ordem em que os produtos foram adicionados.
 
 Elementos da página de Checkout Etapa 2 (resumo) da LojaQA:
 
-- **Container da página:** área principal da etapa 2. Seletores: `.checkout_container`, `body > main`; a classe é a mesma da etapa 1, e a presença de `.summary_info` distingue esta etapa.
-- **Rótulos de coluna "QTD" e "Descrição":** cabeçalhos das colunas da lista, iguais aos do carrinho. Seletores: `.cart_quantity_label` e `.cart_desc_label`.
-- **Lista de itens do resumo:** uma linha por produto, com quantidade, nome, descrição e preço, sem botão. Seletores: `.cart_list`, `.checkout_container > div:nth-of-type(2)`; itens: `.cart_item`, `.cart_quantity`, `.inventory_item_name`, `.inventory_item_desc`, `.inventory_item_price`. Para contar: `cy.get(".cart_list > .cart_item").should("have.length", 2)`.
-- **Bloco de resumo (informações de pagamento):** reúne a forma de pagamento, a entrega e os valores do pedido. Seletores: `.summary_info`, `.cart_list + div`.
-- **Rótulo "Forma de Pagamento:":** texto "Forma de Pagamento:". Seletores: `.summary_info > div:nth-child(1)`, `.summary_info_label:first-child`.
-- **Valor da forma de pagamento:** texto "CartãoQA #31337". Seletor: `.summary_info > div:nth-child(2)`.
-- **Rótulo "Entrega:":** texto "Entrega:". Seletor: `.summary_info > div:nth-child(3)`.
-- **Valor da entrega:** texto "Entrega Expressa Grátis!". Seletor: `.summary_info > div:nth-child(4)`.
-- **Rótulo "Resumo de Valores":** texto "Resumo de Valores". Seletor: `.summary_info > div:nth-child(5)`.
-- **Subtotal:** texto no formato "Subtotal: R$ X,XX" (soma dos preços dos itens). Seletores: `.summary_subtotal_label`, `.summary_info > div:nth-child(6)`.
-- **Impostos (8%):** texto no formato "Impostos (8%): R$ X,XX" (8% do subtotal, arredondado em centavos). Seletores: `.summary_tax_label`, `.summary_info > div:nth-child(7)`.
-- **Total:** texto no formato "Total: R$ X,XX". O total é o subtotal mais 8% de impostos. Seletores: `.summary_total_label`, `.summary_info > div:last-child`.
-- **Botão Cancelar:** rótulo "Cancelar"; volta para `index.html` — diferente do Cancelar da etapa 1, que volta para o carrinho. Seletores: `.cart_footer > a`, `.cart_footer .btn_secondary`.
-- **Botão Finalizar Pedido:** rótulo "Finalizar Pedido"; registra o pedido, limpa o carrinho e vai para `checkout-complete.html`. Seletores: `.cart_footer > button`, `.cart_footer .btn_action`.
+- **Container da página:** área principal da etapa 2. Seletores: `.pagamento_area`, `body > main`; a classe é a mesma da etapa 1, e a presença de `.resumo_bloco` distingue esta etapa.
+- **Rótulos de coluna "QTD" e "Descrição":** cabeçalhos das colunas da lista, iguais aos do carrinho. Seletores: `.coluna_qtd` e `.coluna_desc`.
+- **Lista de itens do resumo:** uma linha por produto, com quantidade, nome, descrição e preço, sem botão. Seletores: `.sacola_itens`, `.pagamento_area > div:nth-of-type(2)`; itens: `.sacola_linha`, `.linha_qtd`, `.produto_nome`, `.produto_texto`, `.produto_valor`. Para contar: `cy.get(".sacola_itens > .sacola_linha").should("have.length", 2)`.
+- **Bloco de resumo (informações de pagamento):** reúne a forma de pagamento, a entrega e os valores do pedido. Seletores: `.resumo_bloco`, `.sacola_itens + div`.
+- **Rótulo "Forma de Pagamento:":** texto "Forma de Pagamento:". Seletores: `.resumo_bloco > div:nth-child(1)`, `.resumo_rotulo:first-child`.
+- **Valor da forma de pagamento:** texto "CartãoQA #31337". Seletor: `.resumo_bloco > div:nth-child(2)`.
+- **Rótulo "Entrega:":** texto "Entrega:". Seletor: `.resumo_bloco > div:nth-child(3)`.
+- **Valor da entrega:** texto "Entrega Expressa Grátis!". Seletor: `.resumo_bloco > div:nth-child(4)`.
+- **Rótulo "Resumo de Valores":** texto "Resumo de Valores". Seletor: `.resumo_bloco > div:nth-child(5)`.
+- **Subtotal:** texto no formato "Subtotal: R$ X,XX" (soma dos preços dos itens). Seletores: `.resumo_subtotal`, `.resumo_bloco > div:nth-child(6)`.
+- **Impostos (8%):** texto no formato "Impostos (8%): R$ X,XX" (8% do subtotal, arredondado em centavos). Seletores: `.resumo_imposto`, `.resumo_bloco > div:nth-child(7)`.
+- **Total:** texto no formato "Total: R$ X,XX". O total é o subtotal mais 8% de impostos. Seletores: `.resumo_total`, `.resumo_bloco > div:last-child`.
+- **Botão Cancelar:** rótulo "Cancelar"; volta para `index.html` — diferente do Cancelar da etapa 1, que volta para o carrinho. Seletores: `.rodape_acoes > a`, `.rodape_acoes .botao_contorno`.
+- **Botão Finalizar Pedido:** rótulo "Finalizar Pedido"; registra o pedido, limpa o carrinho e vai para `checkout-complete.html`. Seletores: `.rodape_acoes > button`, `.rodape_acoes .botao_primario`.
 
 ---
 
@@ -233,13 +233,13 @@ A página de Pedido Concluído (`checkout-complete.html`), com título "Pedido C
 
 Elementos da página de Pedido Concluído da LojaQA:
 
-- **Container da página:** área principal da página. Seletores: `.checkout_complete_container`, `body > main`.
-- **Imagem de confirmação:** ilustração de pedido confirmado. Seletores: `.pony_express`, `.checkout_complete_container > img`.
-- **Título de conclusão:** texto "Obrigado pelo seu pedido!". Seletores: `.complete-header`, `.checkout_complete_container > h2`.
-- **Texto de confirmação:** texto "Pedido #XXXXXXXX confirmado! Ele foi despachado e chegará rapidinho até você.". Seletores: `.complete-text`, `.complete-header + div`.
-- **Número do pedido:** parte do texto de confirmação, preenchida pela aplicação com "#" seguido de 8 dígitos. Seletor: `.complete-text > strong`. Para asserir o formato: `cy.get(".complete-text > strong").invoke("text").should("match", /^#\d{8}$/)`.
-- **Botão "Gerar Nota Fiscal (PDF)":** rótulo "Gerar Nota Fiscal (PDF)"; leva para `nota-fiscal.html`. Seletores: `.btn_action.btn_complete`, `.checkout_complete_container > a:first-of-type`.
-- **Botão "Voltar à Loja":** rótulo "Voltar à Loja"; leva para `index.html`. Seletores: `.btn_secondary.btn_complete`, `.checkout_complete_container > a:last-of-type`.
+- **Container da página:** área principal da página. Seletores: `.conclusao_area`, `body > main`.
+- **Imagem de confirmação:** ilustração de pedido confirmado. Seletores: `.conclusao_imagem`, `.conclusao_area > img`.
+- **Título de conclusão:** texto "Obrigado pelo seu pedido!". Seletores: `.conclusao_titulo`, `.conclusao_area > h2`.
+- **Texto de confirmação:** texto "Pedido #XXXXXXXX confirmado! Ele foi despachado e chegará rapidinho até você.". Seletores: `.conclusao_texto`, `.conclusao_titulo + div`.
+- **Número do pedido:** parte do texto de confirmação, preenchida pela aplicação com "#" seguido de 8 dígitos. Seletor: `.conclusao_texto > strong`. Para asserir o formato: `cy.get(".conclusao_texto > strong").invoke("text").should("match", /^#\d{8}$/)`.
+- **Botão "Gerar Nota Fiscal (PDF)":** rótulo "Gerar Nota Fiscal (PDF)"; leva para `nota-fiscal.html`. Seletores: `.botao_primario.botao_largo`, `.conclusao_area > a:first-of-type`.
+- **Botão "Voltar à Loja":** rótulo "Voltar à Loja"; leva para `index.html`. Seletores: `.botao_contorno.botao_largo`, `.conclusao_area > a:last-of-type`.
 
 ---
 
@@ -266,8 +266,8 @@ Elementos da página de Nota Fiscal da LojaQA:
 - **Impostos da nota:** texto "Impostos (8%): R$ X,XX". Seletor: `.nf_totais > div:nth-child(2)`.
 - **Total da nota:** texto "Total: R$ X,XX". Seletores: `.nf_total`, `.nf_totais > div:last-child`.
 - **Aviso legal:** texto "Documento sem valor fiscal — gerado por uma aplicação educacional de prática de testes de automação.". Seletores: `.nf_aviso`, `.nf_documento > p`.
-- **Botão Voltar:** rótulo "Voltar"; leva para `checkout-complete.html` (Pedido Concluído). Seletores: `.nf_acoes > a`, `.nf_acoes .btn_secondary`.
-- **Botão "Baixar PDF":** rótulo "Baixar PDF"; gera o PDF e baixa o arquivo `nota-fiscal-<numero-do-pedido>.pdf` diretamente, sem abrir nova aba. Se não houver pedido finalizado, o clique não gera arquivo. Seletores: `.nf_acoes > button`, `.nf_acoes .btn_action`.
+- **Botão Voltar:** rótulo "Voltar"; leva para `checkout-complete.html` (Pedido Concluído). Seletores: `.nf_acoes > a`, `.nf_acoes .botao_contorno`.
+- **Botão "Baixar PDF":** rótulo "Baixar PDF"; gera o PDF e baixa o arquivo `nota-fiscal-<numero-do-pedido>.pdf` diretamente, sem abrir nova aba. Se não houver pedido finalizado, o clique não gera arquivo. Seletores: `.nf_acoes > button`, `.nf_acoes .botao_primario`.
 
 Cada linha de item da tabela da nota fiscal mostra o número sequencial (1, 2, 3...), a descrição (nome do produto), a quantidade (sempre "1") e o valor (formato "R$ X,XX"). Seletores: a linha `.nf_tabela tbody tr`, e a de índice N, `.nf_tabela tbody tr:nth-child(N)`, na ordem em que os produtos foram adicionados; as células `td:nth-child(1)` a `td:nth-child(4)` dentro da linha. Para conferir um produto: `cy.get(".nf_tabela tbody tr:nth-child(1) td:nth-child(2)").should("have.text", "Mochila do Testador")`.
 
@@ -291,21 +291,21 @@ A LojaQA tem 6 usuários de login, todos com a senha `senha_teste_123`. Cada usu
 
 - **usuario_padrao:** fluxo normal, sem defeitos. É o usuário indicado para testar o caminho feliz (comprar do início ao fim com sucesso).
 
-- **usuario_bloqueado:** o login é recusado. Ao tentar entrar, aparece a mensagem "Ops! Desculpe, este usuário foi bloqueado." e a navegação não sai de `login.html`. Usar para testar login negado / usuário bloqueado. Em Cypress: `cy.get(".error-message-container > span").should("have.text", "Ops! Desculpe, este usuário foi bloqueado.")`.
+- **usuario_bloqueado:** o login é recusado. Ao tentar entrar, aparece a mensagem "Ops! Desculpe, este usuário foi bloqueado." e a navegação não sai de `login.html`. Usar para testar login negado / usuário bloqueado. Em Cypress: `cy.get(".aviso_erro > span").should("have.text", "Ops! Desculpe, este usuário foi bloqueado.")`.
 
-- **usuario_lento:** o login funciona, mas com atraso artificial de cerca de 5 segundos. Durante a espera, o botão Entrar fica desabilitado e o rótulo muda para "Carregando...". Usar para testar espera, loading e performance. Em Cypress: `cy.get(".login-box .btn_action").should("be.disabled").and("have.value", "Carregando...")`.
+- **usuario_lento:** o login funciona, mas com atraso artificial de cerca de 5 segundos. Durante a espera, o botão Entrar fica desabilitado e o rótulo muda para "Carregando...". Usar para testar espera, loading e performance. Em Cypress: `cy.get(".acesso_form .botao_primario").should("be.disabled").and("have.value", "Carregando...")`.
 
-- **usuario_problema:** o login funciona, mas todas as imagens de produto ficam quebradas, tanto na vitrine quanto no detalhe. Usar para testar imagens quebradas / atributos de imagem. Em Cypress: `cy.get(".inventory_item img").should("have.attr", "src", "../img/broken.svg")` na vitrine e `cy.get(".inventory_details_img > img").should("have.attr", "src", "../img/broken.svg")` no detalhe.
+- **usuario_problema:** o login funciona, mas todas as imagens de produto ficam quebradas, tanto na vitrine quanto no detalhe. Usar para testar imagens quebradas / atributos de imagem. Em Cypress: `cy.get(".produto_card img").should("have.attr", "src", "../img/broken.svg")` na vitrine e `cy.get(".detalhe_foto > img").should("have.attr", "src", "../img/broken.svg")` no detalhe.
 
-- **usuario_erro:** o login funciona, mas várias ações falham de propósito. Três defeitos: (1) trocar a ordenação dispara um `alert` de erro e a ordenação volta para "az"; (2) clicar em "Adicionar ao carrinho" de produtos com id ÍMPAR não tem efeito (o badge do carrinho não muda e é emitido um `console.error`) — produtos de id par funcionam normalmente; (3) clicar em Finalizar Pedido dispara um `alert` e o pedido NÃO é concluído. Textos exatos dos `alert`: na ordenação, "Ops! A ordenação está quebrada para este usuário. Defeito proposital para testes."; ao finalizar, "Ops! Não foi possível finalizar o pedido. Defeito proposital para testes.". Usar para testar tratamento de falhas e diálogos `alert`. Elementos envolvidos: `.product_sort_container`, `.shopping_cart_badge` e `.cart_footer > button`.
+- **usuario_erro:** o login funciona, mas várias ações falham de propósito. Três defeitos: (1) trocar a ordenação dispara um `alert` de erro e a ordenação volta para "az"; (2) clicar em "Adicionar ao carrinho" de produtos com id ÍMPAR não tem efeito (o badge do carrinho não muda e é emitido um `console.error`) — produtos de id par funcionam normalmente; (3) clicar em Finalizar Pedido dispara um `alert` e o pedido NÃO é concluído. Textos exatos dos `alert`: na ordenação, "Ops! A ordenação está quebrada para este usuário. Defeito proposital para testes."; ao finalizar, "Ops! Não foi possível finalizar o pedido. Defeito proposital para testes.". Usar para testar tratamento de falhas e diálogos `alert`. Elementos envolvidos: `.filtro_ordem`, `.sacola_contador` e `.rodape_acoes > button`.
 
-- **usuario_visual:** o login funciona, mas a aplicação recebe defeitos visuais propositais: logotipo deslocado, badge do carrinho posicionado no canto errado, título da página com espaçamento exagerado entre as letras, imagens de alguns cards tortas, botões de alguns cards desalinhados, preços em vermelho e itálico na vitrine, no carrinho e no resumo, quantidade do item no carrinho girada, e preços ERRADOS na vitrine: os produtos de id múltiplo de 5 (ids 0, 5, 10, 15 e 20) mostram R$ 10,00 a mais na vitrine, mas a página de detalhe, o carrinho e o checkout mostram o preço correto. Usar para testes de regressão visual e de asserção de preço/inconsistência. Em Cypress: o modo é identificado por `body.bugs-visuais`; as imagens tortas são as dos cards `.inventory_item:nth-child(3n)` e os botões desalinhados, os dos cards `.inventory_item:nth-child(4n)`.
+- **usuario_visual:** o login funciona, mas a aplicação recebe defeitos visuais propositais: logotipo deslocado, badge do carrinho posicionado no canto errado, título da página com espaçamento exagerado entre as letras, imagens de alguns cards tortas, botões de alguns cards desalinhados, preços em vermelho e itálico na vitrine, no carrinho e no resumo, quantidade do item no carrinho girada, e preços ERRADOS na vitrine: os produtos de id múltiplo de 5 (ids 0, 5, 10, 15 e 20) mostram R$ 10,00 a mais na vitrine, mas a página de detalhe, o carrinho e o checkout mostram o preço correto. Usar para testes de regressão visual e de asserção de preço/inconsistência. Em Cypress: o modo é identificado por `body.bugs-visuais`; as imagens tortas são as dos cards `.produto_card:nth-child(3n)` e os botões desalinhados, os dos cards `.produto_card:nth-child(4n)`.
 
 ---
 
 ## Mensagens de erro da LojaQA
 
-As mensagens de erro aparecem no texto de erro, dentro da caixa de erro, que só fica visível quando há erro. Ao exibir um erro, os campos do formulário ficam com borda vermelha (os dois do login ou os três do checkout). Use estes textos exatos para asserções. Seletores: texto `.error-message-container > span`, caixa `.error-message-container`; exemplo: `cy.get(".error-message-container > span").should("have.text", "Ops! O campo senha é obrigatório")`.
+As mensagens de erro aparecem no texto de erro, dentro da caixa de erro, que só fica visível quando há erro. Ao exibir um erro, os campos do formulário ficam com borda vermelha (os dois do login ou os três do checkout). Use estes textos exatos para asserções. Seletores: texto `.aviso_erro > span`, caixa `.aviso_erro`; exemplo: `cy.get(".aviso_erro > span").should("have.text", "Ops! O campo senha é obrigatório")`.
 
 Mensagens de erro do Login da LojaQA (todas começam com "Ops! "):
 - Usuário em branco: "Ops! O campo usuário é obrigatório".
@@ -328,36 +328,36 @@ Mensagens de `alert` do usuario_erro — disparadas ao trocar a ordenação e ao
 ## Estados dinâmicos da LojaQA (para asserções)
 
 Estes estados mudam durante a execução e são úteis para asserções:
-- **Menu lateral aberto:** o painel do menu desliza para dentro da tela e o fundo escurecido aparece; ao fechar, os dois voltam ao estado inicial. Em Cypress: `cy.get(".bm-menu").should("have.class", "open")` com o menu aberto; as classes de estado são `.bm-menu.open` e `.bm-overlay.open`.
-- **Mensagem de erro exibida:** a caixa de erro só fica visível quando há erro. Em Cypress: `cy.get(".error-message-container").should("be.visible")`; a classe de estado é `.error-message-container.visible`.
-- **Campos com erro de validação:** ficam com borda vermelha — os dois campos do login ou os três do checkout de uma vez. Em Cypress: os campos marcados têm a classe `.input_error`, então `cy.get(".input_error").should("have.length", 3)` no checkout.
-- **Elementos ocultos conforme o estado:** a mensagem de carrinho vazio, a mensagem de item não encontrado, os blocos da imagem e das informações do detalhe, o documento da nota fiscal e a mensagem de pedido não encontrado aparecem ou somem conforme o estado da aplicação. Seletores: `.cart_empty`, `.inventory_details > p`, `.inventory_details_img`, `.inventory_details_desc_container`, `.nf_documento`, `.nf_container > p`; em Cypress: `cy.get(".cart_empty").should("not.be.visible")`.
-- **Botão de carrinho fora e dentro do carrinho:** o mesmo botão troca o rótulo de "Adicionar ao carrinho" para "Remover" e muda de estilo. Em Cypress: a classe troca de `.btn_inventory` para `.btn_secondary`, então `cy.get(".inventory_item:nth-child(12) button").should("have.class", "btn_secondary")`, ou `should("have.text", "Remover")`.
-- **Botão Entrar desabilitado:** durante o atraso do `usuario_lento`. Em Cypress: `cy.get(".login-box .btn_action").should("be.disabled")`.
-- **Defeitos visuais do usuario_visual:** ativados quando o usuário logado é `usuario_visual`. Em Cypress: o modo é identificado por `body.bugs-visuais`; um elemento afetado: `body.bugs-visuais .inventory_item_price`.
+- **Menu lateral aberto:** o painel do menu desliza para dentro da tela e o fundo escurecido aparece; ao fechar, os dois voltam ao estado inicial. Em Cypress: `cy.get(".gaveta_menu").should("have.class", "aberto")` com o menu aberto; as classes de estado são `.gaveta_menu.aberto` e `.gaveta_fundo.aberto`.
+- **Mensagem de erro exibida:** a caixa de erro só fica visível quando há erro. Em Cypress: `cy.get(".aviso_erro").should("be.exibido")`; a classe de estado é `.aviso_erro.exibido`.
+- **Campos com erro de validação:** ficam com borda vermelha — os dois campos do login ou os três do checkout de uma vez. Em Cypress: os campos marcados têm a classe `.campo_invalido`, então `cy.get(".campo_invalido").should("have.length", 3)` no checkout.
+- **Elementos ocultos conforme o estado:** a mensagem de carrinho vazio, a mensagem de item não encontrado, os blocos da imagem e das informações do detalhe, o documento da nota fiscal e a mensagem de pedido não encontrado aparecem ou somem conforme o estado da aplicação. Seletores: `.sacola_vazia`, `.detalhe_area > p`, `.detalhe_foto`, `.detalhe_info`, `.nf_documento`, `.nf_container > p`; em Cypress: `cy.get(".sacola_vazia").should("not.be.exibido")`.
+- **Botão de carrinho fora e dentro do carrinho:** o mesmo botão troca o rótulo de "Adicionar ao carrinho" para "Remover" e muda de estilo. Em Cypress: a classe troca de `.botao_comprar` para `.botao_contorno`, então `cy.get(".produto_card:nth-child(12) button").should("have.class", "botao_contorno")`, ou `should("have.text", "Remover")`.
+- **Botão Entrar desabilitado:** durante o atraso do `usuario_lento`. Em Cypress: `cy.get(".acesso_form .botao_primario").should("be.disabled")`.
+- **Defeitos visuais do usuario_visual:** ativados quando o usuário logado é `usuario_visual`. Em Cypress: o modo é identificado por `body.bugs-visuais`; um elemento afetado: `body.bugs-visuais .produto_valor`.
 
 ---
 
 ## Tipos de botão da LojaQA
 
-- **Botão de ação principal:** azul preenchido — Entrar, Finalizar Compra, Continuar, Finalizar Pedido, Gerar Nota Fiscal (PDF) e Baixar PDF; há no máximo um por página. Seletores: `.btn_action`, que é único em cada página; combinado, `.btn.btn_action`.
-- **Botão secundário:** borda vermelha — Cancelar (etapas 1 e 2 do checkout), Continuar Comprando, Remover, Voltar à Loja e Voltar. Seletores: `.btn_secondary`; no carrinho os botões Remover também têm esta classe, então o Continuar Comprando é `.cart_footer .btn_secondary`.
-- **Botão de adicionar ao carrinho:** largura total do card, com o rótulo "Adicionar ao carrinho"; deixa de ter esse estilo quando o produto entra no carrinho. Seletores: `.btn_inventory`; o de um produto, `.inventory_item:nth-child(N) .btn_inventory`.
-- **Botões pequenos:** os botões de carrinho dos cards, o botão de carrinho do detalhe, os botões Remover do carrinho e o link "← Voltar aos produtos". Seletor: `.btn_small`.
-- **Botão de voltar do detalhe:** o link "← Voltar aos produtos". Seletores: `.btn_back`, `.header_secondary_container > .btn_back`.
-- **Botões da página de pedido concluído:** largura limitada — Gerar Nota Fiscal (PDF) e Voltar à Loja. Seletores: `.btn_complete`; `.btn_action.btn_complete` (Gerar Nota Fiscal) e `.btn_secondary.btn_complete` (Voltar à Loja).
-- **Todos os botões e links com aparência de botão:** formato pílula/arredondado. Seletores: `.btn`, que casa todos; combine com outra classe para restringir.
+- **Botão de ação principal:** azul preenchido — Entrar, Finalizar Compra, Continuar, Finalizar Pedido, Gerar Nota Fiscal (PDF) e Baixar PDF; há no máximo um por página. Seletores: `.botao_primario`, que é único em cada página; combinado, `.botao.botao_primario`.
+- **Botão secundário:** borda vermelha — Cancelar (etapas 1 e 2 do checkout), Continuar Comprando, Remover, Voltar à Loja e Voltar. Seletores: `.botao_contorno`; no carrinho os botões Remover também têm esta classe, então o Continuar Comprando é `.rodape_acoes .botao_contorno`.
+- **Botão de adicionar ao carrinho:** largura total do card, com o rótulo "Adicionar ao carrinho"; deixa de ter esse estilo quando o produto entra no carrinho. Seletores: `.botao_comprar`; o de um produto, `.produto_card:nth-child(N) .botao_comprar`.
+- **Botões pequenos:** os botões de carrinho dos cards, o botão de carrinho do detalhe, os botões Remover do carrinho e o link "← Voltar aos produtos". Seletor: `.botao_pequeno`.
+- **Botão de voltar do detalhe:** o link "← Voltar aos produtos". Seletores: `.botao_retorno`, `.subcabecalho > .botao_retorno`.
+- **Botões da página de pedido concluído:** largura limitada — Gerar Nota Fiscal (PDF) e Voltar à Loja. Seletores: `.botao_largo`; `.botao_primario.botao_largo` (Gerar Nota Fiscal) e `.botao_contorno.botao_largo` (Voltar à Loja).
+- **Todos os botões e links com aparência de botão:** formato pílula/arredondado. Seletores: `.botao`, que casa todos; combine com outra classe para restringir.
 
 ---
 
 ## Textos visíveis da LojaQA (valores esperados em asserções)
 
 Textos exatos exibidos na LojaQA. Nesta base eles não localizam elementos: aparecem apenas como valor esperado de asserção (`should("have.text", ...)`, `should("contain", ...)`). Os rótulos dos botões "Entrar" e "Continuar" são o valor do campo e por isso são verificados com `should("have.value", ...)`:
-- Títulos de página: "Produtos", "Seu Carrinho", "Pagamento: Seus Dados", "Pagamento: Resumo", "Pedido Concluído!", "Sobre a LojaQA". Elemento: `.title`.
-- Banner de boas-vindas: "Bem-vindo à LojaQA!". Elemento: `.hero_banner h1`.
-- Botões de carrinho: "Adicionar ao carrinho" (fora do carrinho) e "Remover" (no carrinho). Elemento: o botão de cada card, `.inventory_item button`, e de cada linha do carrinho, `.cart_item button`.
+- Títulos de página: "Produtos", "Seu Carrinho", "Pagamento: Seus Dados", "Pagamento: Resumo", "Pedido Concluído!", "Sobre a LojaQA". Elemento: `.subcabecalho_titulo`.
+- Banner de boas-vindas: "Bem-vindo à LojaQA!". Elemento: `.faixa_destaque h1`.
+- Botões de carrinho: "Adicionar ao carrinho" (fora do carrinho) e "Remover" (no carrinho). Elemento: o botão de cada card, `.produto_card button`, e de cada linha do carrinho, `.sacola_linha button`.
 - Botões de ação: "Entrar", "Continuar Comprando", "Finalizar Compra", "Cancelar", "Continuar", "Finalizar Pedido", "Voltar à Loja", "← Voltar aos produtos", "Gerar Nota Fiscal (PDF)", "Baixar PDF", "Voltar".
-- Itens do menu lateral: "Todos os Produtos", "Sobre", "Sair", "Resetar Aplicação". Elementos: `.bm-menu > a:nth-of-type(1)` a `.bm-menu > a:nth-of-type(4)`.
+- Itens do menu lateral: "Todos os Produtos", "Sobre", "Sair", "Resetar Aplicação". Elementos: `.gaveta_menu > a:nth-of-type(1)` a `.gaveta_menu > a:nth-of-type(4)`.
 - Rótulos do carrinho, do resumo e da nota: "QTD", "Descrição", "Forma de Pagamento:", "CartãoQA #31337", "Entrega:", "Entrega Expressa Grátis!", "Resumo de Valores", "Subtotal:", "Impostos (8%):", "Total:", "Item", "Qtd", "Valor", "Destinatário", "Emissão:".
 - Login, conclusão e nota fiscal: "🧪 LojaQA", "Sua loja para praticar automação de testes", "Usuários aceitos:", "Senha para todos os usuários:", "Obrigado pelo seu pedido!", "NOTA FISCAL", "Documento fictício para prática de testes", "SEM VALOR FISCAL".
 - Estados vazios e mensagens: "Seu carrinho está vazio.", "ITEM NÃO ENCONTRADO — Este produto não existe.", "Nenhum pedido encontrado. Finalize uma compra para gerar a nota fiscal.".
@@ -368,31 +368,31 @@ Textos exatos exibidos na LojaQA. Nesta base eles não localizam elementos: apar
 
 A LojaQA tem 21 produtos. Para cada um, a lista abaixo informa o id (usado na página de detalhe, `inventory-item.html?id=N`, e no carrinho guardado no `localStorage`), o preço e os seletores. O botão de carrinho de cada produto começa com o rótulo "Adicionar ao carrinho" e, depois de clicado, passa a "Remover".
 
-Nenhum produto tem seletor próprio: o card é localizado pela posição na grade, `.inventory_item:nth-child(N)`, com N contado na ordenação padrão `az`, e o botão de carrinho é o único botão do card. No carrinho, no resumo e na nota fiscal, as linhas seguem a ordem em que os produtos foram adicionados (`.cart_item:nth-child(N)`, `.nf_tabela tbody tr:nth-child(N)`).
+Nenhum produto tem seletor próprio: o card é localizado pela posição na grade, `.produto_card:nth-child(N)`, com N contado na ordenação padrão `az`, e o botão de carrinho é o único botão do card. No carrinho, no resumo e na nota fiscal, as linhas seguem a ordem em que os produtos foram adicionados (`.sacola_linha:nth-child(N)`, `.nf_tabela tbody tr:nth-child(N)`).
 
-- **Mochila do Testador** — id 4, preço R$ 149,90. Na ordenação padrão, é o 12º card: `.inventory_item:nth-child(12)`. Botão de carrinho: `.inventory_item:nth-child(12) button`. Preço: `.inventory_item:nth-child(12) .inventory_item_price`.
-- **Lanterna de Bike LED** — id 0, preço R$ 49,90. Na ordenação padrão, é o 10º card: `.inventory_item:nth-child(10)`. Botão de carrinho: `.inventory_item:nth-child(10) button`. Preço: `.inventory_item:nth-child(10) .inventory_item_price`.
-- **Camiseta Caça-Bugs** — id 1, preço R$ 79,90. Na ordenação padrão, é o 4º card: `.inventory_item:nth-child(4)`. Botão de carrinho: `.inventory_item:nth-child(4) button`. Preço: `.inventory_item:nth-child(4) .inventory_item_price`.
-- **Jaqueta Fleece QA** — id 5, preço R$ 249,90. Na ordenação padrão, é o 9º card: `.inventory_item:nth-child(9)`. Botão de carrinho: `.inventory_item:nth-child(9) button`. Preço: `.inventory_item:nth-child(9) .inventory_item_price`.
-- **Body do Testadorzinho** — id 2, preço R$ 39,90. Na ordenação padrão, é o 1º card: `.inventory_item:nth-child(1)`. Botão de carrinho: `.inventory_item:nth-child(1) button`. Preço: `.inventory_item:nth-child(1) .inventory_item_price`.
-- **Camiseta Teste.Tudo() Salmão** — id 3, preço R$ 79,90. Na ordenação padrão, é o 5º card: `.inventory_item:nth-child(5)`. Botão de carrinho: `.inventory_item:nth-child(5) button`. Preço: `.inventory_item:nth-child(5) .inventory_item_price`.
-- **Caneca do Depurador** — id 6, preço R$ 34,90. Na ordenação padrão, é o 6º card: `.inventory_item:nth-child(6)`. Botão de carrinho: `.inventory_item:nth-child(6) button`. Preço: `.inventory_item:nth-child(6) .inventory_item_price`.
-- **Teclado Mecânico TesteMaster** — id 7, preço R$ 349,90 (o mais caro). Na ordenação padrão, é o 20º card: `.inventory_item:nth-child(20)`. Botão de carrinho: `.inventory_item:nth-child(20) button`. Preço: `.inventory_item:nth-child(20) .inventory_item_price`.
-- **Mouse Sem Fio ClickCerto** — id 8, preço R$ 89,90. Na ordenação padrão, é o 14º card: `.inventory_item:nth-child(14)`. Botão de carrinho: `.inventory_item:nth-child(14) button`. Preço: `.inventory_item:nth-child(14) .inventory_item_price`.
-- **Fone Anti-Ruído FocoTotal** — id 9, preço R$ 199,90. Na ordenação padrão, é o 7º card: `.inventory_item:nth-child(7)`. Botão de carrinho: `.inventory_item:nth-child(7) button`. Preço: `.inventory_item:nth-child(7) .inventory_item_price`.
-- **Boné Automatize Tudo** — id 10, preço R$ 59,90. Na ordenação padrão, é o 2º card: `.inventory_item:nth-child(2)`. Botão de carrinho: `.inventory_item:nth-child(2) button`. Preço: `.inventory_item:nth-child(2) .inventory_item_price`.
-- **Moletom Deploy na Sexta** — id 11, preço R$ 189,90. Na ordenação padrão, é o 13º card: `.inventory_item:nth-child(13)`. Botão de carrinho: `.inventory_item:nth-child(13) button`. Preço: `.inventory_item:nth-child(13) .inventory_item_price`.
-- **Garrafa Térmica CaféContínuo** — id 12, preço R$ 69,90. Na ordenação padrão, é o 8º card: `.inventory_item:nth-child(8)`. Botão de carrinho: `.inventory_item:nth-child(8) button`. Preço: `.inventory_item:nth-child(8) .inventory_item_price`.
-- **Pacote de Adesivos de Bugs** — id 13, preço R$ 19,90 (o mais barato). Na ordenação padrão, é o 16º card: `.inventory_item:nth-child(16)`. Botão de carrinho: `.inventory_item:nth-child(16) button`. Preço: `.inventory_item:nth-child(16) .inventory_item_price`.
-- **Caderno de Casos de Teste** — id 14, preço R$ 29,90. Na ordenação padrão, é o 3º card: `.inventory_item:nth-child(3)`. Botão de carrinho: `.inventory_item:nth-child(3) button`. Preço: `.inventory_item:nth-child(3) .inventory_item_price`.
-- **Luminária PixelPerfect** — id 15, preço R$ 119,90. Na ordenação padrão, é o 11º card: `.inventory_item:nth-child(11)`. Botão de carrinho: `.inventory_item:nth-child(11) button`. Preço: `.inventory_item:nth-child(11) .inventory_item_price`.
-- **Mousepad Gigante DevOps** — id 16, preço R$ 49,90. Na ordenação padrão, é o 15º card: `.inventory_item:nth-child(15)`. Botão de carrinho: `.inventory_item:nth-child(15) button`. Preço: `.inventory_item:nth-child(15) .inventory_item_price`.
-- **Webcam Full HD VisãoQA** — id 17, preço R$ 159,90. Na ordenação padrão, é o 21º card: `.inventory_item:nth-child(21)`. Botão de carrinho: `.inventory_item:nth-child(21) button`. Preço: `.inventory_item:nth-child(21) .inventory_item_price`.
-- **Suporte de Notebook ErgoTeste** — id 18, preço R$ 99,90. Na ordenação padrão, é o 19º card: `.inventory_item:nth-child(19)`. Botão de carrinho: `.inventory_item:nth-child(19) button`. Preço: `.inventory_item:nth-child(19) .inventory_item_price`.
-- **Pelúcia do Bug** — id 19, preço R$ 44,90. Na ordenação padrão, é o 17º card: `.inventory_item:nth-child(17)`. Botão de carrinho: `.inventory_item:nth-child(17) button`. Preço: `.inventory_item:nth-child(17) .inventory_item_price`.
-- **Quebra-Cabeça 404 Peças** — id 20, preço R$ 54,90. Na ordenação padrão, é o 18º card: `.inventory_item:nth-child(18)`. Botão de carrinho: `.inventory_item:nth-child(18) button`. Preço: `.inventory_item:nth-child(18) .inventory_item_price`.
+- **Mochila do Testador** — id 4, preço R$ 149,90. Na ordenação padrão, é o 12º card: `.produto_card:nth-child(12)`. Botão de carrinho: `.produto_card:nth-child(12) button`. Preço: `.produto_card:nth-child(12) .produto_valor`.
+- **Lanterna de Bike LED** — id 0, preço R$ 49,90. Na ordenação padrão, é o 10º card: `.produto_card:nth-child(10)`. Botão de carrinho: `.produto_card:nth-child(10) button`. Preço: `.produto_card:nth-child(10) .produto_valor`.
+- **Camiseta Caça-Bugs** — id 1, preço R$ 79,90. Na ordenação padrão, é o 4º card: `.produto_card:nth-child(4)`. Botão de carrinho: `.produto_card:nth-child(4) button`. Preço: `.produto_card:nth-child(4) .produto_valor`.
+- **Jaqueta Fleece QA** — id 5, preço R$ 249,90. Na ordenação padrão, é o 9º card: `.produto_card:nth-child(9)`. Botão de carrinho: `.produto_card:nth-child(9) button`. Preço: `.produto_card:nth-child(9) .produto_valor`.
+- **Body do Testadorzinho** — id 2, preço R$ 39,90. Na ordenação padrão, é o 1º card: `.produto_card:nth-child(1)`. Botão de carrinho: `.produto_card:nth-child(1) button`. Preço: `.produto_card:nth-child(1) .produto_valor`.
+- **Camiseta Teste.Tudo() Salmão** — id 3, preço R$ 79,90. Na ordenação padrão, é o 5º card: `.produto_card:nth-child(5)`. Botão de carrinho: `.produto_card:nth-child(5) button`. Preço: `.produto_card:nth-child(5) .produto_valor`.
+- **Caneca do Depurador** — id 6, preço R$ 34,90. Na ordenação padrão, é o 6º card: `.produto_card:nth-child(6)`. Botão de carrinho: `.produto_card:nth-child(6) button`. Preço: `.produto_card:nth-child(6) .produto_valor`.
+- **Teclado Mecânico TesteMaster** — id 7, preço R$ 349,90 (o mais caro). Na ordenação padrão, é o 20º card: `.produto_card:nth-child(20)`. Botão de carrinho: `.produto_card:nth-child(20) button`. Preço: `.produto_card:nth-child(20) .produto_valor`.
+- **Mouse Sem Fio ClickCerto** — id 8, preço R$ 89,90. Na ordenação padrão, é o 14º card: `.produto_card:nth-child(14)`. Botão de carrinho: `.produto_card:nth-child(14) button`. Preço: `.produto_card:nth-child(14) .produto_valor`.
+- **Fone Anti-Ruído FocoTotal** — id 9, preço R$ 199,90. Na ordenação padrão, é o 7º card: `.produto_card:nth-child(7)`. Botão de carrinho: `.produto_card:nth-child(7) button`. Preço: `.produto_card:nth-child(7) .produto_valor`.
+- **Boné Automatize Tudo** — id 10, preço R$ 59,90. Na ordenação padrão, é o 2º card: `.produto_card:nth-child(2)`. Botão de carrinho: `.produto_card:nth-child(2) button`. Preço: `.produto_card:nth-child(2) .produto_valor`.
+- **Moletom Deploy na Sexta** — id 11, preço R$ 189,90. Na ordenação padrão, é o 13º card: `.produto_card:nth-child(13)`. Botão de carrinho: `.produto_card:nth-child(13) button`. Preço: `.produto_card:nth-child(13) .produto_valor`.
+- **Garrafa Térmica CaféContínuo** — id 12, preço R$ 69,90. Na ordenação padrão, é o 8º card: `.produto_card:nth-child(8)`. Botão de carrinho: `.produto_card:nth-child(8) button`. Preço: `.produto_card:nth-child(8) .produto_valor`.
+- **Pacote de Adesivos de Bugs** — id 13, preço R$ 19,90 (o mais barato). Na ordenação padrão, é o 16º card: `.produto_card:nth-child(16)`. Botão de carrinho: `.produto_card:nth-child(16) button`. Preço: `.produto_card:nth-child(16) .produto_valor`.
+- **Caderno de Casos de Teste** — id 14, preço R$ 29,90. Na ordenação padrão, é o 3º card: `.produto_card:nth-child(3)`. Botão de carrinho: `.produto_card:nth-child(3) button`. Preço: `.produto_card:nth-child(3) .produto_valor`.
+- **Luminária PixelPerfect** — id 15, preço R$ 119,90. Na ordenação padrão, é o 11º card: `.produto_card:nth-child(11)`. Botão de carrinho: `.produto_card:nth-child(11) button`. Preço: `.produto_card:nth-child(11) .produto_valor`.
+- **Mousepad Gigante DevOps** — id 16, preço R$ 49,90. Na ordenação padrão, é o 15º card: `.produto_card:nth-child(15)`. Botão de carrinho: `.produto_card:nth-child(15) button`. Preço: `.produto_card:nth-child(15) .produto_valor`.
+- **Webcam Full HD VisãoQA** — id 17, preço R$ 159,90. Na ordenação padrão, é o 21º card: `.produto_card:nth-child(21)`. Botão de carrinho: `.produto_card:nth-child(21) button`. Preço: `.produto_card:nth-child(21) .produto_valor`.
+- **Suporte de Notebook ErgoTeste** — id 18, preço R$ 99,90. Na ordenação padrão, é o 19º card: `.produto_card:nth-child(19)`. Botão de carrinho: `.produto_card:nth-child(19) button`. Preço: `.produto_card:nth-child(19) .produto_valor`.
+- **Pelúcia do Bug** — id 19, preço R$ 44,90. Na ordenação padrão, é o 17º card: `.produto_card:nth-child(17)`. Botão de carrinho: `.produto_card:nth-child(17) button`. Preço: `.produto_card:nth-child(17) .produto_valor`.
+- **Quebra-Cabeça 404 Peças** — id 20, preço R$ 54,90. Na ordenação padrão, é o 18º card: `.produto_card:nth-child(18)`. Botão de carrinho: `.produto_card:nth-child(18) button`. Preço: `.produto_card:nth-child(18) .produto_valor`.
 
-Exemplo em Cypress para adicionar a Mochila do Testador ao carrinho e depois removê-la: `cy.get(".inventory_item:nth-child(12) button").click()`, conferir `cy.get(".inventory_item:nth-child(12) button").should("have.text", "Remover")` e clicar de novo no mesmo seletor.
+Exemplo em Cypress para adicionar a Mochila do Testador ao carrinho e depois removê-la: `cy.get(".produto_card:nth-child(12) button").click()`, conferir `cy.get(".produto_card:nth-child(12) button").should("have.text", "Remover")` e clicar de novo no mesmo seletor.
 
 ---
 
@@ -414,7 +414,7 @@ A LojaQA guarda estado no navegador. Para preparar ou limpar o estado de um test
 - Chave `checkout-info` no `sessionStorage`: guarda um JSON `{first, last, postal}` preenchido na etapa 1 do checkout; é removido ao finalizar o pedido.
 - Chave `ultimo-pedido` no `sessionStorage`: guarda um JSON do pedido finalizado com `{numero, data, hora, cliente, itens, subtotal, imposto, total}`, usado pela página de conclusão e pela nota fiscal.
 
-Exemplo para iniciar um teste já logado e com um item no carrinho: definir `sessionStorage["session-username"] = "usuario_padrao"` e `localStorage["cart-contents"] = "[4]"`, depois navegar para `index.html`. Lembre que sair pelo menu apaga a sessão e o carrinho, e que "Resetar Aplicação" apaga só o carrinho. Seletores: `.bm-menu > a:nth-of-type(3)` e `.bm-menu > a:nth-of-type(4)`.
+Exemplo para iniciar um teste já logado e com um item no carrinho: definir `sessionStorage["session-username"] = "usuario_padrao"` e `localStorage["cart-contents"] = "[4]"`, depois navegar para `index.html`. Lembre que sair pelo menu apaga a sessão e o carrinho, e que "Resetar Aplicação" apaga só o carrinho. Seletores: `.gaveta_menu > a:nth-of-type(3)` e `.gaveta_menu > a:nth-of-type(4)`.
 
 ---
 
@@ -422,35 +422,35 @@ Exemplo para iniciar um teste já logado e com um item no carrinho: definir `ses
 
 Perguntas comuns e respostas diretas para localizar elementos e comportamentos na LojaQA:
 
-- **Qual é a página inicial (home) da LojaQA e para onde o usuário vai depois do login?** É `index.html`, a página de Produtos/catálogo, exibida logo após o login. A tela de login (`login.html`) é apenas a porta de entrada, exibida enquanto não há sessão ativa. Em Cypress: `cy.get(".title").should("have.text", "Produtos")`.
-- **Como voltar para a home/página inicial durante um teste?** Clicar no logotipo do cabeçalho, ou abrir o menu e clicar em "Todos os Produtos", ou navegar direto para `index.html`. Seletores: `.app_logo`; `.bm-burger-button` e depois `.bm-menu > a:nth-of-type(1)`.
-- **O logotipo da LojaQA é clicável?** Sim no cabeçalho, onde é um link para a home `index.html`; na tela de login o logotipo é apenas texto, sem link. Seletores: `.app_logo` (cabeçalho) e `.login_logo` (tela de login).
-- **Como fazer login na LojaQA?** Preencher o usuário (ex.: `usuario_padrao`) e a senha `senha_teste_123` e clicar em Entrar. Seletores: `.login-box > input:nth-of-type(1)`, `.login-box > input:nth-of-type(2)` e `.login-box .btn_action`.
-- **Como verificar o rótulo dos botões Entrar e Continuar?** Esses dois rótulos são o valor do campo, e não um texto interno; por isso a asserção é com `have.value`, e não com `have.text`. Em Cypress: `cy.get(".login-box .btn_action").should("have.value", "Entrar")` e `cy.get(".checkout_info .btn_action").should("have.value", "Continuar")`.
-- **Como deslogar (sair) da LojaQA?** Abrir o menu e clicar em "Sair" — sair é a mesma coisa que deslogar. Atenção: sair também esvazia o carrinho, então um teste que desloga e reloga não encontra os itens de antes. Seletores: `.bm-burger-button` e depois `.bm-menu > a:nth-of-type(3)`.
-- **Qual é a senha dos usuários da LojaQA?** `senha_teste_123`, para todos os 6 usuários. Ela também aparece na tela de login. Seletor: `.login_password`.
-- **Quais são os usuários da LojaQA?** `usuario_padrao`, `usuario_bloqueado`, `usuario_problema`, `usuario_lento`, `usuario_erro` e `usuario_visual`, listados na tela de login. Seletor: `.login_credentials`.
+- **Qual é a página inicial (home) da LojaQA e para onde o usuário vai depois do login?** É `index.html`, a página de Produtos/catálogo, exibida logo após o login. A tela de login (`login.html`) é apenas a porta de entrada, exibida enquanto não há sessão ativa. Em Cypress: `cy.get(".subcabecalho_titulo").should("have.text", "Produtos")`.
+- **Como voltar para a home/página inicial durante um teste?** Clicar no logotipo do cabeçalho, ou abrir o menu e clicar em "Todos os Produtos", ou navegar direto para `index.html`. Seletores: `.logotipo`; `.menu_gatilho` e depois `.gaveta_menu > a:nth-of-type(1)`.
+- **O logotipo da LojaQA é clicável?** Sim no cabeçalho, onde é um link para a home `index.html`; na tela de login o logotipo é apenas texto, sem link. Seletores: `.logotipo` (cabeçalho) e `.acesso_marca` (tela de login).
+- **Como fazer login na LojaQA?** Preencher o usuário (ex.: `usuario_padrao`) e a senha `senha_teste_123` e clicar em Entrar. Seletores: `.acesso_form > input:nth-of-type(1)`, `.acesso_form > input:nth-of-type(2)` e `.acesso_form .botao_primario`.
+- **Como verificar o rótulo dos botões Entrar e Continuar?** Esses dois rótulos são o valor do campo, e não um texto interno; por isso a asserção é com `have.value`, e não com `have.text`. Em Cypress: `cy.get(".acesso_form .botao_primario").should("have.value", "Entrar")` e `cy.get(".pagamento_form .botao_primario").should("have.value", "Continuar")`.
+- **Como deslogar (sair) da LojaQA?** Abrir o menu e clicar em "Sair" — sair é a mesma coisa que deslogar. Atenção: sair também esvazia o carrinho, então um teste que desloga e reloga não encontra os itens de antes. Seletores: `.menu_gatilho` e depois `.gaveta_menu > a:nth-of-type(3)`.
+- **Qual é a senha dos usuários da LojaQA?** `senha_teste_123`, para todos os 6 usuários. Ela também aparece na tela de login. Seletor: `.dicas_senha`.
+- **Quais são os usuários da LojaQA?** `usuario_padrao`, `usuario_bloqueado`, `usuario_problema`, `usuario_lento`, `usuario_erro` e `usuario_visual`, listados na tela de login. Seletor: `.dicas_usuarios`.
 - **Qual usuário usar para o teste de compra bem-sucedida (caminho feliz)?** `usuario_padrao`.
-- **Qual usuário faz o login falhar/ser bloqueado?** `usuario_bloqueado` — mostra "Ops! Desculpe, este usuário foi bloqueado.". Seletor: `.error-message-container > span`.
+- **Qual usuário faz o login falhar/ser bloqueado?** `usuario_bloqueado` — mostra "Ops! Desculpe, este usuário foi bloqueado.". Seletor: `.aviso_erro > span`.
 - **Qual usuário deixa as imagens quebradas?** `usuario_problema` (as imagens de produto viram `../img/broken.svg`).
-- **Qual usuário deixa o login lento?** `usuario_lento` (~5 s de atraso; o botão Entrar fica desabilitado com o rótulo "Carregando..."). Seletor: `.login-box .btn_action`.
+- **Qual usuário deixa o login lento?** `usuario_lento` (~5 s de atraso; o botão Entrar fica desabilitado com o rótulo "Carregando..."). Seletor: `.acesso_form .botao_primario`.
 - **Qual usuário provoca erros nas ações?** `usuario_erro`: a ordenação falha com `alert`, adicionar itens de id ímpar não tem efeito e finalizar o pedido falha com `alert`.
 - **Qual usuário provoca defeitos visuais?** `usuario_visual` (defeitos visuais propositais; preços errados na vitrine para os ids 0, 5, 10, 15 e 20).
-- **Como localizar um produto específico na vitrine?** Pela posição do card na ordenação padrão `az`: a Caneca do Depurador é o 6º card, `.inventory_item:nth-child(6)`. A posição de cada produto está na seção "Seletores de cada produto da LojaQA".
-- **Qual o seletor do botão de adicionar um produto ao carrinho?** É o único botão do card: `.inventory_item:nth-child(6) button` para a Caneca do Depurador, na ordenação padrão; a lista completa está na seção "Seletores de cada produto da LojaQA".
-- **Qual o seletor do botão de remover um produto, e como saber se ele já está no carrinho?** É o mesmo botão do adicionar: o rótulo muda de "Adicionar ao carrinho" para "Remover" e a classe muda de `btn_inventory` para `btn_secondary`. Para asserir o estado: `cy.get(".inventory_item:nth-child(6) button").should("have.text", "Remover")` ou `.should("have.class", "btn_secondary")`.
-- **Qual o seletor do botão de carrinho na página de detalhe do produto?** Em `inventory-item.html?id=N` há um único produto na tela, e o botão é `.inventory_details_desc_container > button`, igual para todos os produtos.
-- **Como localizar o preço de um produto específico?** Pela posição do card, descendo até o preço: `.inventory_item:nth-child(12) .inventory_item_price` (Mochila do Testador, na ordenação padrão).
-- **Como ordenar os produtos?** Escolher o valor no seletor de ordenação: `az` e `za` ordenam por nome (crescente e decrescente) e `lohi` e `hilo` por preço (crescente e decrescente). Em Cypress: `cy.get(".product_sort_container").select("lohi")`.
-- **Como ir para o carrinho?** Clicar no ícone do carrinho no cabeçalho. Seletor: `.shopping_cart_link`.
-- **Como verificar quantos itens há no carrinho?** Ler o badge do carrinho; ele fica oculto quando o carrinho está vazio. Em Cypress: `cy.get(".shopping_cart_badge").should("be.visible").and("have.text", "2")` ou `cy.get(".shopping_cart_badge").should("not.be.visible")`.
-- **Como remover um item dentro do carrinho?** As linhas seguem a ordem em que os produtos foram adicionados; o botão Remover da primeira linha é `.cart_item:nth-child(1) button`: `cy.get(".cart_item:nth-child(1) button").click()`.
-- **Como finalizar a compra na LojaQA?** No carrinho, clicar em Finalizar Compra; preencher nome, sobrenome e CEP e clicar em Continuar; no resumo, clicar em Finalizar Pedido. Seletores: `.cart_footer .btn_action`; `.checkout_info > input:nth-of-type(1)`, `.checkout_info > input:nth-of-type(2)`, `.checkout_info > input:nth-of-type(3)` e `.checkout_info .btn_action`; `.cart_footer > button`.
-- **Onde aparece a mensagem de erro do login e do checkout?** No texto de erro, dentro da caixa de erro, que só fica visível quando há erro. Seletores: `.error-message-container > span` e `.error-message-container`; em Cypress: `cy.get(".error-message-container").should("be.visible")`.
-- **Como localizar o título da página atual?** Pelo título da barra abaixo do cabeçalho — exceto em `inventory-item.html`, a única página com cabeçalho que não tem título; lá aparece o link "← Voltar aos produtos". Seletores: `.title`; no detalhe, `.btn_back`.
-- **Como abrir e fechar o menu lateral?** Abrir pelo botão do menu e fechar pelo botão × ou clicando no fundo escurecido, que só fica visível com o menu aberto. Seletores: `.bm-burger-button`, `.bm-cross-button`, `.bm-overlay`; menu aberto: `cy.get(".bm-menu").should("have.class", "open")`.
+- **Como localizar um produto específico na vitrine?** Pela posição do card na ordenação padrão `az`: a Caneca do Depurador é o 6º card, `.produto_card:nth-child(6)`. A posição de cada produto está na seção "Seletores de cada produto da LojaQA".
+- **Qual o seletor do botão de adicionar um produto ao carrinho?** É o único botão do card: `.produto_card:nth-child(6) button` para a Caneca do Depurador, na ordenação padrão; a lista completa está na seção "Seletores de cada produto da LojaQA".
+- **Qual o seletor do botão de remover um produto, e como saber se ele já está no carrinho?** É o mesmo botão do adicionar: o rótulo muda de "Adicionar ao carrinho" para "Remover" e a classe muda de `botao_comprar` para `botao_contorno`. Para asserir o estado: `cy.get(".produto_card:nth-child(6) button").should("have.text", "Remover")` ou `.should("have.class", "botao_contorno")`.
+- **Qual o seletor do botão de carrinho na página de detalhe do produto?** Em `inventory-item.html?id=N` há um único produto na tela, e o botão é `.detalhe_info > button`, igual para todos os produtos.
+- **Como localizar o preço de um produto específico?** Pela posição do card, descendo até o preço: `.produto_card:nth-child(12) .produto_valor` (Mochila do Testador, na ordenação padrão).
+- **Como ordenar os produtos?** Escolher o valor no seletor de ordenação: `az` e `za` ordenam por nome (crescente e decrescente) e `lohi` e `hilo` por preço (crescente e decrescente). Em Cypress: `cy.get(".filtro_ordem").select("lohi")`.
+- **Como ir para o carrinho?** Clicar no ícone do carrinho no cabeçalho. Seletor: `.sacola_link`.
+- **Como verificar quantos itens há no carrinho?** Ler o badge do carrinho; ele fica oculto quando o carrinho está vazio. Em Cypress: `cy.get(".sacola_contador").should("be.exibido").and("have.text", "2")` ou `cy.get(".sacola_contador").should("not.be.exibido")`.
+- **Como remover um item dentro do carrinho?** As linhas seguem a ordem em que os produtos foram adicionados; o botão Remover da primeira linha é `.sacola_linha:nth-child(1) button`: `cy.get(".sacola_linha:nth-child(1) button").click()`.
+- **Como finalizar a compra na LojaQA?** No carrinho, clicar em Finalizar Compra; preencher nome, sobrenome e CEP e clicar em Continuar; no resumo, clicar em Finalizar Pedido. Seletores: `.rodape_acoes .botao_primario`; `.pagamento_form > input:nth-of-type(1)`, `.pagamento_form > input:nth-of-type(2)`, `.pagamento_form > input:nth-of-type(3)` e `.pagamento_form .botao_primario`; `.rodape_acoes > button`.
+- **Onde aparece a mensagem de erro do login e do checkout?** No texto de erro, dentro da caixa de erro, que só fica visível quando há erro. Seletores: `.aviso_erro > span` e `.aviso_erro`; em Cypress: `cy.get(".aviso_erro").should("be.exibido")`.
+- **Como localizar o título da página atual?** Pelo título da barra abaixo do cabeçalho — exceto em `inventory-item.html`, a única página com cabeçalho que não tem título; lá aparece o link "← Voltar aos produtos". Seletores: `.subcabecalho_titulo`; no detalhe, `.botao_retorno`.
+- **Como abrir e fechar o menu lateral?** Abrir pelo botão do menu e fechar pelo botão × ou clicando no fundo escurecido, que só fica visível com o menu aberto. Seletores: `.menu_gatilho`, `.gaveta_fechar`, `.gaveta_fundo`; menu aberto: `cy.get(".gaveta_menu").should("have.class", "aberto")`.
 - **Como localizar a linha de um item na nota fiscal?** As linhas seguem a ordem em que os produtos foram adicionados: a linha N é `.nf_tabela tbody tr:nth-child(N)`, e as células são `td:nth-child(1)` a `td:nth-child(4)` (número, descrição, quantidade e valor). Para conferir um produto: `cy.get(".nf_tabela tbody tr:nth-child(1) td:nth-child(2)").should("have.text", "Mochila do Testador")`.
-- **Como gerar e baixar a nota fiscal em PDF?** Após finalizar o pedido, clicar em "Gerar Nota Fiscal (PDF)" na página de conclusão e, na página da nota, em "Baixar PDF". O arquivo `nota-fiscal-<numero-do-pedido>.pdf` é baixado direto, sem abrir nova aba. Seletores: `.btn_action.btn_complete` e `.nf_acoes > button`.
-- **Como validar o download do PDF no Cypress?** Clicar em "Baixar PDF" e ler o arquivo na pasta de downloads, por exemplo `cy.readFile("cypress/downloads/nota-fiscal-45231987.pdf")`. O número do pedido pode ser lido antes na página de conclusão (sem o "#"). Seletores: `.nf_acoes > button` e `.complete-text > strong`.
+- **Como gerar e baixar a nota fiscal em PDF?** Após finalizar o pedido, clicar em "Gerar Nota Fiscal (PDF)" na página de conclusão e, na página da nota, em "Baixar PDF". O arquivo `nota-fiscal-<numero-do-pedido>.pdf` é baixado direto, sem abrir nova aba. Seletores: `.botao_primario.botao_largo` e `.nf_acoes > button`.
+- **Como validar o download do PDF no Cypress?** Clicar em "Baixar PDF" e ler o arquivo na pasta de downloads, por exemplo `cy.readFile("cypress/downloads/nota-fiscal-45231987.pdf")`. O número do pedido pode ser lido antes na página de conclusão (sem o "#"). Seletores: `.nf_acoes > button` e `.conclusao_texto > strong`.
 - **Como preparar o estado do teste sem passar pela interface?** Definir `session-username` no `sessionStorage` (ex.: `"usuario_padrao"` — equivale a estar logado) e `cart-contents` no `localStorage` (ex.: `"[4]"` — array JSON de ids), depois navegar para `index.html`.
-- **Qual a taxa de imposto do checkout?** 8% sobre o subtotal, arredondado em centavos; o valor aparece no resumo do pedido. Seletor: `.summary_tax_label`.
+- **Qual a taxa de imposto do checkout?** 8% sobre o subtotal, arredondado em centavos; o valor aparece no resumo do pedido. Seletor: `.resumo_imposto`.

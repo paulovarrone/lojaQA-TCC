@@ -8,61 +8,61 @@
 </head>
 <body>
   <header>
-    <div class="primary_header">
-      <div class="header_label">
-        <button class="bm-burger-button" id="botao-menu" data-test="botao-menu" aria-label="Abrir Menu">&#9776;</button>
-        <a class="app_logo" id="link-logo" data-test="link-logo" href="index.html">🧪 LojaQA</a>
+    <div class="cabecalho_topo">
+      <div class="cabecalho_marca">
+        <button class="menu_gatilho" id="botao-menu" data-test="botao-menu" aria-label="Abrir Menu">&#9776;</button>
+        <a class="logotipo" id="link-logo" data-test="link-logo" href="index.html">🧪 LojaQA</a>
       </div>
-      <div class="shopping_cart_container">
-        <a class="shopping_cart_link" id="link-carrinho" data-test="link-carrinho" href="cart.html">🛒<span class="shopping_cart_badge" id="badge-carrinho" data-test="badge-carrinho" style="display:none"></span></a>
+      <div class="sacola_area">
+        <a class="sacola_link" id="link-carrinho" data-test="link-carrinho" href="cart.html">🛒<span class="sacola_contador" id="badge-carrinho" data-test="badge-carrinho" style="display:none"></span></a>
       </div>
     </div>
-    <div class="header_secondary_container">
-      <span class="title" id="titulo-pagina" data-test="titulo-pagina">Produtos</span>
-      <select class="product_sort_container" id="seletor-ordenacao" data-test="seletor-ordenacao">
+    <div class="subcabecalho">
+      <span class="subcabecalho_titulo" id="titulo-pagina" data-test="titulo-pagina">Produtos</span>
+      <select class="filtro_ordem" id="seletor-ordenacao" data-test="seletor-ordenacao">
         <option value="az">Nome (A a Z)</option>
         <option value="za">Nome (Z a A)</option>
         <option value="lohi">Preço (menor ao maior)</option>
         <option value="hilo">Preço (maior ao menor)</option>
       </select>
     </div>
-    <nav class="bm-menu" id="menu-lateral" data-test="menu-lateral">
-      <button class="bm-cross-button" id="botao-fechar-menu" data-test="botao-fechar-menu" aria-label="Fechar Menu">&times;</button>
+    <nav class="gaveta_menu" id="menu-lateral" data-test="menu-lateral">
+      <button class="gaveta_fechar" id="botao-fechar-menu" data-test="botao-fechar-menu" aria-label="Fechar Menu">&times;</button>
       <a id="link-todos-itens" data-test="link-todos-itens" href="index.html">Todos os Produtos</a>
       <a id="link-sobre" data-test="link-sobre" href="sobre.html">Sobre</a>
       <a id="link-sair" data-test="link-sair" href="#">Sair</a>
       <a id="link-resetar" data-test="link-resetar" href="#">Resetar Aplicação</a>
     </nav>
-    <div class="bm-overlay" id="sobreposicao-menu"></div>
+    <div class="gaveta_fundo" id="sobreposicao-menu"></div>
   </header>
 
-  <section class="hero_banner" id="banner-boas-vindas" data-test="banner-boas-vindas">
+  <section class="faixa_destaque" id="banner-boas-vindas" data-test="banner-boas-vindas">
     <h1>Bem-vindo à LojaQA!</h1>
     <p>São <strong id="contador-produtos" data-test="contador-produtos"></strong> produtos fictícios para você praticar automação de verdade.</p>
   </section>
 
-  <main class="inventory_container" id="container-inventario" data-test="container-inventario">
-    <div class="inventory_list" id="lista-produtos" data-test="lista-produtos"></div>
+  <main class="vitrine_area" id="container-inventario" data-test="container-inventario">
+    <div class="vitrine_grade" id="lista-produtos" data-test="lista-produtos"></div>
   </main>
 
   <template id="modelo-item-produto">
-    <div class="inventory_item" data-test="item-inventario">
-      <a class="inventory_item_img link-item"><img alt="" data-test="imagem-item"></a>
-      <a class="inventory_item_name link-item" data-test="nome-item"></a>
-      <div class="inventory_item_desc" data-test="descricao-item"></div>
-      <div class="pricebar">
-        <div class="inventory_item_price" data-test="preco-item"></div>
-        <button class="btn btn_small"></button>
+    <div class="produto_card" data-test="item-inventario">
+      <a class="produto_foto produto_ancora"><img alt="" data-test="imagem-item"></a>
+      <a class="produto_nome produto_ancora" data-test="nome-item"></a>
+      <div class="produto_texto" data-test="descricao-item"></div>
+      <div class="produto_rodape">
+        <div class="produto_valor" data-test="preco-item"></div>
+        <button class="botao botao_pequeno"></button>
       </div>
     </div>
   </template>
 
-  <footer class="footer" id="rodape" data-test="rodape">
-    <ul class="social">
+  <footer class="rodape_site" id="rodape" data-test="rodape">
+    <ul class="redes">
       <li><a href="https://github.com/paulovarrone" target="_blank" rel="noopener" data-test="rede-github">GitHub</a></li>
       <li><a href="https://www.linkedin.com/in/paulovarrone" target="_blank" rel="noopener" data-test="rede-linkedin">LinkedIn</a></li>
     </ul>
-    <div class="footer_copy" data-test="texto-rodape">© 2026 LojaQA — Projeto educacional para prática de testes de automação.</div>
+    <div class="rodape_direitos" data-test="texto-rodape">© 2026 LojaQA — Projeto educacional para prática de testes de automação.</div>
   </footer>
 
   <script src="../js/data.js" defer></script>

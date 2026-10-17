@@ -7,8 +7,8 @@ const id = parseInt(new URLSearchParams(location.search).get("id"), 10);
 const product = productById(id);
 
 const notFoundEl = document.getElementById("item-nao-encontrado");
-const imgWrap = document.querySelector(".inventory_details_img");
-const descWrap = document.querySelector(".inventory_details_desc_container");
+const imgWrap = document.querySelector(".detalhe_foto");
+const descWrap = document.querySelector(".detalhe_info");
 
 if (!product) {
   notFoundEl.hidden = false;

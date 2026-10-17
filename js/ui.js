@@ -41,8 +41,8 @@ function initHeader() {
 function toggleMenu(open) {
   const menu = document.getElementById("menu-lateral");
   const overlay = document.getElementById("sobreposicao-menu");
-  if (menu) menu.classList.toggle("open", open);
-  if (overlay) overlay.classList.toggle("open", open);
+  if (menu) menu.classList.toggle("aberto", open);
+  if (overlay) overlay.classList.toggle("aberto", open);
 }
 
 function updateCartBadge() {
@@ -59,8 +59,8 @@ function updateCartButton(btn, product) {
   const slug = slugify(product.name);
 
   btn.textContent = inCart ? "Remover" : "Adicionar ao carrinho";
-  btn.classList.toggle("btn_secondary", inCart);
-  btn.classList.toggle("btn_inventory", !inCart);
+  btn.classList.toggle("botao_contorno", inCart);
+  btn.classList.toggle("botao_comprar", !inCart);
 
   // id estável (não muda com o estado); data-test dinâmico (muda ao adicionar/remover)
   if (!btn.id) btn.id = "botao-carrinho-" + slug;

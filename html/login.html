@@ -7,28 +7,28 @@
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-  <div class="login_container">
-    <div class="login_logo" data-test="logo-login">🧪 LojaQA</div>
-    <p class="login_tagline" data-test="tagline-login">Sua loja para praticar automação de testes</p>
+  <div class="acesso_conteudo">
+    <div class="acesso_marca" data-test="logo-login">🧪 LojaQA</div>
+    <p class="acesso_slogan" data-test="tagline-login">Sua loja para praticar automação de testes</p>
 
-    <div class="login_wrapper">
-      <form class="login-box" id="form-login" data-test="form-login" novalidate>
-        <input type="text" class="form_input" id="campo-usuario" data-test="campo-usuario"
+    <div class="acesso_pagina">
+      <form class="acesso_form" id="form-login" data-test="form-login" novalidate>
+        <input type="text" class="campo_form" id="campo-usuario" data-test="campo-usuario"
                placeholder="Usuário" autocomplete="username" autofocus>
-        <input type="password" class="form_input" id="campo-senha" data-test="campo-senha"
+        <input type="password" class="campo_form" id="campo-senha" data-test="campo-senha"
                placeholder="Senha" autocomplete="current-password">
 
-        <div class="error-message-container" id="container-erro" data-test="container-erro">
+        <div class="aviso_erro" id="container-erro" data-test="container-erro">
           <span id="texto-erro" data-test="texto-erro"></span>
-          <button type="button" class="error-button" id="botao-fechar-erro" data-test="botao-fechar-erro" aria-label="Fechar">&times;</button>
+          <button type="button" class="aviso_fechar" id="botao-fechar-erro" data-test="botao-fechar-erro" aria-label="Fechar">&times;</button>
         </div>
 
-        <input type="submit" class="btn btn_action" id="botao-entrar" data-test="botao-entrar" value="Entrar">
+        <input type="submit" class="botao botao_primario" id="botao-entrar" data-test="botao-entrar" value="Entrar">
       </form>
     </div>
 
-    <div class="login_credentials_wrap">
-      <div class="login_credentials" id="credenciais-login" data-test="credenciais-login">
+    <div class="acesso_dicas">
+      <div class="dicas_usuarios" id="credenciais-login" data-test="credenciais-login">
         <h4>Usuários aceitos:</h4>
         usuario_padrao<br>
         usuario_bloqueado<br>
@@ -37,7 +37,7 @@
         usuario_erro<br>
         usuario_visual
       </div>
-      <div class="login_password" id="senha-login" data-test="senha-login">
+      <div class="dicas_senha" id="senha-login" data-test="senha-login">
         <h4>Senha para todos os usuários:</h4>
         senha_teste_123</div>
     </div>

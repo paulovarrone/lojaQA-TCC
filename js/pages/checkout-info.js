@@ -9,13 +9,13 @@ const errorText = document.getElementById("texto-erro");
 
 function showError(msg) {
   errorText.textContent = "Erro: " + msg;
-  errorBox.classList.add("visible");
-  fields.forEach((f) => f.classList.add("input_error"));
+  errorBox.classList.add("exibido");
+  fields.forEach((f) => f.classList.add("campo_invalido"));
 }
 
 function clearError() {
-  errorBox.classList.remove("visible");
-  fields.forEach((f) => f.classList.remove("input_error"));
+  errorBox.classList.remove("exibido");
+  fields.forEach((f) => f.classList.remove("campo_invalido"));
 }
 
 document.getElementById("botao-fechar-erro").addEventListener("click", clearError);

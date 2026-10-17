@@ -35,7 +35,7 @@ button { font-family: var(--fonte); cursor: pointer; }
 a { color: inherit; }
 
 /* ===== Botões (formato pílula) ===== */
-.btn {
+.botao {
   border: 1px solid var(--azul);
   border-radius: 999px;
   background: var(--branco);
@@ -45,49 +45,49 @@ a { color: inherit; }
   padding: 10px 18px;
   transition: all .15s ease;
 }
-.btn:hover { filter: brightness(.95); transform: translateY(-1px); }
-a.btn { text-decoration: none; display: inline-block; text-align: center; }
-.btn_complete { max-width: 260px; width: 100%; }
-.cart_empty { padding: 20px 0; color: #7d95a5; }
-.btn_small { padding: 8px 16px; font-size: 13px; }
-.btn_inventory { width: 100%; }
-.btn_secondary { color: var(--vermelho); border-color: var(--vermelho); }
-.btn_primary,
-.btn_action {
+.botao:hover { filter: brightness(.95); transform: translateY(-1px); }
+a.botao { text-decoration: none; display: inline-block; text-align: center; }
+.botao_largo { max-width: 260px; width: 100%; }
+.sacola_vazia { padding: 20px 0; color: #7d95a5; }
+.botao_pequeno { padding: 8px 16px; font-size: 13px; }
+.botao_comprar { width: 100%; }
+.botao_contorno { color: var(--vermelho); border-color: var(--vermelho); }
+.botao_cheio,
+.botao_primario {
   background: var(--azul);
   border-color: var(--azul);
   color: var(--branco);
   font-weight: 700;
 }
-.btn_action { width: 100%; }
-.btn_back { background: var(--branco); }
+.botao_primario { width: 100%; }
+.botao_retorno { background: var(--branco); }
 
 /* ===== Página de Login ===== */
-.login_container {
+.acesso_conteudo {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   background: linear-gradient(160deg, #cbe8fb 0%, var(--azul-suave) 45%, var(--fundo) 45.1%);
 }
-.login_logo {
+.acesso_marca {
   font-size: 30px;
   font-weight: 800;
   letter-spacing: 1px;
   margin: 44px 0 6px;
   color: var(--azul-escuro);
 }
-.login_tagline {
+.acesso_slogan {
   color: #35708f;
   margin-bottom: 28px;
   font-size: 14px;
 }
-.login_wrapper {
+.acesso_pagina {
   width: 100%;
   max-width: 400px;
   padding: 0 20px;
 }
-.login-box {
+.acesso_form {
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -96,7 +96,7 @@ a.btn { text-decoration: none; display: inline-block; text-align: center; }
   padding: 28px 24px;
   box-shadow: 0 12px 34px rgba(12, 74, 110, .16);
 }
-.form_input {
+.campo_form {
   width: 100%;
   padding: 12px 14px;
   border: 1px solid var(--azul-borda);
@@ -104,10 +104,10 @@ a.btn { text-decoration: none; display: inline-block; text-align: center; }
   font-size: 14px;
   font-family: var(--fonte);
 }
-.form_input:focus { outline: 2px solid var(--azul-claro); border-color: transparent; }
-.form_input.input_error { border: 2px solid var(--vermelho); }
+.campo_form:focus { outline: 2px solid var(--azul-claro); border-color: transparent; }
+.campo_form.campo_invalido { border: 2px solid var(--vermelho); }
 
-.error-message-container {
+.aviso_erro {
   display: none;
   background: var(--vermelho);
   color: var(--branco);
@@ -116,8 +116,8 @@ a.btn { text-decoration: none; display: inline-block; text-align: center; }
   position: relative;
   font-size: 13px;
 }
-.error-message-container.visible { display: block; }
-.error-button {
+.aviso_erro.exibido { display: block; }
+.aviso_fechar {
   position: absolute;
   top: 50%; right: 8px;
   transform: translateY(-50%);
@@ -126,7 +126,7 @@ a.btn { text-decoration: none; display: inline-block; text-align: center; }
   font-size: 16px;
 }
 
-.login_credentials_wrap {
+.acesso_dicas {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -135,7 +135,7 @@ a.btn { text-decoration: none; display: inline-block; text-align: center; }
   width: 100%;
   padding: 0 20px 40px;
 }
-.login_credentials, .login_password {
+.dicas_usuarios, .dicas_senha {
   flex: 1 1 300px;
   background: var(--branco);
   border: 1px solid var(--azul-borda);
@@ -144,10 +144,10 @@ a.btn { text-decoration: none; display: inline-block; text-align: center; }
   font-size: 13px;
   line-height: 1.8;
 }
-.login_credentials h4, .login_password h4 { margin-bottom: 8px; font-size: 14px; color: var(--azul); }
+.dicas_usuarios h4, .dicas_senha h4 { margin-bottom: 8px; font-size: 14px; color: var(--azul); }
 
 /* ===== Cabeçalho (claro) ===== */
-.primary_header {
+.cabecalho_topo {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -157,21 +157,21 @@ a.btn { text-decoration: none; display: inline-block; text-align: center; }
   padding: 14px 20px;
   position: relative;
 }
-.header_label { display: flex; align-items: center; gap: 16px; }
-.app_logo { font-size: 20px; font-weight: 800; letter-spacing: .5px; text-decoration: none; }
-.bm-burger-button {
+.cabecalho_marca { display: flex; align-items: center; gap: 16px; }
+.logotipo { font-size: 20px; font-weight: 800; letter-spacing: .5px; text-decoration: none; }
+.menu_gatilho {
   background: none; border: none;
   font-size: 22px;
   line-height: 1;
   color: var(--azul-escuro);
 }
-.shopping_cart_link {
+.sacola_link {
   text-decoration: none;
   font-size: 22px;
   position: relative;
   display: inline-block;
 }
-.shopping_cart_badge {
+.sacola_contador {
   position: absolute;
   top: -6px; right: -10px;
   background: var(--ambar);
@@ -185,7 +185,7 @@ a.btn { text-decoration: none; display: inline-block; text-align: center; }
   display: inline-flex;
 }
 
-.header_secondary_container {
+.subcabecalho {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -193,10 +193,10 @@ a.btn { text-decoration: none; display: inline-block; text-align: center; }
   border-bottom: 2px solid var(--cinza-claro);
   padding: 14px 20px;
 }
-.title { font-size: 18px; font-weight: 800; color: var(--azul); }
+.subcabecalho_titulo { font-size: 18px; font-weight: 800; color: var(--azul); }
 
 /* ===== Menu lateral ===== */
-.bm-menu {
+.gaveta_menu {
   position: fixed;
   top: 0; left: -280px;
   width: 260px; height: 100vh;
@@ -208,35 +208,35 @@ a.btn { text-decoration: none; display: inline-block; text-align: center; }
   display: flex;
   flex-direction: column;
 }
-.bm-menu.open { left: 0; }
-.bm-menu a {
+.gaveta_menu.aberto { left: 0; }
+.gaveta_menu a {
   padding: 14px 24px;
   text-decoration: none;
   font-size: 15px;
   color: var(--cinza);
 }
-.bm-menu a:hover { background: var(--cinza-claro); color: var(--azul); }
-.bm-cross-button {
+.gaveta_menu a:hover { background: var(--cinza-claro); color: var(--azul); }
+.gaveta_fechar {
   position: absolute;
   top: 14px; right: 14px;
   background: none; border: none;
   font-size: 24px;
   color: var(--cinza);
 }
-.bm-overlay {
+.gaveta_fundo {
   display: none;
   position: fixed;
   inset: 0;
   background: rgba(12, 74, 110, .35);
   z-index: 99;
 }
-.bm-overlay.open { display: block; }
+.gaveta_fundo.aberto { display: block; }
 
 /* Containers principais centralizados */
 main { width: 100%; margin-bottom: 40px; }
 
 /* ===== Banner de boas-vindas ===== */
-.hero_banner {
+.faixa_destaque {
   max-width: 1020px;
   margin: 20px auto 0;
   padding: 26px 28px;
@@ -245,17 +245,17 @@ main { width: 100%; margin-bottom: 40px; }
   color: var(--branco);
   border-radius: 18px;
 }
-.hero_banner h1 { font-size: 22px; margin-bottom: 6px; }
-.hero_banner p { font-size: 14px; opacity: .95; }
+.faixa_destaque h1 { font-size: 22px; margin-bottom: 6px; }
+.faixa_destaque p { font-size: 14px; opacity: .95; }
 
 /* ===== Inventário ===== */
-.inventory_container { max-width: 1060px; margin: 0 auto 40px; padding: 24px 20px; }
-.inventory_list {
+.vitrine_area { max-width: 1060px; margin: 0 auto 40px; padding: 24px 20px; }
+.vitrine_grade {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
 }
-.inventory_item {
+.produto_card {
   background: var(--branco);
   border: 1px solid var(--azul-borda);
   border-radius: 16px;
@@ -265,31 +265,31 @@ main { width: 100%; margin-bottom: 40px; }
   gap: 10px;
   transition: box-shadow .15s, transform .15s;
 }
-.inventory_item:hover { box-shadow: 0 8px 22px rgba(12, 74, 110, .14); transform: translateY(-2px); }
-.inventory_item_img img {
+.produto_card:hover { box-shadow: 0 8px 22px rgba(12, 74, 110, .14); transform: translateY(-2px); }
+.produto_foto img {
   width: 100%; height: 170px;
   object-fit: contain;
   background: #eef7ff;
   border-radius: 12px;
 }
-.inventory_item_name {
+.produto_nome {
   font-size: 16px;
   font-weight: 700;
   color: var(--azul);
   text-decoration: none;
 }
-.inventory_item_name:hover { text-decoration: underline; }
-.inventory_item_desc { color: var(--cinza); font-size: 13px; line-height: 1.5; flex: 1; }
-.inventory_item_price { font-size: 18px; font-weight: 800; }
-.pricebar {
+.produto_nome:hover { text-decoration: underline; }
+.produto_texto { color: var(--cinza); font-size: 13px; line-height: 1.5; flex: 1; }
+.produto_valor { font-size: 18px; font-weight: 800; }
+.produto_rodape {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
 }
-.pricebar .btn { width: auto; }
+.produto_rodape .botao { width: auto; }
 
-.product_sort_container {
+.filtro_ordem {
   border: 1px solid var(--azul-borda);
   border-radius: 999px;
   padding: 8px 14px;
@@ -299,7 +299,7 @@ main { width: 100%; margin-bottom: 40px; }
 }
 
 /* ===== Detalhe do item ===== */
-.inventory_details {
+.detalhe_area {
   width: 100%;
   max-width: 900px;
   margin: 24px auto 40px;
@@ -308,32 +308,32 @@ main { width: 100%; margin-bottom: 40px; }
   gap: 40px;
   flex-wrap: wrap;
 }
-.inventory_details_img img {
+.detalhe_foto img {
   width: 300px; max-width: 100%;
   background: #eef7ff;
   border: 1px solid var(--azul-borda);
   border-radius: 16px;
   padding: 12px;
 }
-.inventory_details_desc_container { flex: 1; min-width: 260px; display: flex; flex-direction: column; gap: 14px; }
-.inventory_details_name { font-size: 22px; font-weight: 800; color: var(--azul); }
-.inventory_details_price { font-size: 22px; font-weight: 800; }
+.detalhe_info { flex: 1; min-width: 260px; display: flex; flex-direction: column; gap: 14px; }
+.detalhe_nome { font-size: 22px; font-weight: 800; color: var(--azul); }
+.detalhe_valor { font-size: 22px; font-weight: 800; }
 
 /* ===== Carrinho / Checkout ===== */
-.cart_contents_container, .checkout_container {
+.sacola_conteudo, .pagamento_area {
   width: 100%;
   max-width: 800px;
   margin: 0 auto 40px;
   padding: 24px 20px;
 }
-.cart_quantity_label, .cart_desc_label {
+.coluna_qtd, .coluna_desc {
   display: inline-block;
   font-weight: 700;
   color: var(--cinza);
   padding: 10px 0;
 }
-.cart_quantity_label { width: 60px; }
-.cart_item {
+.coluna_qtd { width: 60px; }
+.sacola_linha {
   display: flex;
   gap: 20px;
   background: var(--branco);
@@ -342,7 +342,7 @@ main { width: 100%; margin-bottom: 40px; }
   padding: 18px;
   margin-bottom: 12px;
 }
-.cart_quantity {
+.linha_qtd {
   width: 40px; height: 40px;
   border: 1px solid var(--azul-borda);
   border-radius: 10px;
@@ -352,10 +352,10 @@ main { width: 100%; margin-bottom: 40px; }
   font-weight: 700;
   flex-shrink: 0;
 }
-.cart_item_label { flex: 1; display: flex; flex-direction: column; gap: 8px; }
-.item_pricebar { display: flex; align-items: center; justify-content: space-between; }
+.linha_info { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.linha_rodape { display: flex; align-items: center; justify-content: space-between; }
 
-.cart_footer {
+.rodape_acoes {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -363,7 +363,7 @@ main { width: 100%; margin-bottom: 40px; }
   margin: 24px auto 0; /* centralizado */
 }
 
-.checkout_info {
+.pagamento_form {
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -371,7 +371,7 @@ main { width: 100%; margin-bottom: 40px; }
   margin: 0 auto; /* centralizado */
 }
 
-.summary_info {
+.resumo_bloco {
   margin-top: 20px;
   background: var(--branco);
   border: 1px solid var(--azul-borda);
@@ -381,13 +381,13 @@ main { width: 100%; margin-bottom: 40px; }
   flex-direction: column;
   gap: 6px;
 }
-.summary_info_label { font-weight: 700; margin-top: 12px; color: var(--azul); }
-.summary_value_label { color: var(--cinza); }
-.summary_subtotal_label, .summary_tax_label { color: var(--cinza); }
-.summary_total_label { font-size: 16px; font-weight: 800; margin: 8px 0; }
+.resumo_rotulo { font-weight: 700; margin-top: 12px; color: var(--azul); }
+.resumo_valor { color: var(--cinza); }
+.resumo_subtotal, .resumo_imposto { color: var(--cinza); }
+.resumo_total { font-size: 16px; font-weight: 800; margin: 8px 0; }
 
 /* ===== Pedido concluído ===== */
-.checkout_complete_container {
+.conclusao_area {
   width: 100%;
   max-width: 600px;
   margin: 40px auto;
@@ -398,9 +398,9 @@ main { width: 100%; margin-bottom: 40px; }
   align-items: center;
   gap: 18px;
 }
-.pony_express { width: 120px; }
-.complete-header { font-size: 22px; font-weight: 800; color: var(--azul); }
-.complete-text { color: var(--cinza); line-height: 1.6; }
+.conclusao_imagem { width: 120px; }
+.conclusao_titulo { font-size: 22px; font-weight: 800; color: var(--azul); }
+.conclusao_texto { color: var(--cinza); line-height: 1.6; }
 
 /* ===== Página Sobre ===== */
 .sobre_container {
@@ -515,21 +515,21 @@ main { width: 100%; margin-bottom: 40px; }
   justify-content: center;
   margin: 22px 0 40px;
 }
-.nf_acoes .btn { min-width: 160px; }
+.nf_acoes .botao { min-width: 160px; }
 
 /* ===== Defeitos visuais propositais (usuario_visual) =====
    A classe .bugs-visuais é adicionada ao <body> pelo ui.js quando o
    usuário logado é "usuario_visual". Útil para testes de regressão visual. */
-.bugs-visuais .app_logo { margin-left: 48px; }
-.bugs-visuais .shopping_cart_badge { top: auto; bottom: -8px; right: auto; left: -12px; }
-.bugs-visuais .inventory_item:nth-child(3n) .inventory_item_img img { transform: rotate(7deg); }
-.bugs-visuais .inventory_item:nth-child(4n) .pricebar .btn { transform: rotate(-4deg) translateY(5px); }
-.bugs-visuais .inventory_item_price { color: var(--vermelho); font-style: italic; }
-.bugs-visuais .title { letter-spacing: 5px; }
-.bugs-visuais .cart_quantity { border-radius: 50%; transform: rotate(12deg); }
+.bugs-visuais .logotipo { margin-left: 48px; }
+.bugs-visuais .sacola_contador { top: auto; bottom: -8px; right: auto; left: -12px; }
+.bugs-visuais .produto_card:nth-child(3n) .produto_foto img { transform: rotate(7deg); }
+.bugs-visuais .produto_card:nth-child(4n) .produto_rodape .botao { transform: rotate(-4deg) translateY(5px); }
+.bugs-visuais .produto_valor { color: var(--vermelho); font-style: italic; }
+.bugs-visuais .subcabecalho_titulo { letter-spacing: 5px; }
+.bugs-visuais .linha_qtd { border-radius: 50%; transform: rotate(12deg); }
 
 /* ===== Rodapé (claro) ===== */
-.footer {
+.rodape_site {
   margin-top: auto; /* cola o rodapé na base mesmo em páginas curtas */
   background: var(--azul-suave);
   border-top: 1px solid var(--azul-borda);
@@ -537,21 +537,21 @@ main { width: 100%; margin-bottom: 40px; }
   padding: 30px 20px;
   text-align: center;
 }
-.social {
+.redes {
   list-style: none;
   display: flex;
   gap: 20px;
   justify-content: center;
   margin-bottom: 14px;
 }
-.social a { color: var(--azul-escuro); text-decoration: none; font-weight: 600; }
-.social a:hover { color: var(--azul); text-decoration: underline; }
-.footer_copy { color: #4a7a99; font-size: 12px; }
+.redes a { color: var(--azul-escuro); text-decoration: none; font-weight: 600; }
+.redes a:hover { color: var(--azul); text-decoration: underline; }
+.rodape_direitos { color: #4a7a99; font-size: 12px; }
 
 /* ===== Responsivo ===== */
 @media (max-width: 600px) {
-  .inventory_details { flex-direction: column; }
-  .cart_footer { max-width: 100%; }
+  .detalhe_area { flex-direction: column; }
+  .rodape_acoes { max-width: 100%; }
   .nf_documento { padding: 20px; }
   .nf_identificacao { text-align: left; }
 }

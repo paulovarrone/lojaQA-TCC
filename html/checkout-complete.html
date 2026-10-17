@@ -8,45 +8,45 @@
 </head>
 <body>
   <header>
-    <div class="primary_header">
-      <div class="header_label">
-        <button class="bm-burger-button" id="botao-menu" data-test="botao-menu" aria-label="Abrir Menu">&#9776;</button>
-        <a class="app_logo" id="link-logo" data-test="link-logo" href="index.html">🧪 LojaQA</a>
+    <div class="cabecalho_topo">
+      <div class="cabecalho_marca">
+        <button class="menu_gatilho" id="botao-menu" data-test="botao-menu" aria-label="Abrir Menu">&#9776;</button>
+        <a class="logotipo" id="link-logo" data-test="link-logo" href="index.html">🧪 LojaQA</a>
       </div>
-      <div class="shopping_cart_container">
-        <a class="shopping_cart_link" id="link-carrinho" data-test="link-carrinho" href="cart.html">🛒<span class="shopping_cart_badge" id="badge-carrinho" data-test="badge-carrinho" style="display:none"></span></a>
+      <div class="sacola_area">
+        <a class="sacola_link" id="link-carrinho" data-test="link-carrinho" href="cart.html">🛒<span class="sacola_contador" id="badge-carrinho" data-test="badge-carrinho" style="display:none"></span></a>
       </div>
     </div>
-    <div class="header_secondary_container">
-      <span class="title" id="titulo-pagina" data-test="titulo-pagina">Pedido Concluído!</span>
+    <div class="subcabecalho">
+      <span class="subcabecalho_titulo" id="titulo-pagina" data-test="titulo-pagina">Pedido Concluído!</span>
     </div>
-    <nav class="bm-menu" id="menu-lateral" data-test="menu-lateral">
-      <button class="bm-cross-button" id="botao-fechar-menu" data-test="botao-fechar-menu" aria-label="Fechar Menu">&times;</button>
+    <nav class="gaveta_menu" id="menu-lateral" data-test="menu-lateral">
+      <button class="gaveta_fechar" id="botao-fechar-menu" data-test="botao-fechar-menu" aria-label="Fechar Menu">&times;</button>
       <a id="link-todos-itens" data-test="link-todos-itens" href="index.html">Todos os Produtos</a>
       <a id="link-sobre" data-test="link-sobre" href="sobre.html">Sobre</a>
       <a id="link-sair" data-test="link-sair" href="#">Sair</a>
       <a id="link-resetar" data-test="link-resetar" href="#">Resetar Aplicação</a>
     </nav>
-    <div class="bm-overlay" id="sobreposicao-menu"></div>
+    <div class="gaveta_fundo" id="sobreposicao-menu"></div>
   </header>
 
-  <main class="checkout_complete_container" id="container-pedido-concluido" data-test="container-pedido-concluido">
-    <img class="pony_express" src="../img/pony-express.svg" alt="Pedido confirmado" id="imagem-confirmacao" data-test="imagem-confirmacao">
-    <h2 class="complete-header" id="titulo-conclusao" data-test="titulo-conclusao">Obrigado pelo seu pedido!</h2>
-    <div class="complete-text" id="texto-conclusao" data-test="texto-conclusao">
+  <main class="conclusao_area" id="container-pedido-concluido" data-test="container-pedido-concluido">
+    <img class="conclusao_imagem" src="../img/pony-express.svg" alt="Pedido confirmado" id="imagem-confirmacao" data-test="imagem-confirmacao">
+    <h2 class="conclusao_titulo" id="titulo-conclusao" data-test="titulo-conclusao">Obrigado pelo seu pedido!</h2>
+    <div class="conclusao_texto" id="texto-conclusao" data-test="texto-conclusao">
       Pedido <strong id="numero-pedido" data-test="numero-pedido"></strong> confirmado!
       Ele foi despachado e chegará rapidinho até você.
     </div>
-    <a class="btn btn_action btn_complete" id="botao-nota-fiscal" data-test="nota-fiscal" href="nota-fiscal.html">Gerar Nota Fiscal (PDF)</a>
-    <a class="btn btn_secondary btn_complete" id="botao-voltar-inicio" data-test="voltar-inicio" href="index.html">Voltar à Loja</a>
+    <a class="botao botao_primario botao_largo" id="botao-nota-fiscal" data-test="nota-fiscal" href="nota-fiscal.html">Gerar Nota Fiscal (PDF)</a>
+    <a class="botao botao_contorno botao_largo" id="botao-voltar-inicio" data-test="voltar-inicio" href="index.html">Voltar à Loja</a>
   </main>
 
-  <footer class="footer" id="rodape" data-test="rodape">
-    <ul class="social">
+  <footer class="rodape_site" id="rodape" data-test="rodape">
+    <ul class="redes">
       <li><a href="https://github.com/paulovarrone" target="_blank" rel="noopener" data-test="rede-github">GitHub</a></li>
       <li><a href="https://www.linkedin.com/in/paulovarrone" target="_blank" rel="noopener" data-test="rede-linkedin">LinkedIn</a></li>
     </ul>
-    <div class="footer_copy" data-test="texto-rodape">© 2026 LojaQA — Projeto educacional para prática de testes de automação.</div>
+    <div class="rodape_direitos" data-test="texto-rodape">© 2026 LojaQA — Projeto educacional para prática de testes de automação.</div>
   </footer>
 
   <script src="../js/data.js" defer></script>

@@ -8,47 +8,47 @@
 </head>
 <body>
   <header>
-    <div class="primary_header">
-      <div class="header_label">
-        <button class="bm-burger-button" id="botao-menu" data-test="botao-menu" aria-label="Abrir Menu">&#9776;</button>
-        <a class="app_logo" id="link-logo" data-test="link-logo" href="index.html">🧪 LojaQA</a>
+    <div class="cabecalho_topo">
+      <div class="cabecalho_marca">
+        <button class="menu_gatilho" id="botao-menu" data-test="botao-menu" aria-label="Abrir Menu">&#9776;</button>
+        <a class="logotipo" id="link-logo" data-test="link-logo" href="index.html">🧪 LojaQA</a>
       </div>
-      <div class="shopping_cart_container">
-        <a class="shopping_cart_link" id="link-carrinho" data-test="link-carrinho" href="cart.html">🛒<span class="shopping_cart_badge" id="badge-carrinho" data-test="badge-carrinho" style="display:none"></span></a>
+      <div class="sacola_area">
+        <a class="sacola_link" id="link-carrinho" data-test="link-carrinho" href="cart.html">🛒<span class="sacola_contador" id="badge-carrinho" data-test="badge-carrinho" style="display:none"></span></a>
       </div>
     </div>
-    <div class="header_secondary_container">
-      <a class="btn btn_small btn_back" id="link-voltar-produtos" data-test="voltar-produtos" href="index.html">&#8592; Voltar aos produtos</a>
+    <div class="subcabecalho">
+      <a class="botao botao_pequeno botao_retorno" id="link-voltar-produtos" data-test="voltar-produtos" href="index.html">&#8592; Voltar aos produtos</a>
     </div>
-    <nav class="bm-menu" id="menu-lateral" data-test="menu-lateral">
-      <button class="bm-cross-button" id="botao-fechar-menu" data-test="botao-fechar-menu" aria-label="Fechar Menu">&times;</button>
+    <nav class="gaveta_menu" id="menu-lateral" data-test="menu-lateral">
+      <button class="gaveta_fechar" id="botao-fechar-menu" data-test="botao-fechar-menu" aria-label="Fechar Menu">&times;</button>
       <a id="link-todos-itens" data-test="link-todos-itens" href="index.html">Todos os Produtos</a>
       <a id="link-sobre" data-test="link-sobre" href="sobre.html">Sobre</a>
       <a id="link-sair" data-test="link-sair" href="#">Sair</a>
       <a id="link-resetar" data-test="link-resetar" href="#">Resetar Aplicação</a>
     </nav>
-    <div class="bm-overlay" id="sobreposicao-menu"></div>
+    <div class="gaveta_fundo" id="sobreposicao-menu"></div>
   </header>
 
-  <main class="inventory_details" id="detalhes-produto" data-test="detalhes-produto">
+  <main class="detalhe_area" id="detalhes-produto" data-test="detalhes-produto">
     <p id="item-nao-encontrado" data-test="item-nao-encontrado" hidden>ITEM NÃO ENCONTRADO — Este produto não existe.</p>
-    <div class="inventory_details_img" data-test="bloco-imagem">
+    <div class="detalhe_foto" data-test="bloco-imagem">
       <img id="imagem-item" data-test="imagem-item" alt="">
     </div>
-    <div class="inventory_details_desc_container" data-test="bloco-informacoes">
-      <div class="inventory_details_name" data-test="nome-item"></div>
-      <div class="inventory_item_desc" data-test="descricao-item"></div>
-      <div class="inventory_details_price" data-test="preco-item"></div>
-      <button class="btn btn_small" id="botao-carrinho"></button>
+    <div class="detalhe_info" data-test="bloco-informacoes">
+      <div class="detalhe_nome" data-test="nome-item"></div>
+      <div class="produto_texto" data-test="descricao-item"></div>
+      <div class="detalhe_valor" data-test="preco-item"></div>
+      <button class="botao botao_pequeno" id="botao-carrinho"></button>
     </div>
   </main>
 
-  <footer class="footer" id="rodape" data-test="rodape">
-    <ul class="social">
+  <footer class="rodape_site" id="rodape" data-test="rodape">
+    <ul class="redes">
       <li><a href="https://github.com/paulovarrone" target="_blank" rel="noopener" data-test="rede-github">GitHub</a></li>
       <li><a href="https://www.linkedin.com/in/paulovarrone" target="_blank" rel="noopener" data-test="rede-linkedin">LinkedIn</a></li>
     </ul>
-    <div class="footer_copy" data-test="texto-rodape">© 2026 LojaQA — Projeto educacional para prática de testes de automação.</div>
+    <div class="rodape_direitos" data-test="texto-rodape">© 2026 LojaQA — Projeto educacional para prática de testes de automação.</div>
   </footer>
 
   <script src="../js/data.js" defer></script>
