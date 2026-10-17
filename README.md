@@ -138,7 +138,7 @@ Estrutura e tamanho das duas bases:
 | Seções / subseções | 20 / 6              | 20 / 6                   |
 | Itens de lista     | 240                 | 240                      |
 | Perguntas no FAQ   | 32                  | 32                       |
-| Tamanho            | 64,6 KB             | 64,9 KB                  |
+| Tamanho            | 64,6 KB             | 64,6 KB                  |
 
 Nas duas, o texto visível aparece apenas como valor esperado de asserção, e a prosa compartilhada não traz valores de atributo nem posições no DOM, para que o modelo não monte seletores do outro tipo a partir da descrição.
 
