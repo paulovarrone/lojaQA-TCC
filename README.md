@@ -30,16 +30,24 @@ Ambiente opcional de automação, separado deste repositório. O comando abaixo 
 $base = "$env:USERPROFILE\Desktop\n8n"; New-Item -ItemType Directory -Force -Path "$base\cypress\e2e","$base\cypress\support","$base\cypress\fixtures" | Out-Null; Push-Location $base; npm init -y; npm install cypress --save-dev; npm pkg set "scripts.cypress:open=cypress open" "scripts.cypress:run=cypress run"; Pop-Location; docker rm -f n8n 2>$null; docker run -d --name n8n -p 5678:5678 -v n8n_data:/home/node/.n8n -v "${base}:/files" -e N8N_RESTRICT_FILE_ACCESS_TO=/files -e NODE_FUNCTION_ALLOW_BUILTIN=fs --restart unless-stopped n8nio/n8n:latest
 ```
 
+## Reexecução
+
+Para reexecutar as 52 execuções arquivadas de forma automática, utiliza-se o script `executar_todas.ps1`, disponível no repositório, com o comando `powershell -ExecutionPolicy Bypass -File .\executar_todas.ps1` na pasta raiz do projeto. O script copia os arquivos de cada execução para o projeto Cypress, executa os testes em modo headless e grava o resultado de cada `it()` em `resultados_cypress.csv`, na pasta raiz, além de um relatório JUnit e um log de execução dentro da pasta de cada execução.
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\executar_todas.ps1
+```
+
 ## Usuários de teste
 
-| Usuário | Comportamento |
-|---|---|
-| `usuario_padrao` | Fluxo normal |
-| `usuario_bloqueado` | Bloqueado — exibe erro no login |
-| `usuario_problema` | Todas as imagens de produto aparecem quebradas |
-| `usuario_lento` | Login com atraso artificial de ~5s |
-| `usuario_erro` | Ações falham: ordenação dispara `alert` de erro, produtos de id ímpar não podem ser adicionados ao carrinho e "Finalizar Pedido" falha |
-| `usuario_visual` | Defeitos visuais propositais: logo deslocado, badge do carrinho deslocado, título com letras espaçadas, imagens tortas, botões desalinhados, preços em vermelho e itálico, quantidade do carrinho girada e alguns preços errados na vitrine (+R$ 10 nos produtos de id múltiplo de 5) |
+| Usuário              | Comportamento                                                                                                                                                                                                                                                                                |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `usuario_padrao`    | Fluxo normal                                                                                                                                                                                                                                                                                 |
+| `usuario_bloqueado` | Bloqueado — exibe erro no login                                                                                                                                                                                                                                                             |
+| `usuario_problema`  | Todas as imagens de produto aparecem quebradas                                                                                                                                                                                                                                               |
+| `usuario_lento`     | Login com atraso artificial de ~5s                                                                                                                                                                                                                                                           |
+| `usuario_erro`      | Ações falham: ordenação dispara `alert` de erro, produtos de id ímpar não podem ser adicionados ao carrinho e "Finalizar Pedido" falha                                                                                                                                               |
+| `usuario_visual`    | Defeitos visuais propositais: logo deslocado, badge do carrinho deslocado, título com letras espaçadas, imagens tortas, botões desalinhados, preços em vermelho e itálico, quantidade do carrinho girada e alguns preços errados na vitrine (+R$ 10 nos produtos de id múltiplo de 5) |
 
 **Senha para todos:** `senha_teste_123`
 
@@ -82,17 +90,17 @@ Ordem de importação em cada página: `data.js` → `store.js` → `ui.js` → 
 
 ## Páginas
 
-| Página | Arquivo |
-|---|---|
-| **Página inicial (home)** — lista de produtos com ordenação | `index.html` |
-| Login (tela de entrada) | `login.html` |
-| Detalhe do produto | `inventory-item.html?id=N` |
-| Carrinho | `cart.html` |
-| Pagamento — dados | `checkout-step-one.html` |
-| Pagamento — resumo (subtotal + 8% de impostos) | `checkout-step-two.html` |
-| Pedido concluído | `checkout-complete.html` |
-| Nota fiscal (PDF) | `nota-fiscal.html` |
-| Sobre (propósito do projeto/TCC) | `sobre.html` |
+| Página                                                               | Arquivo                      |
+| --------------------------------------------------------------------- | ---------------------------- |
+| **Página inicial (home)** — lista de produtos com ordenação | `index.html`               |
+| Login (tela de entrada)                                               | `login.html`               |
+| Detalhe do produto                                                    | `inventory-item.html?id=N` |
+| Carrinho                                                              | `cart.html`                |
+| Pagamento — dados                                                    | `checkout-step-one.html`   |
+| Pagamento — resumo (subtotal + 8% de impostos)                       | `checkout-step-two.html`   |
+| Pedido concluído                                                     | `checkout-complete.html`   |
+| Nota fiscal (PDF)                                                     | `nota-fiscal.html`         |
+| Sobre (propósito do projeto/TCC)                                     | `sobre.html`               |
 
 ## Funcionalidades
 
@@ -132,13 +140,13 @@ Para uso como base de conhecimento (RAG) na geração de testes Cypress, há dua
 
 Estrutura e tamanho das duas bases:
 
-| Métrica            | Forte (Estruturado) | Frágil (Não Estruturado) |
-|--------------------|---------------------|--------------------------|
-| Linhas             | 456                 | 456                      |
-| Seções / subseções | 20 / 6              | 20 / 6                   |
-| Itens de lista     | 240                 | 240                      |
-| Perguntas no FAQ   | 32                  | 32                       |
-| Tamanho            | 64,6 KB             | 64,6 KB                  |
+| Métrica               | Forte (Estruturado) | Frágil (Não Estruturado) |
+| ---------------------- | ------------------- | -------------------------- |
+| Linhas                 | 456                 | 456                        |
+| Seções / subseções | 20 / 6              | 20 / 6                     |
+| Itens de lista         | 240                 | 240                        |
+| Perguntas no FAQ       | 32                  | 32                         |
+| Tamanho                | 64,6 KB             | 64,6 KB                    |
 
 Nas duas, o texto visível aparece apenas como valor esperado de asserção, e a prosa compartilhada não traz valores de atributo nem posições no DOM, para que o modelo não monte seletores do outro tipo a partir da descrição.
 
